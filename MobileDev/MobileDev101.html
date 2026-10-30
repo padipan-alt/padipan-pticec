@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>หน่วยที่ 1: ความรู้เบื้องต้นเกี่ยวกับอุปกรณ์พกพาและแอปพลิเคชัน</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Prompt', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .gradient-text {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <i class="fa-solid fa-mobile-screen-button text-indigo-600 text-2xl mr-2"></i>
+                    <span class="font-bold text-xl text-gray-900">MobileDev 101</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#evolution" class="text-gray-600 hover:text-indigo-600 font-medium transition">วิวัฒนาการ</a>
+                    <a href="#os" class="text-gray-600 hover:text-indigo-600 font-medium transition">ระบบปฏิบัติการ</a>
+                    <a href="#app-types" class="text-gray-600 hover:text-indigo-600 font-medium transition">ประเภทแอป</a>
+                    <a href="#ethics" class="text-gray-600 hover:text-indigo-600 font-medium transition">จริยธรรม & ความปลอดภัย</a>
+                    <a href="#resources" class="text-gray-600 hover:text-indigo-600 font-medium transition">แหล่งเรียนรู้</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="bg-indigo-700 text-white py-16 md:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-indigo-200 font-semibold tracking-wide uppercase text-sm md:text-base mb-2">รายวิชา 21910-2017 การพัฒนาโปรแกรมบนอุปกรณ์พกพาเบื้องต้น  ครูปฎิภาณ พานทอง </h2>
+            <h1 class="text-3xl md:text-5xl font-bold mb-6">หน่วยที่ 1: ความรู้เบื้องต้นเกี่ยวกับอุปกรณ์พกพาและแอปพลิเคชัน</h1>
+            <p class="text-lg md:text-xl text-indigo-100 max-w-3xl mx-auto">เรียนรู้จุดเริ่มต้นของอุปกรณ์พกพา ระบบปฏิบัติการที่ขับเคลื่อนโลกยุคใหม่ รูปแบบของแอปพลิเคชัน และข้อควรระวังในการใช้งาน</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-24">
+
+        <!-- 1. วิวัฒนาการและประเภท -->
+        <section id="evolution" class="scroll-mt-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4"><i class="fa-solid fa-timeline text-indigo-500 mr-3"></i>วิวัฒนาการและประเภทของอุปกรณ์พกพา</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">จากยุคแอนะล็อกที่โทรศัพท์มีขนาดเท่ากระติกน้ำ พัฒนามาสู่ยุคดิจิทัลที่คอมพิวเตอร์ประสิทธิภาพสูงถูกย่อส่วนให้อยู่ในมือและบนข้อมือของเรา</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card 1 -->
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 hover:shadow-md transition duration-300 transform hover:-translate-y-1">
+                    <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-phone text-2xl text-blue-600"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-3">Feature Phone & PDA</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-3">ยุค 2G-3G เน้นการโทรและ SMS เป็นหลัก โทรศัพท์บางรุ่นเริ่มมีปุ่มกด QWERTY ส่วน PDA (Personal Digital Assistant) เริ่มมีการใช้ปากกา Stylus สำหรับจดบันทึกและจัดการตารางเวลา ถือเป็นต้นแบบของสมาร์ทโฟน</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 hover:shadow-md transition duration-300 transform hover:-translate-y-1">
+                    <div class="w-14 h-14 bg-indigo-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-mobile-screen text-2xl text-indigo-600"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-3">สมาร์ทโฟน (Smartphone)</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-3">จุดเปลี่ยนสำคัญเกิดขึ้นเมื่อมีการเปิดตัว iPhone ในปี 2007 ที่ใช้หน้าจอสัมผัสแบบ Multi-touch สมาร์ทโฟนกลายเป็นศูนย์กลางการใช้ชีวิต มี OS ของตัวเอง กล้องคุณภาพสูง และระบบสโตร์สำหรับโหลดแอป</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 hover:shadow-md transition duration-300 transform hover:-translate-y-1">
+                    <div class="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-tablet-screen-button text-2xl text-purple-600"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-3">แท็บเล็ต (Tablet)</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-3">อุปกรณ์หน้าจอ 7-12 นิ้ว อุดช่องโหว่ระหว่างมือถือและแล็ปท็อป ปัจจุบันแท็บเล็ตมีประสิทธิภาพสูงมากจนสามารถใช้แทนคอมพิวเตอร์ในการตัดต่อวิดีโอ วาดภาพ หรือทำงานเอกสารได้อย่างสมบูรณ์แบบ</p>
+                </div>
+                <!-- Card 4 -->
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 hover:shadow-md transition duration-300 transform hover:-translate-y-1">
+                    <div class="w-14 h-14 bg-teal-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-watch-apple text-2xl text-teal-600"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-3">อุปกรณ์สวมใส่ (Wearables)</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-3">Smartwatch และ Smartband เป็นส่วนต่อขยายของมือถือ เน้นการแจ้งเตือน การติดตามสุขภาพ (วัดชีพจร, การนอน) และการออกกำลังกาย มีแอปพลิเคชันขนาดเล็ก (Micro-apps) ที่ทำงานเฉพาะทาง</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. ระบบปฏิบัติการ -->
+        <section id="os" class="scroll-mt-20 bg-gray-100 rounded-3xl p-8 md:p-12">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4"><i class="fa-solid fa-microchip text-indigo-500 mr-3"></i>ระบบปฏิบัติการ (Operating System)</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">ซอฟต์แวร์ระบบที่เป็นตัวกลางระหว่างฮาร์ดแวร์และผู้ใช้งาน ในโลกมือถือมี 2 ค่ายยักษ์ใหญ่ที่ครองตลาด</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Android -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm flex flex-col items-center text-center">
+                    <i class="fa-brands fa-android text-6xl text-green-500 mb-4"></i>
+                    <h3 class="text-2xl font-bold mb-2">Android</h3>
+                    <p class="text-sm text-gray-500 mb-4">พัฒนาโดย Google</p>
+                    <ul class="text-left text-gray-600 space-y-2 w-full text-sm">
+                        <li><i class="fa-solid fa-check text-green-500 mr-2"></i>เป็นระบบเปิด (Open Source) ดัดแปลงได้</li>
+                        <li><i class="fa-solid fa-check text-green-500 mr-2"></i>ครองส่วนแบ่งการตลาดสูงที่สุดในโลก (ราว 70%)</li>
+                        <li><i class="fa-solid fa-check text-green-500 mr-2"></i>รองรับอุปกรณ์ตั้งแต่ราคาประหยัดถึงระดับพรีเมียม</li>
+                        <li><i class="fa-solid fa-check text-green-500 mr-2"></i>ใช้ภาษา Java/Kotlin ในการพัฒนา Native App</li>
+                    </ul>
+                    <a href="https://developer.android.com/" target="_blank" class="mt-6 inline-block bg-green-50 text-green-700 text-sm font-medium py-2 px-4 rounded-full hover:bg-green-100 transition">
+                        <i class="fa-solid fa-arrow-up-right-from-square mr-1"></i> Android Developers
+                    </a>
+                </div>
+                <!-- iOS -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm flex flex-col items-center text-center">
+                    <i class="fa-brands fa-apple text-6xl text-gray-800 mb-4"></i>
+                    <h3 class="text-2xl font-bold mb-2">iOS</h3>
+                    <p class="text-sm text-gray-500 mb-4">พัฒนาโดย Apple</p>
+                    <ul class="text-left text-gray-600 space-y-2 w-full text-sm">
+                        <li><i class="fa-solid fa-check text-blue-500 mr-2"></i>ระบบปิด (Closed System) ใช้เฉพาะเครื่อง Apple</li>
+                        <li><i class="fa-solid fa-check text-blue-500 mr-2"></i>ขึ้นชื่อเรื่องความปลอดภัยและการอัปเดตที่ยาวนาน</li>
+                        <li><i class="fa-solid fa-check text-blue-500 mr-2"></i>ผู้ใช้มีกำลังซื้อสูง เหมาะกับการทำแอปเชิงพาณิชย์</li>
+                        <li><i class="fa-solid fa-check text-blue-500 mr-2"></i>ใช้ภาษา Swift / Objective-C ในการพัฒนา</li>
+                    </ul>
+                    <a href="https://developer.apple.com/" target="_blank" class="mt-6 inline-block bg-gray-100 text-gray-700 text-sm font-medium py-2 px-4 rounded-full hover:bg-gray-200 transition">
+                        <i class="fa-solid fa-arrow-up-right-from-square mr-1"></i> Apple Developer
+                    </a>
+                </div>
+            </div>
+            
+            <div class="mt-8 bg-blue-50 rounded-xl p-5 border border-blue-100 text-sm text-blue-800 flex items-start">
+                <i class="fa-solid fa-circle-info text-blue-500 text-lg mr-3 mt-0.5"></i>
+                <p><strong>เกร็ดความรู้:</strong> ในอดีตเคยมีระบบปฏิบัติการอื่นๆ ที่ได้รับความนิยม เช่น <strong>Symbian</strong> (ครองตลาดโดย Nokia), <strong>BlackBerry OS</strong> (เด่นเรื่องอีเมลและคีย์บอร์ด) และ <strong>Windows Phone</strong> (ดีไซน์ Live Tiles ของ Microsoft) แต่ปัจจุบันยุติการพัฒนาไปแล้วเนื่องจากไม่สามารถแข่งขันกับ Ecosystem ของ iOS และ Android ได้</p>
+            </div>
+        </section>
+
+        <!-- 3. ประเภทของแอปพลิเคชัน -->
+        <section id="app-types" class="scroll-mt-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4"><i class="fa-solid fa-layer-group text-indigo-500 mr-3"></i>ประเภทของแอปพลิเคชัน</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">สถาปัตยกรรมในการสร้างแอปพลิเคชันแบ่งออกเป็น 3 ประเภทหลักๆ ซึ่งมีข้อดีและข้อเสียแตกต่างกันไป</p>
+            </div>
+
+            <div class="space-y-6">
+                <!-- Native -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-indigo-500 flex flex-col md:flex-row gap-6 items-center">
+                    <div class="flex-shrink-0 bg-indigo-100 p-4 rounded-full text-indigo-600 text-3xl">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Native App</h3>
+                        <p class="text-gray-600 text-sm mb-2">แอปที่พัฒนาขึ้นมาเพื่อระบบปฏิบัติการนั้นๆ โดยเฉพาะ ใช้เครื่องมือและภาษาที่เจ้าของ OS กำหนด (เช่น Xcode สำหรับ iOS, Android Studio สำหรับ Android)</p>
+                        <div class="flex flex-wrap gap-2 text-xs font-medium">
+                            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full">ดึงศักยภาพเครื่องได้ 100%</span>
+                            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full">เหมาะกับเกมกราฟิกสูง หรือแอปที่ซับซ้อน</span>
+                            <span class="bg-red-100 text-red-700 px-3 py-1 rounded-full">ต้องใช้ทีมนักพัฒนา 2 ทีม (iOS / Android)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Web App -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-blue-500 flex flex-col md:flex-row gap-6 items-center">
+                    <div class="flex-shrink-0 bg-blue-100 p-4 rounded-full text-blue-600 text-3xl">
+                        <i class="fa-solid fa-globe"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Web App & PWA</h3>
+                        <p class="text-gray-600 text-sm mb-2">พัฒนาด้วย HTML, CSS, JavaScript เปิดใช้งานผ่านบราวเซอร์ ปัจจุบันมีเทคโนโลยี <strong>PWA (Progressive Web App)</strong> ที่ทำให้เว็บแอปทำงานได้คล้ายแอปจริง (เช่น ซ่อนแถบ URL, ส่งแจ้งเตือนได้, ใช้งานออฟไลน์ได้บางส่วน)</p>
+                        <div class="flex flex-wrap gap-2 text-xs font-medium">
+                            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full">ไม่ต้องลงผ่าน Store (ข้ามข้อจำกัดการอนุมัติ)</span>
+                            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full">พัฒนาและอัปเดตเวอร์ชันได้ทันที</span>
+                            <span class="bg-red-100 text-red-700 px-3 py-1 rounded-full">ข้อจำกัดการเข้าถึง Bluetooth, NFC, Background Tasks</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hybrid -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-purple-500 flex flex-col md:flex-row gap-6 items-center">
+                    <div class="flex-shrink-0 bg-purple-100 p-4 rounded-full text-purple-600 text-3xl">
+                        <i class="fa-solid fa-code-merge"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Hybrid / Cross-Platform App</h3>
+                        <p class="text-gray-600 text-sm mb-2">เทรนด์ยอดฮิตในปัจจุบัน เขียนโค้ดชุดเดียว (Single Codebase) แปลงรันได้ทั้ง iOS/Android เฟรมเวิร์กที่นิยมระดับโลก ได้แก่ <strong>Flutter (ภาษา Dart ของ Google)</strong> และ <strong>React Native (JavaScript ของ Meta/Facebook)</strong> ส่วนเครื่องมือสำหรับผู้เริ่มต้นเช่น Thunkable</p>
+                        <div class="flex flex-wrap gap-2 text-xs font-medium">
+                            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full">ลดต้นทุนค่าแรงและระยะเวลาพัฒนาลง 30-50%</span>
+                            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full">UI มีความสม่ำเสมอในทุกแพลตฟอร์ม</span>
+                            <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full">อาจเจอปัญหาเมื่อ OS อัปเดตฟีเจอร์ใหม่ (ต้องรอ Framework อัปเดตตาม)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. จริยธรรมและความปลอดภัย -->
+        <section id="ethics" class="scroll-mt-20">
+        <section id="ethics" class="scroll-mt-20 mb-12">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4"><i class="fa-solid fa-shield-halved text-indigo-500 mr-3"></i>จริยธรรมและความปลอดภัย</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">ในฐานะนักพัฒนาและผู้ใช้งาน การตระหนักถึงความปลอดภัยและสิทธิส่วนบุคคลเป็นสิ่งที่ขาดไม่ได้</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Ethics -->
+                <div class="bg-indigo-900 text-white rounded-3xl p-8 relative overflow-hidden">
+                    <div class="absolute -right-6 -top-6 text-indigo-800 opacity-50 text-9xl">
+                        <i class="fa-solid fa-scale-balanced"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <h3 class="text-2xl font-bold mb-4 text-indigo-200">จริยธรรมของนักพัฒนา</h3>
+                        <ul class="space-y-4 text-sm leading-relaxed text-indigo-100">
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-hand-holding-heart mt-1 mr-3 text-indigo-400"></i>
+                                <span><strong>พ.ร.บ. คุ้มครองข้อมูลส่วนบุคคล (PDPA):</strong> ต้องมีการขอความยินยอม (Consent) ก่อนเก็บข้อมูลส่วนตัว และให้สิทธิ์ผู้ใช้ในการลบหรือขอข้อมูลคืนได้เสมอ</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-copyright mt-1 mr-3 text-indigo-400"></i>
+                                <span><strong>เคารพทรัพย์สินทางปัญญา:</strong> ไม่ละเมิดลิขสิทธิ์โค้ด (Software Piracy), ไอคอน, ภาพกราฟิก, หรือแม้แต่เสียงประกอบจากแอปอื่นๆ</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-shield-cat mt-1 mr-3 text-indigo-400"></i>
+                                <span><strong>ความปลอดภัยในโค้ด (Secure Coding):</strong> ไม่ฝังรหัสผ่านลงในซอร์สโค้ดโดยตรง (Hardcode) และมีการเข้ารหัสข้อมูลสำคัญก่อนส่งผ่านอินเทอร์เน็ต</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Security -->
+                <div class="bg-white border-2 border-indigo-100 rounded-3xl p-8 relative overflow-hidden">
+                    <div class="relative z-10">
+                        <h3 class="text-2xl font-bold mb-4 text-indigo-800">ความปลอดภัยสำหรับผู้ใช้งาน (ผู้โหลดแอป)</h3>
+                        <ul class="space-y-4 text-sm leading-relaxed text-gray-600">
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-lock mt-1 mr-3 text-red-500"></i>
+                                <span><strong>ตรวจสอบการขอสิทธิ์ (Permissions):</strong> ระวังแอปปลอมแปลงที่ขอสิทธิ์เกินความจำเป็น เช่น แอปเครื่องคิดเลขขอสิทธิ์เข้าถึงข้อความ (SMS) หรือแกลลอรี่ภาพ</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-ban mt-1 mr-3 text-red-500"></i>
+                                <span><strong>ระวังลิงก์แปลกปลอม (Phishing):</strong> ไม่กดลิงก์จาก SMS หรือ Line ที่เชิญชวนให้โหลดแอปพลิเคชันนอกสโตร์ เพราะมักเป็นมัลแวร์ดูดเงิน</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-arrows-rotate mt-1 mr-3 text-green-500"></i>
+                                <span><strong>อัปเดตระบบสม่ำเสมอ:</strong> หมั่นอัปเดต OS และแอปพลิเคชันเวอร์ชันล่าสุดเสมอ เพื่ออุดช่องโหว่ (Patch) ทางด้านความปลอดภัย</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. แหล่งเรียนรู้เพิ่มเติม (New Section) -->
+        <section id="resources" class="scroll-mt-20 bg-indigo-50 rounded-3xl p-8 md:p-12 mb-12">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4"><i class="fa-solid fa-book-bookmark text-indigo-600 mr-3"></i>แหล่งเรียนรู้และเว็บไซต์ที่เกี่ยวข้อง</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">ศึกษาเพิ่มเติมเกี่ยวกับการพัฒนาแอปพลิเคชันด้วยเครื่องมือต่างๆ และข่าวสารทางเทคโนโลยี</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- Link 1 -->
+                <a href="https://appinventor.mit.edu/" target="_blank" class="block bg-white p-5 rounded-xl border border-indigo-100 hover:border-indigo-400 hover:shadow-md transition group">
+                    <div class="flex items-center mb-3">
+                        <img src="https://appinventor.mit.edu/images/logo.png" alt="MIT App Inventor" class="h-8 object-contain mr-3 grayscale group-hover:grayscale-0 transition" onerror="this.src='https://placehold.co/100x40/f3f4f6/6b7280?text=MIT+Logo'">
+                        <h4 class="font-bold text-gray-800 group-hover:text-indigo-600 transition text-sm">MIT App Inventor</h4>
+                    </div>
+                    <p class="text-xs text-gray-500">เครื่องมือสร้างแอปแบบบล็อก (Block-based) เหมาะสำหรับผู้เริ่มต้น</p>
+                </a>
+                
+                <!-- Link 2 -->
+                <a href="https://thunkable.com/" target="_blank" class="block bg-white p-5 rounded-xl border border-indigo-100 hover:border-indigo-400 hover:shadow-md transition group">
+                    <div class="flex items-center mb-3">
+                        <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center mr-3 group-hover:bg-indigo-100 transition">
+                            <i class="fa-solid fa-t text-gray-500 group-hover:text-indigo-600"></i>
+                        </div>
+                        <h4 class="font-bold text-gray-800 group-hover:text-indigo-600 transition text-sm">Thunkable</h4>
+                    </div>
+                    <p class="text-xs text-gray-500">สร้างแอปพลิเคชันแบบ Cross-platform (iOS/Android) แบบไม่ใช้โค้ด</p>
+                </a>
+
+                <!-- Link 3 -->
+                <a href="https://flutter.dev/" target="_blank" class="block bg-white p-5 rounded-xl border border-indigo-100 hover:border-indigo-400 hover:shadow-md transition group">
+                    <div class="flex items-center mb-3">
+                        <div class="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center mr-3">
+                            <i class="fa-brands fa-flutter text-blue-500"></i>
+                        </div>
+                        <h4 class="font-bold text-gray-800 group-hover:text-indigo-600 transition text-sm">Flutter</h4>
+                    </div>
+                    <p class="text-xs text-gray-500">เฟรมเวิร์กยอดนิยมจาก Google สำหรับพัฒนา Cross-platform App</p>
+                </a>
+
+                <!-- Link 4 -->
+                <a href="https://www.tcat.in.th/pdpa-thailand/" target="_blank" class="block bg-white p-5 rounded-xl border border-indigo-100 hover:border-indigo-400 hover:shadow-md transition group">
+                    <div class="flex items-center mb-3">
+                        <div class="w-8 h-8 rounded-full bg-red-50 flex items-center justify-center mr-3">
+                            <i class="fa-solid fa-file-shield text-red-500"></i>
+                        </div>
+                        <h4 class="font-bold text-gray-800 group-hover:text-indigo-600 transition text-sm">PDPA Thailand</h4>
+                    </div>
+                    <p class="text-xs text-gray-500">ศึกษาข้อมูลพระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคลสำหรับนักพัฒนา</p>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-8 text-center text-sm">
+        <div class="max-w-7xl mx-auto px-4">
+            <p>&copy; 2026 สื่อการเรียนการสอนรายวิชา การพัฒนาโปรแกรมบนอุปกรณ์พกพาเบื้องต้น (ปวช.1)</p>
+            <p class="mt-2">สร้างสรรค์เพื่อการศึกษา</p>
+        </div>
+    </footer>
+
+</body>
+</html>
