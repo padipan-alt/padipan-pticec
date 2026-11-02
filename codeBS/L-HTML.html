@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ห้องเรียนออนไลน์ - ครูปฏิภาณ</title>
+    <!-- นำเข้า Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- นำเข้า Font Kanit จาก Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- กำหนด Font ให้ทั้งเว็บไซต์ -->
+    <style>
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: #f8fafc; /* พื้นหลังสีเทาอ่อนมาก */
+        }
+        /* เพิ่ม Transition ให้กับปุ่มและการ์ด */
+        .smooth-transition {
+            transition: all 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="text-gray-800 antialiased">
+
+    <!-- Navbar (แถบนำทาง) -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <!-- โลโก้ / ชื่อเว็บ -->
+                    <span class="text-2xl font-bold text-indigo-600">
+                        <i class="fas fa-graduation-cap mr-2"></i>Kru Patipan
+                    </span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-gray-600 hover:text-indigo-600 font-medium smooth-transition">หน้าแรก</a>
+                    <a href="#courses" class="text-gray-600 hover:text-indigo-600 font-medium smooth-transition">บทเรียน</a>
+                    <a href="#about" class="text-gray-600 hover:text-indigo-600 font-medium smooth-transition">เกี่ยวกับครู</a>
+                    <a href="#contact" class="bg-indigo-600 text-white px-4 py-2 rounded-full hover:bg-indigo-700 font-medium shadow-sm smooth-transition">ติดต่อสอบถาม</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section (ส่วนต้อนรับ) -->
+    <section id="home" class="relative bg-gradient-to-r from-indigo-500 via-purple-500 to-indigo-600 text-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32 flex flex-col md:flex-row items-center">
+            <div class="w-full md:w-1/2 text-center md:text-left z-10">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                    ยินดีต้อนรับสู่<br>ห้องเรียนออนไลน์<br><span class="text-yellow-300">ครูปฏิภาณ</span>
+                </h1>
+                <p class="text-lg md:text-xl font-light mb-8 text-indigo-100">
+                    แหล่งรวบรวมความรู้ สื่อการสอน และบทเรียนที่สนุกและเข้าใจง่าย สำหรับนักเรียนทุกคน เรียนรู้ได้ทุกที่ ทุกเวลา
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center md:justify-start gap-4">
+                    <a href="#courses" class="bg-yellow-400 text-indigo-900 font-bold px-8 py-3 rounded-full hover:bg-yellow-300 shadow-lg smooth-transition transform hover:-translate-y-1 text-center">
+                        เริ่มเรียนกันเลย
+                    </a>
+                </div>
+            </div>
+            <div class="w-full md:w-1/2 mt-12 md:mt-0 flex justify-center z-10">
+                <!-- รูปภาพประกอบ (ใช้ภาพ Placeholder หรือเปลี่ยนเป็นภาพครู/กราฟิกได้) -->
+                <img src="https://placehold.co/500x400/ffffff/4f46e5?text=Online+Learning" alt="Online Learning Illustration" class="rounded-2xl shadow-2xl transform hover:scale-105 smooth-transition">
+            </div>
+            
+            <!-- ตกแต่งพื้นหลัง -->
+            <div class="absolute top-0 right-0 -mt-20 -mr-20 w-80 h-80 bg-white opacity-10 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 left-0 -mb-20 -ml-20 w-72 h-72 bg-yellow-400 opacity-20 rounded-full blur-3xl"></div>
+        </div>
+    </section>
+
+    <!-- Courses Section (ส่วนบทเรียน) -->
+    <section id="courses" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">บทเรียนที่เปิดสอน</h2>
+                <div class="w-24 h-1 bg-indigo-600 mx-auto rounded-full mb-6"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg">เลือกเนื้อหาที่คุณสนใจและเริ่มต้นการเรียนรู้ด้วยตัวคุณเอง</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Card 1 -->
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl smooth-transition transform hover:-translate-y-2">
+                    <img src="https://placehold.co/600x300/4f46e5/ffffff?text=Computer+Science" alt="วิชาวิทยาการคำนวณ" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <span class="text-xs font-bold text-indigo-600 uppercase tracking-wider">ม.ต้น</span>
+                        <h3 class="text-xl font-bold text-gray-900 mt-2 mb-3">วิทยาการคำนวณ</h3>
+                        <p class="text-gray-600 mb-4 text-sm line-clamp-3">เรียนรู้กระบวนการคิดเชิงคำนวณ การแก้ปัญหาอย่างเป็นระบบ และทักษะดิจิทัลเบื้องต้น</p>
+                        <a href="#" class="text-indigo-600 font-semibold hover:text-indigo-800 flex items-center">
+                            เข้าสู่บทเรียน <span class="ml-2">→</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl smooth-transition transform hover:-translate-y-2">
+                    <img src="https://placehold.co/600x300/10b981/ffffff?text=Web+Development" alt="การเขียนเว็บพื้นฐาน" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <span class="text-xs font-bold text-emerald-600 uppercase tracking-wider">ม.ปลาย</span>
+                        <h3 class="text-xl font-bold text-gray-900 mt-2 mb-3">การสร้างเว็บไซต์ด้วย HTML & CSS</h3>
+                        <p class="text-gray-600 mb-4 text-sm line-clamp-3">ปูพื้นฐานการเขียนโค้ดเว็บไซต์ ตั้งแต่โครงสร้าง HTML ไปจนถึงการตกแต่งความสวยงามด้วย CSS</p>
+                        <a href="#" class="text-emerald-600 font-semibold hover:text-emerald-800 flex items-center">
+                            เข้าสู่บทเรียน <span class="ml-2">→</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl smooth-transition transform hover:-translate-y-2">
+                    <img src="https://placehold.co/600x300/f59e0b/ffffff?text=Graphic+Design" alt="การออกแบบกราฟิก" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <span class="text-xs font-bold text-amber-600 uppercase tracking-wider">ทั่วไป</span>
+                        <h3 class="text-xl font-bold text-gray-900 mt-2 mb-3">การออกแบบกราฟิกเบื้องต้น</h3>
+                        <p class="text-gray-600 mb-4 text-sm line-clamp-3">เรียนรู้หลักการจัดวาง การใช้สี และเครื่องมือพื้นฐานในการสร้างสรรค์งานกราฟิกที่น่าสนใจ</p>
+                        <a href="#" class="text-amber-600 font-semibold hover:text-amber-800 flex items-center">
+                            เข้าสู่บทเรียน <span class="ml-2">→</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section (เกี่ยวกับครู) -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="w-full md:w-1/3 flex justify-center">
+                    <div class="relative">
+                        <!-- รูปโปรไฟล์ครู -->
+                        <img src="https://placehold.co/400x400/cbd5e1/475569?text=Kru+Patipan" alt="ครูปฏิภาณ" class="rounded-full w-64 h-64 md:w-80 md:h-80 object-cover shadow-xl border-4 border-white z-10 relative">
+                        <!-- วงกลมตกแต่งด้านหลัง -->
+                        <div class="absolute top-0 right-0 -mr-4 -mt-4 w-32 h-32 bg-indigo-100 rounded-full -z-0"></div>
+                        <div class="absolute bottom-0 left-0 -ml-4 -mb-4 w-24 h-24 bg-yellow-100 rounded-full -z-0"></div>
+                    </div>
+                </div>
+                <div class="w-full md:w-2/3 text-center md:text-left">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">เกี่ยวกับ ครูปฏิภาณ</h2>
+                    <div class="w-24 h-1 bg-indigo-600 mx-auto md:mx-0 rounded-full mb-6"></div>
+                    <p class="text-gray-600 text-lg mb-6 leading-relaxed">
+                        สวัสดีครับ! ผมครูปฏิภาณ มีความมุ่งมั่นที่จะพัฒนาสื่อการสอนที่ทันสมัยและเข้าใจง่าย เพื่อให้นักเรียนสามารถเรียนรู้ได้ด้วยตนเองอย่างมีความสุข ผมเชื่อว่า "เทคโนโลยีเป็นเครื่องมือสำคัญที่จะเปิดโลกการเรียนรู้ให้กับเด็กไทย" 
+                    </p>
+                    <p class="text-gray-600 text-lg mb-8 leading-relaxed">
+                        เว็บไซต์นี้ถูกสร้างขึ้นเพื่อเป็นแหล่งรวบรวมเนื้อหา บทเรียน และใบงานต่างๆ ให้นักเรียนสามารถเข้ามาทบทวนความรู้ได้ตลอดเวลา หากมีข้อสงสัยสามารถติดต่อครูได้เสมอครับ
+                    </p>
+                    <div class="flex flex-wrap gap-4 justify-center md:justify-start">
+                        <span class="bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm font-medium">คอมพิวเตอร์ศึกษา</span>
+                        <span class="bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm font-medium">เทคโนโลยีการศึกษา</span>
+                        <span class="bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm font-medium">นักพัฒนาเว็บไซต์</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section (ส่วนติดต่อ) -->
+    <section id="contact" class="py-20 bg-indigo-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8">มีข้อสงสัย หรือต้องการคำปรึกษา?</h2>
+            <p class="text-indigo-200 mb-10 max-w-2xl mx-auto text-lg">
+                นักเรียนสามารถส่งข้อความสอบถามเรื่องการเรียน หรือติดต่อขอรับเอกสารเพิ่มเติมได้ที่ช่องทางด้านล่างนี้
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-6">
+                <a href="#" class="flex items-center gap-3 bg-white text-indigo-900 px-8 py-3 rounded-full font-bold hover:bg-gray-100 shadow-lg smooth-transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    ส่งอีเมลหาครู
+                </a>
+                <a href="#" class="flex items-center gap-3 bg-transparent border-2 border-indigo-400 text-white px-8 py-3 rounded-full font-bold hover:bg-indigo-800 smooth-transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
+                    </svg>
+                    ติดตามเพจ Facebook
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-8 text-center border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4">
+            <p>&copy; 2026 ห้องเรียนออนไลน์ - ครูปฏิภาณ. สงวนลิขสิทธิ์.</p>
+            <p class="text-sm mt-2">ออกแบบเพื่อการเรียนรู้ สร้างสรรค์ด้วย HTML & Tailwind CSS</p>
+        </div>
+    </footer>
+
+</body>
+</html>
