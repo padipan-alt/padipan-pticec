@@ -15,15 +15,19 @@
     <style>
         body {
             font-family: 'Kanit', sans-serif;
-            background-color: #f8fafc; /* พื้นหลังสีเทาอ่อนมาก */
+            background-color: #f8fafc;
         }
-        /* เพิ่ม Transition ให้กับปุ่มและการ์ด */
         .smooth-transition {
             transition: all 0.3s ease-in-out;
         }
+        /* ตกแต่งบล็อกโค้ดเพิ่มเติม */
+        pre {
+            margin: 0;
+            font-family: monospace;
+        }
     </style>
 </head>
-<body class="text-gray-800 antialiased">
+<body class="text-gray-800 antialiased scroll-smooth">
 
     <!-- Navbar (แถบนำทาง) -->
     <nav class="bg-white shadow-md sticky top-0 z-50">
@@ -31,13 +35,18 @@
             <div class="flex justify-between h-16">
                 <div class="flex items-center">
                     <!-- โลโก้ / ชื่อเว็บ -->
-                    <span class="text-2xl font-bold text-indigo-600">
-                        <i class="fas fa-graduation-cap mr-2"></i>Kru Patipan
-                    </span>
+                    <a href="#home" class="text-2xl font-bold text-indigo-600 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M12 14l9-5-9-5-9 5 9 5z" />
+                            <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                        </svg>
+                        Kru Patipan
+                    </a>
                 </div>
-                <div class="hidden md:flex items-center space-x-8">
+                <div class="hidden md:flex items-center space-x-6">
                     <a href="#home" class="text-gray-600 hover:text-indigo-600 font-medium smooth-transition">หน้าแรก</a>
-                    <a href="#courses" class="text-gray-600 hover:text-indigo-600 font-medium smooth-transition">บทเรียน</a>
+                    <a href="#courses" class="text-gray-600 hover:text-indigo-600 font-medium smooth-transition">แนะนำคอร์ส</a>
+                    <a href="#lesson-html" class="text-indigo-600 font-semibold border-b-2 border-indigo-600 smooth-transition">บทเรียน HTML</a>
                     <a href="#about" class="text-gray-600 hover:text-indigo-600 font-medium smooth-transition">เกี่ยวกับครู</a>
                     <a href="#contact" class="bg-indigo-600 text-white px-4 py-2 rounded-full hover:bg-indigo-700 font-medium shadow-sm smooth-transition">ติดต่อสอบถาม</a>
                 </div>
@@ -45,9 +54,9 @@
         </div>
     </nav>
 
-    <!-- Hero Section (ส่วนต้อนรับ) -->
+    <!-- Hero Section -->
     <section id="home" class="relative bg-gradient-to-r from-indigo-500 via-purple-500 to-indigo-600 text-white overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32 flex flex-col md:flex-row items-center">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 flex flex-col md:flex-row items-center">
             <div class="w-full md:w-1/2 text-center md:text-left z-10">
                 <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
                     ยินดีต้อนรับสู่<br>ห้องเรียนออนไลน์<br><span class="text-yellow-300">ครูปฏิภาณ</span>
@@ -56,69 +65,144 @@
                     แหล่งรวบรวมความรู้ สื่อการสอน และบทเรียนที่สนุกและเข้าใจง่าย สำหรับนักเรียนทุกคน เรียนรู้ได้ทุกที่ ทุกเวลา
                 </p>
                 <div class="flex flex-col sm:flex-row justify-center md:justify-start gap-4">
-                    <a href="#courses" class="bg-yellow-400 text-indigo-900 font-bold px-8 py-3 rounded-full hover:bg-yellow-300 shadow-lg smooth-transition transform hover:-translate-y-1 text-center">
-                        เริ่มเรียนกันเลย
+                    <a href="#lesson-html" class="bg-yellow-400 text-indigo-900 font-bold px-8 py-3 rounded-full hover:bg-yellow-300 shadow-lg smooth-transition transform hover:-translate-y-1 text-center">
+                        เริ่มเรียนเนื้อหาล่าสุด
                     </a>
                 </div>
             </div>
             <div class="w-full md:w-1/2 mt-12 md:mt-0 flex justify-center z-10">
-                <!-- รูปภาพประกอบ (ใช้ภาพ Placeholder หรือเปลี่ยนเป็นภาพครู/กราฟิกได้) -->
                 <img src="https://placehold.co/500x400/ffffff/4f46e5?text=Online+Learning" alt="Online Learning Illustration" class="rounded-2xl shadow-2xl transform hover:scale-105 smooth-transition">
             </div>
-            
             <!-- ตกแต่งพื้นหลัง -->
             <div class="absolute top-0 right-0 -mt-20 -mr-20 w-80 h-80 bg-white opacity-10 rounded-full blur-3xl"></div>
             <div class="absolute bottom-0 left-0 -mb-20 -ml-20 w-72 h-72 bg-yellow-400 opacity-20 rounded-full blur-3xl"></div>
         </div>
     </section>
 
-    <!-- Courses Section (ส่วนบทเรียน) -->
-    <section id="courses" class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">บทเรียนที่เปิดสอน</h2>
-                <div class="w-24 h-1 bg-indigo-600 mx-auto rounded-full mb-6"></div>
-                <p class="text-gray-600 max-w-2xl mx-auto text-lg">เลือกเนื้อหาที่คุณสนใจและเริ่มต้นการเรียนรู้ด้วยตัวคุณเอง</p>
+    <!-- HTML Lesson Section (เนื้อหาใหม่ที่เพิ่มเข้า) -->
+    <section id="lesson-html" class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- หัวข้อบทเรียน -->
+            <div class="text-center mb-10">
+                <span class="bg-indigo-100 text-indigo-700 px-4 py-1.5 rounded-full text-sm font-bold tracking-wide uppercase mb-4 inline-block">บทเรียนล่าสุด</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mt-4 mb-4">พื้นฐานภาษา HTML</h2>
+                <div class="w-24 h-1 bg-indigo-600 mx-auto rounded-full"></div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- กล่องเนื้อหาบทเรียน -->
+            <div class="bg-gray-50 rounded-3xl p-6 md:p-10 shadow-sm border border-gray-100">
                 
-                <!-- Card 1 -->
-                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl smooth-transition transform hover:-translate-y-2">
-                    <img src="https://placehold.co/600x300/4f46e5/ffffff?text=Computer+Science" alt="วิชาวิทยาการคำนวณ" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <span class="text-xs font-bold text-indigo-600 uppercase tracking-wider">ม.ต้น</span>
-                        <h3 class="text-xl font-bold text-gray-900 mt-2 mb-3">วิทยาการคำนวณ</h3>
-                        <p class="text-gray-600 mb-4 text-sm line-clamp-3">เรียนรู้กระบวนการคิดเชิงคำนวณ การแก้ปัญหาอย่างเป็นระบบ และทักษะดิจิทัลเบื้องต้น</p>
-                        <a href="#" class="text-indigo-600 font-semibold hover:text-indigo-800 flex items-center">
-                            เข้าสู่บทเรียน <span class="ml-2">→</span>
-                        </a>
+                <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                    <strong>HTML (Hypertext Markup Language)</strong> คือภาษาคอมพิวเตอร์พื้นฐานที่ใช้ในการสร้างและจัดโครงสร้างของหน้าเว็บไซต์ โดยจะใช้ <strong>"แท็ก" (Tags)</strong> ในการกำหนดว่าส่วนต่างๆ ของหน้าเว็บคืออะไร เช่น หัวข้อ ย่อหน้า รูปภาพ หรือลิงก์
+                </p>
+                
+                <div class="bg-indigo-50 border-l-4 border-indigo-500 p-4 mb-10 rounded-r-lg text-indigo-900">
+                    <p>การเขียน HTML มักจะเขียนเป็นคู่เสมอ คือมี <strong>แท็กเปิด <code>&lt;...&gt;</code></strong> และ <strong>แท็กปิด <code>&lt;/...&gt;</code></strong> (โดยแท็กปิดจะมีเครื่องหมายทับ <code>/</code> อยู่ด้านหน้า)</p>
+                </div>
+
+                <h3 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                    <span class="bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center mr-3 text-lg">1</span>
+                    โครงสร้างพื้นฐานของ HTML
+                </h3>
+                <p class="text-gray-700 mb-4">ทุกหน้าเว็บที่เขียนด้วย HTML จะต้องมีโครงสร้างหลักแบบนี้เสมอ:</p>
+                
+                <!-- Code Block -->
+                <div class="bg-[#1e1e1e] rounded-xl overflow-hidden mb-6 shadow-md">
+                    <div class="flex items-center px-4 py-2 bg-[#2d2d2d] border-b border-[#404040]">
+                        <div class="flex space-x-2">
+                            <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                            <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                            <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                        </div>
+                        <span class="ml-4 text-xs text-gray-400 font-mono">index.html</span>
+                    </div>
+                    <div class="p-4 overflow-x-auto">
+<pre class="text-sm text-gray-300 font-mono leading-relaxed">
+<span class="text-gray-500">&lt;!DOCTYPE html&gt;</span>
+<span class="text-blue-400">&lt;html&gt;</span>
+<span class="text-blue-400">&lt;head&gt;</span>
+    <span class="text-blue-400">&lt;title&gt;</span>ชื่อหน้าเว็บ (จะแสดงที่แท็บเบราว์เซอร์)<span class="text-blue-400">&lt;/title&gt;</span>
+<span class="text-blue-400">&lt;/head&gt;</span>
+<span class="text-blue-400">&lt;body&gt;</span>
+    <span class="text-blue-400">&lt;h1&gt;</span>สวัสดีชาวโลก!<span class="text-blue-400">&lt;/h1&gt;</span>
+    <span class="text-blue-400">&lt;p&gt;</span>นี่คือหน้าเว็บหน้าแรกของฉัน<span class="text-blue-400">&lt;/p&gt;</span>
+<span class="text-blue-400">&lt;/body&gt;</span>
+<span class="text-blue-400">&lt;/html&gt;</span></pre>
                     </div>
                 </div>
 
-                <!-- Card 2 -->
-                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl smooth-transition transform hover:-translate-y-2">
-                    <img src="https://placehold.co/600x300/10b981/ffffff?text=Web+Development" alt="การเขียนเว็บพื้นฐาน" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <span class="text-xs font-bold text-emerald-600 uppercase tracking-wider">ม.ปลาย</span>
-                        <h3 class="text-xl font-bold text-gray-900 mt-2 mb-3">การสร้างเว็บไซต์ด้วย HTML & CSS</h3>
-                        <p class="text-gray-600 mb-4 text-sm line-clamp-3">ปูพื้นฐานการเขียนโค้ดเว็บไซต์ ตั้งแต่โครงสร้าง HTML ไปจนถึงการตกแต่งความสวยงามด้วย CSS</p>
-                        <a href="#" class="text-emerald-600 font-semibold hover:text-emerald-800 flex items-center">
-                            เข้าสู่บทเรียน <span class="ml-2">→</span>
-                        </a>
-                    </div>
-                </div>
+                <ul class="space-y-3 mb-10 text-gray-700 ml-2">
+                    <li class="flex items-start"><svg class="w-5 h-5 text-indigo-500 mt-1 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg> 
+                        <span><code class="text-indigo-600 font-bold bg-indigo-50 px-1 rounded">&lt;!DOCTYPE html&gt;</code> : เป็นการบอกเบราว์เซอร์ว่าไฟล์นี้เป็น HTML5</span></li>
+                    <li class="flex items-start"><svg class="w-5 h-5 text-indigo-500 mt-1 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg> 
+                        <span><code class="text-indigo-600 font-bold bg-indigo-50 px-1 rounded">&lt;html&gt;</code> : แท็กครอบคลุมเนื้อหาทั้งหมดของหน้าเว็บ</span></li>
+                    <li class="flex items-start"><svg class="w-5 h-5 text-indigo-500 mt-1 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg> 
+                        <span><code class="text-indigo-600 font-bold bg-indigo-50 px-1 rounded">&lt;head&gt;</code> : ส่วนเก็บข้อมูลของหน้าเว็บ เช่น ชื่อเรื่อง (Title) หรือการเชื่อมโยงไฟล์ CSS</span></li>
+                    <li class="flex items-start"><svg class="w-5 h-5 text-indigo-500 mt-1 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg> 
+                        <span><code class="text-indigo-600 font-bold bg-indigo-50 px-1 rounded">&lt;body&gt;</code> : ส่วนที่แสดงผลเนื้อหาทั้งหมดที่ผู้ใช้งานจะมองเห็นบนหน้าเว็บ</span></li>
+                </ul>
 
-                <!-- Card 3 -->
-                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl smooth-transition transform hover:-translate-y-2">
-                    <img src="https://placehold.co/600x300/f59e0b/ffffff?text=Graphic+Design" alt="การออกแบบกราฟิก" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <span class="text-xs font-bold text-amber-600 uppercase tracking-wider">ทั่วไป</span>
-                        <h3 class="text-xl font-bold text-gray-900 mt-2 mb-3">การออกแบบกราฟิกเบื้องต้น</h3>
-                        <p class="text-gray-600 mb-4 text-sm line-clamp-3">เรียนรู้หลักการจัดวาง การใช้สี และเครื่องมือพื้นฐานในการสร้างสรรค์งานกราฟิกที่น่าสนใจ</p>
-                        <a href="#" class="text-amber-600 font-semibold hover:text-amber-800 flex items-center">
-                            เข้าสู่บทเรียน <span class="ml-2">→</span>
-                        </a>
+                <hr class="border-gray-200 my-8">
+
+                <h3 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                    <span class="bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center mr-3 text-lg">2</span>
+                    แท็ก (Tags) ที่ใช้บ่อยในการเขียนเว็บ
+                </h3>
+                <p class="text-gray-700 mb-6">นี่คือแท็กพื้นฐานที่คุณจะได้ใช้บ่อยที่สุดในการเริ่มต้นเขียน HTML:</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Heading -->
+                    <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm">
+                        <h4 class="font-bold text-lg text-indigo-700 mb-2">หัวข้อ (Headings)</h4>
+                        <p class="text-sm text-gray-600 mb-3">ใช้ <code>&lt;h1&gt;</code> ถึง <code>&lt;h6&gt;</code> โดย h1 ใหญ่สุด</p>
+                        <div class="bg-gray-800 p-3 rounded-lg overflow-x-auto">
+<pre class="text-xs text-blue-400 font-mono">
+&lt;h1&gt;<span class="text-gray-300">หัวข้อหลัก</span>&lt;/h1&gt;
+&lt;h2&gt;<span class="text-gray-300">หัวข้อย่อย</span>&lt;/h2&gt;</pre>
+                        </div>
+                    </div>
+                    
+                    <!-- Paragraph -->
+                    <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm">
+                        <h4 class="font-bold text-lg text-indigo-700 mb-2">ย่อหน้า (Paragraph)</h4>
+                        <p class="text-sm text-gray-600 mb-3">ใช้เขียนข้อความทั่วไป</p>
+                        <div class="bg-gray-800 p-3 rounded-lg overflow-x-auto">
+<pre class="text-xs text-blue-400 font-mono">
+&lt;p&gt;<span class="text-gray-300">นี่คือข้อความในย่อหน้าแรก</span>&lt;/p&gt;</pre>
+                        </div>
+                    </div>
+
+                    <!-- Links -->
+                    <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm">
+                        <h4 class="font-bold text-lg text-indigo-700 mb-2">ลิงก์ (Links)</h4>
+                        <p class="text-sm text-gray-600 mb-3">สร้างจุดคลิกด้วย <code>&lt;a&gt;</code> คู่กับ href</p>
+                        <div class="bg-gray-800 p-3 rounded-lg overflow-x-auto">
+<pre class="text-xs text-blue-400 font-mono">
+&lt;a <span class="text-green-400">href</span>=<span class="text-yellow-300">"https://google.com"</span>&gt;<span class="text-gray-300">ไปที่ Google</span>&lt;/a&gt;</pre>
+                        </div>
+                    </div>
+
+                    <!-- Images -->
+                    <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm">
+                        <h4 class="font-bold text-lg text-indigo-700 mb-2">รูปภาพ (Images)</h4>
+                        <p class="text-sm text-gray-600 mb-3">แท็กเดี่ยว <code>&lt;img&gt;</code> คู่กับ src</p>
+                        <div class="bg-gray-800 p-3 rounded-lg overflow-x-auto">
+<pre class="text-xs text-blue-400 font-mono">
+&lt;img <span class="text-green-400">src</span>=<span class="text-yellow-300">"pic.jpg"</span> <span class="text-green-400">alt</span>=<span class="text-yellow-300">"คำอธิบาย"</span>&gt;</pre>
+                        </div>
+                    </div>
+
+                    <!-- Lists -->
+                    <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm md:col-span-2">
+                        <h4 class="font-bold text-lg text-indigo-700 mb-2">รายการ (Lists)</h4>
+                        <p class="text-sm text-gray-600 mb-3">หัวข้อย่อยแบบจุด <code>&lt;ul&gt;</code> หรือแบบตัวเลข <code>&lt;ol&gt;</code></p>
+                        <div class="bg-gray-800 p-3 rounded-lg overflow-x-auto">
+<pre class="text-xs text-blue-400 font-mono">
+&lt;ul&gt;
+    &lt;li&gt;<span class="text-gray-300">รายการที่ 1</span>&lt;/li&gt;
+    &lt;li&gt;<span class="text-gray-300">รายการที่ 2</span>&lt;/li&gt;
+&lt;/ul&gt;</pre>
+                        </div>
                     </div>
                 </div>
 
@@ -126,15 +210,54 @@
         </div>
     </section>
 
-    <!-- About Section (เกี่ยวกับครู) -->
+    <!-- Courses Section (ส่วนแนะนำคอร์สอื่นๆ) -->
+    <section id="courses" class="py-20 bg-gray-50 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">แนะนำคอร์สเรียนอื่นๆ</h2>
+                <div class="w-24 h-1 bg-indigo-600 mx-auto rounded-full mb-6"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl smooth-transition transform hover:-translate-y-2">
+                    <img src="https://placehold.co/600x300/4f46e5/ffffff?text=Computer+Science" alt="วิชาวิทยาการคำนวณ" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mt-2 mb-3">วิทยาการคำนวณ</h3>
+                        <p class="text-gray-600 mb-4 text-sm line-clamp-3">เรียนรู้กระบวนการคิดเชิงคำนวณ การแก้ปัญหาอย่างเป็นระบบ และทักษะดิจิทัลเบื้องต้น</p>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl smooth-transition transform hover:-translate-y-2 ring-2 ring-indigo-500">
+                    <img src="https://placehold.co/600x300/10b981/ffffff?text=Web+Development" alt="การเขียนเว็บพื้นฐาน" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="bg-indigo-100 text-indigo-700 text-xs px-2 py-1 rounded font-bold">กำลังเรียน</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">การสร้างเว็บไซต์ด้วย HTML</h3>
+                        <p class="text-gray-600 mb-4 text-sm line-clamp-3">ปูพื้นฐานการเขียนโค้ดเว็บไซต์ ตั้งแต่โครงสร้าง HTML ไปจนถึงการตกแต่งความสวยงาม</p>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl smooth-transition transform hover:-translate-y-2">
+                    <img src="https://placehold.co/600x300/f59e0b/ffffff?text=Graphic+Design" alt="การออกแบบกราฟิก" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mt-2 mb-3">การออกแบบกราฟิกเบื้องต้น</h3>
+                        <p class="text-gray-600 mb-4 text-sm line-clamp-3">เรียนรู้หลักการจัดวาง การใช้สี และเครื่องมือพื้นฐานในการสร้างสรรค์งานกราฟิกที่น่าสนใจ</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
     <section id="about" class="py-20 bg-white">
+        <!-- เนื้อหาเหมือนเดิม -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row items-center gap-12">
                 <div class="w-full md:w-1/3 flex justify-center">
                     <div class="relative">
-                        <!-- รูปโปรไฟล์ครู -->
                         <img src="https://placehold.co/400x400/cbd5e1/475569?text=Kru+Patipan" alt="ครูปฏิภาณ" class="rounded-full w-64 h-64 md:w-80 md:h-80 object-cover shadow-xl border-4 border-white z-10 relative">
-                        <!-- วงกลมตกแต่งด้านหลัง -->
                         <div class="absolute top-0 right-0 -mr-4 -mt-4 w-32 h-32 bg-indigo-100 rounded-full -z-0"></div>
                         <div class="absolute bottom-0 left-0 -ml-4 -mb-4 w-24 h-24 bg-yellow-100 rounded-full -z-0"></div>
                     </div>
@@ -148,36 +271,7 @@
                     <p class="text-gray-600 text-lg mb-8 leading-relaxed">
                         เว็บไซต์นี้ถูกสร้างขึ้นเพื่อเป็นแหล่งรวบรวมเนื้อหา บทเรียน และใบงานต่างๆ ให้นักเรียนสามารถเข้ามาทบทวนความรู้ได้ตลอดเวลา หากมีข้อสงสัยสามารถติดต่อครูได้เสมอครับ
                     </p>
-                    <div class="flex flex-wrap gap-4 justify-center md:justify-start">
-                        <span class="bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm font-medium">คอมพิวเตอร์ศึกษา</span>
-                        <span class="bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm font-medium">เทคโนโลยีการศึกษา</span>
-                        <span class="bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm font-medium">นักพัฒนาเว็บไซต์</span>
-                    </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section (ส่วนติดต่อ) -->
-    <section id="contact" class="py-20 bg-indigo-900 text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-8">มีข้อสงสัย หรือต้องการคำปรึกษา?</h2>
-            <p class="text-indigo-200 mb-10 max-w-2xl mx-auto text-lg">
-                นักเรียนสามารถส่งข้อความสอบถามเรื่องการเรียน หรือติดต่อขอรับเอกสารเพิ่มเติมได้ที่ช่องทางด้านล่างนี้
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center items-center gap-6">
-                <a href="#" class="flex items-center gap-3 bg-white text-indigo-900 px-8 py-3 rounded-full font-bold hover:bg-gray-100 shadow-lg smooth-transition">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                    ส่งอีเมลหาครู
-                </a>
-                <a href="#" class="flex items-center gap-3 bg-transparent border-2 border-indigo-400 text-white px-8 py-3 rounded-full font-bold hover:bg-indigo-800 smooth-transition">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
-                    </svg>
-                    ติดตามเพจ Facebook
-                </a>
             </div>
         </div>
     </section>
@@ -186,7 +280,6 @@
     <footer class="bg-gray-900 text-gray-400 py-8 text-center border-t border-gray-800">
         <div class="max-w-7xl mx-auto px-4">
             <p>&copy; 2026 ห้องเรียนออนไลน์ - ครูปฏิภาณ. สงวนลิขสิทธิ์.</p>
-            <p class="text-sm mt-2">ออกแบบเพื่อการเรียนรู้ สร้างสรรค์ด้วย HTML & Tailwind CSS</p>
         </div>
     </footer>
 
