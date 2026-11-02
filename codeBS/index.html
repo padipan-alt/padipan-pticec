@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>โลกแห่งภาษาคอมพิวเตอร์ (The World of Computer Languages)</title>
+    <!-- โหลด Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- โหลด Google Fonts (Inter และ Noto Sans Thai) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- โหลด FontAwesome สำหรับไอคอน -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'Noto Sans Thai', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            900: '#1e3a8a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom styles สำหรับ Animation */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* สไตล์ตารางให้ดูทันสมัย */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0 flex items-center gap-2 text-brand-600">
+                    <i class="fa-solid fa-code text-2xl"></i>
+                    <span class="font-bold text-xl tracking-tight">CodeJourney</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#intro" class="text-slate-600 hover:text-brand-600 font-medium transition-colors">เริ่มต้น</a>
+                    <a href="#levels" class="text-slate-600 hover:text-brand-600 font-medium transition-colors">ระดับภาษา</a>
+                    <a href="#translator" class="text-slate-600 hover:text-brand-600 font-medium transition-colors">ตัวแปลภาษา</a>
+                    <a href="#webdev" class="text-slate-600 hover:text-brand-600 font-medium transition-colors">เว็บแอปฯ</a>
+                    <a href="#tools" class="text-slate-600 hover:text-brand-600 font-medium transition-colors">เครื่องมือ</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative bg-gradient-to-br from-slate-900 via-brand-900 to-slate-900 overflow-hidden text-white pt-24 pb-32">
+        <div class="absolute inset-0 opacity-10 pattern-dots"></div>
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center fade-in-up visible">
+            <span class="inline-block py-1 px-3 rounded-full bg-brand-500/20 text-brand-100 border border-brand-500/30 text-sm font-semibold mb-6 tracking-wide uppercase">
+                คู่มือฉบับสมบูรณ์
+            </span>
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
+                เปิดประตูสู่ <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">โลกแห่งภาษาคอมพิวเตอร์</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-slate-300 max-w-3xl mx-auto font-light leading-relaxed mb-10">
+                เรียนรู้ศาสตร์แห่งการสื่อสารกับเครื่องจักร ตั้งแต่ระดับรากฐาน ไปจนถึงการสร้างเว็บไซต์ด้วยมือคุณเอง อย่างเต็มความภาคภูมิ
+            </p>
+            <a href="#intro" class="inline-flex items-center justify-center px-8 py-4 text-base font-bold text-slate-900 bg-white hover:bg-slate-100 rounded-full shadow-lg transition-all hover:scale-105">
+                เริ่มต้นเรียนรู้ <i class="fa-solid fa-arrow-down ml-2"></i>
+            </a>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-24">
+
+        <!-- Section 1: Intro -->
+        <section id="intro" class="scroll-mt-24 fade-in-up">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold text-slate-900 mb-6 flex items-center gap-3">
+                        <i class="fa-solid fa-microchip text-brand-500"></i> ภาษาคอมพิวเตอร์ คืออะไร?
+                    </h2>
+                    <p class="text-lg text-slate-600 mb-4 leading-relaxed">
+                        **ภาษาคอมพิวเตอร์ (Computer Language)** หรือภาษาโปรแกรม คือชุดคำสั่ง ไวยากรณ์ และกฎเกณฑ์ที่มนุษย์ใช้เขียนขึ้นเพื่อสื่อสารและสั่งการให้คอมพิวเตอร์ทำงานตามที่ต้องการ
+                    </p>
+                    <p class="text-lg text-slate-600 leading-relaxed">
+                        เนื่องจากคอมพิวเตอร์เข้าใจเพียง **ภาษาเครื่อง (Machine Language)** ซึ่งมีเพียงตัวเลข <code>0</code> และ <code>1</code> เราจึงต้องเขียนคำสั่ง (Source Code) และอาศัยตัวแปลภาษา เพื่อแปลงความต้องการของเราให้เครื่องจักรประมวลผลได้
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-xl border border-slate-100 transform rotate-2 hover:rotate-0 transition-transform duration-300">
+                    <h3 class="text-lg font-bold text-slate-800 mb-4 border-b pb-2">ภาษาที่ได้รับความนิยมระดับโลก</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-3"><i class="fa-brands fa-python text-2xl text-blue-500 w-8"></i> <div><strong>Python:</strong> งาน AI, Data Science, ระบบหลังบ้าน</div></li>
+                        <li class="flex items-start gap-3"><i class="fa-brands fa-js text-2xl text-yellow-500 w-8"></i> <div><strong>JavaScript:</strong> สร้างความโต้ตอบบนหน้าเว็บไซต์</div></li>
+                        <li class="flex items-start gap-3"><i class="fa-brands fa-java text-2xl text-red-500 w-8"></i> <div><strong>Java:</strong> ระบบองค์กรขนาดใหญ่, แอป Android</div></li>
+                        <li class="flex items-start gap-3"><i class="fa-brands fa-microsoft text-2xl text-blue-600 w-8"></i> <div><strong>C / C++ / C#:</strong> พัฒนาเกม, โปรแกรมประสิทธิภาพสูง</div></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Levels -->
+        <section id="levels" class="scroll-mt-24 fade-in-up">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">ระดับของภาษาคอมพิวเตอร์</h2>
+                <p class="text-lg text-slate-600 max-w-2xl mx-auto">ความแตกต่างหลักคือ "ความใกล้เคียง" ระหว่างตัวภาษากับฮาร์ดแวร์คอมพิวเตอร์ หรือความใกล้เคียงกับภาษามนุษย์</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Low Level -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg border-t-4 border-slate-700 hover:-translate-y-1 transition-transform">
+                    <div class="text-slate-700 mb-4"><i class="fa-solid fa-gears text-4xl"></i></div>
+                    <h3 class="text-2xl font-bold text-slate-900 mb-3">ภาษาระดับต่ำ (Low-Level)</h3>
+                    <p class="text-slate-600 mb-6">ใกล้เคียงกับสถาปัตยกรรมของคอมพิวเตอร์ สั่งการฮาร์ดแวร์โดยตรง ทำงานรวดเร็วที่สุด แต่อ่านและเขียนยากมากสำหรับมนุษย์</p>
+                    <ul class="space-y-2 text-sm text-slate-700 bg-slate-50 p-4 rounded-lg">
+                        <li><i class="fa-solid fa-check text-green-500 mr-2"></i> ความเร็วสูงสุด</li>
+                        <li><i class="fa-solid fa-check text-green-500 mr-2"></i> ควบคุมหน่วยความจำเอง</li>
+                        <li><i class="fa-solid fa-xmark text-red-500 mr-2"></i> ผูกติดกับฮาร์ดแวร์ (ย้ายเครื่องยาก)</li>
+                        <li class="mt-2 pt-2 border-t font-semibold">ตัวอย่าง: ภาษาเครื่อง (0,1), Assembly</li>
+                    </ul>
+                </div>
+
+                <!-- High Level -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg border-t-4 border-brand-500 hover:-translate-y-1 transition-transform">
+                    <div class="text-brand-500 mb-4"><i class="fa-solid fa-laptop-code text-4xl"></i></div>
+                    <h3 class="text-2xl font-bold text-slate-900 mb-3">ภาษาระดับสูง (High-Level)</h3>
+                    <p class="text-slate-600 mb-6">ใกล้เคียงกับภาษาอังกฤษของมนุษย์ ออกแบบมาให้มีโครงสร้างไวยากรณ์ชัดเจน ทำให้โปรแกรมเมอร์โฟกัสกับการคิดตรรกะแก้ปัญหาได้ดีขึ้น</p>
+                    <ul class="space-y-2 text-sm text-slate-700 bg-brand-50 p-4 rounded-lg">
+                        <li><i class="fa-solid fa-check text-green-500 mr-2"></i> อ่าน เขียน และแก้ไขง่าย</li>
+                        <li><i class="fa-solid fa-check text-green-500 mr-2"></i> รันข้ามแพลตฟอร์มได้ง่าย</li>
+                        <li><i class="fa-solid fa-xmark text-red-500 mr-2"></i> ต้องใช้ตัวแปลภาษา (ทำงานช้ากว่านิดหน่อย)</li>
+                        <li class="mt-2 pt-2 border-t border-brand-200 font-semibold">ตัวอย่าง: Python, Java, JavaScript, C#</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Translator -->
+        <section id="translator" class="scroll-mt-24 fade-in-up bg-slate-900 text-white rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden">
+            <div class="absolute top-0 right-0 -mr-20 -mt-20 opacity-10">
+                <i class="fa-solid fa-language text-9xl"></i>
+            </div>
+            <div class="relative z-10">
+                <h2 class="text-3xl font-bold mb-6 text-brand-400">Compiler vs Interpreter</h2>
+                <p class="text-lg text-slate-300 mb-8 max-w-3xl">
+                    ทั้งสองมีหน้าที่แปลภาษาระดับสูงให้เป็นภาษาเครื่องเหมือนกัน แต่มี "วิธีการแปล" ที่ต่างกันอย่างสิ้นเชิง
+                </p>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400">
+                                <i class="fa-solid fa-book"></i>
+                            </div>
+                            <h3 class="text-xl font-bold">Compiler (คอมไพเลอร์)</h3>
+                        </div>
+                        <p class="text-slate-400 text-sm mb-4 italic">"เหมือนการจ้างนักแปลมาแปลหนังสือทั้งเล่มให้เสร็จ พิมพ์เป็นเล่มใหม่ แล้วค่อยอ่านทีเดียว"</p>
+                        <ul class="space-y-2 text-sm text-slate-300">
+                            <li>• แปลโค้ด <span class="text-white font-bold">ทั้งหมดรวดเดียว</span> ก่อนรันโปรแกรม</li>
+                            <li>• ได้ไฟล์ที่รันได้ตัวเอง (เช่น .exe)</li>
+                            <li>• ตอนรันโปรแกรมจะ <span class="text-green-400">เร็วมาก</span></li>
+                            <li>• ถ้ามี Error จะฟ้องรวดเดียวก่อนสร้างไฟล์</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400">
+                                <i class="fa-solid fa-ear-listen"></i>
+                            </div>
+                            <h3 class="text-xl font-bold">Interpreter (อินเทอร์พรีเตอร์)</h3>
+                        </div>
+                        <p class="text-slate-400 text-sm mb-4 italic">"เหมือนการจ้างล่ามมานั่งข้างๆ แล้วแปลให้ฟังทีละบรรทัดทันที"</p>
+                        <ul class="space-y-2 text-sm text-slate-300">
+                            <li>• แปลและรันโค้ด <span class="text-white font-bold">ทีละบรรทัด</span> ไปพร้อมๆ กัน</li>
+                            <li>• ไม่ได้ไฟล์ใหม่ ต้องพึ่งพาตัวแปลตลอดเวลา</li>
+                            <li>• ตอนรันจะ <span class="text-yellow-400">ช้ากว่า</span> เพราะต้องแปลไปทำไป</li>
+                            <li>• เจอ Error บรรทัดไหน โปรแกรมหยุดทันที</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Web Dev (HTML CSS JS) -->
+        <section id="webdev" class="scroll-mt-24 fade-in-up">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">3 ทหารเสือแห่งการสร้างหน้าเว็บไซต์</h2>
+                <p class="text-lg text-slate-600 max-w-2xl mx-auto">HTML, CSS และ JavaScript คือรากฐานของการสร้างหน้าเว็บ (Frontend) ที่ทำงานร่วมกันอย่างแยกไม่ออก ลองเปรียบเทียบกับการสร้างบ้านดูสิ!</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- HTML -->
+                <div class="bg-white p-6 rounded-2xl shadow border border-slate-100 flex flex-col items-center text-center group hover:shadow-xl transition-all">
+                    <i class="fa-brands fa-html5 text-6xl text-orange-500 mb-4 group-hover:scale-110 transition-transform"></i>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">HTML</h3>
+                    <div class="text-sm font-semibold text-orange-600 mb-3 bg-orange-50 px-3 py-1 rounded-full">โครงกระดูก (Structure)</div>
+                    <p class="text-slate-600 text-sm mb-4">ทำหน้าที่เป็นโครงสร้างหลัก กำหนดว่าจะมีหัวข้อ รูปภาพ หรือปุ่มกดอยู่ตรงไหนบ้าง</p>
+                    <div class="mt-auto bg-slate-50 w-full p-3 rounded text-xs text-slate-500 text-left border-l-4 border-orange-500">
+                        <strong>เปรียบเทียบ:</strong> อิฐ, ปูน, เสา, คาน, โครงสร้างบ้าน
+                    </div>
+                </div>
+
+                <!-- CSS -->
+                <div class="bg-white p-6 rounded-2xl shadow border border-slate-100 flex flex-col items-center text-center group hover:shadow-xl transition-all">
+                    <i class="fa-brands fa-css3-alt text-6xl text-blue-500 mb-4 group-hover:scale-110 transition-transform"></i>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">CSS</h3>
+                    <div class="text-sm font-semibold text-blue-600 mb-3 bg-blue-50 px-3 py-1 rounded-full">ผิวพรรณ (Presentation)</div>
+                    <p class="text-slate-600 text-sm mb-4">รับหน้าที่ตกแต่งให้สวยงาม กำหนดสีสัน ขนาด และจัดวางเลย์เอาต์ให้พอดีกับหน้าจอ</p>
+                    <div class="mt-auto bg-slate-50 w-full p-3 rounded text-xs text-slate-500 text-left border-l-4 border-blue-500">
+                        <strong>เปรียบเทียบ:</strong> สีทาบ้าน, วอลเปเปอร์, สไตล์เฟอร์นิเจอร์
+                    </div>
+                </div>
+
+                <!-- JS -->
+                <div class="bg-white p-6 rounded-2xl shadow border border-slate-100 flex flex-col items-center text-center group hover:shadow-xl transition-all">
+                    <i class="fa-brands fa-js text-6xl text-yellow-400 mb-4 group-hover:scale-110 transition-transform"></i>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">JavaScript</h3>
+                    <div class="text-sm font-semibold text-yellow-600 mb-3 bg-yellow-50 px-3 py-1 rounded-full">ระบบกล้ามเนื้อ (Behavior)</div>
+                    <p class="text-slate-600 text-sm mb-4">ทำให้เว็บตอบสนองได้ มีลูกเล่น อนิเมชัน หรือดึงข้อมูลแบบเรียลไทม์โดยไม่ต้องโหลดหน้าใหม่</p>
+                    <div class="mt-auto bg-slate-50 w-full p-3 rounded text-xs text-slate-500 text-left border-l-4 border-yellow-400">
+                        <strong>เปรียบเทียบ:</strong> สายไฟ, ระบบประปา, ประตูอัตโนมัติ
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: VS Code & Extensions -->
+        <section id="tools" class="scroll-mt-24 fade-in-up">
+            <div class="bg-brand-50 rounded-3xl p-8 md:p-12 border border-brand-100">
+                <div class="flex flex-col md:flex-row gap-10">
+                    <div class="md:w-1/3">
+                        <div class="sticky top-28">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Visual_Studio_Code_1.35_icon.svg" alt="VS Code Logo" class="w-20 mb-6 drop-shadow-md">
+                            <h2 class="text-3xl font-bold text-slate-900 mb-4">อาวุธคู่กาย: VS Code</h2>
+                            <p class="text-slate-600 mb-6">
+                                โปรแกรมประเภท Text Editor ที่ฮิตที่สุดในโลก ฟรี เบา และทรงพลัง เปรียบเสมือน "สมุดโน้ตอัจฉริยะ" ที่ช่วยตรวจคำผิดและเติมโค้ดให้อัตโนมัติ
+                            </p>
+                            <a href="https://code.visualstudio.com/" target="_blank" class="inline-flex items-center text-brand-600 font-bold hover:text-brand-800 transition-colors">
+                                ดาวน์โหลด VS Code <i class="fa-solid fa-external-link-alt ml-2 text-sm"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="md:w-2/3">
+                        <h3 class="text-xl font-bold text-slate-800 mb-6">📌 เช็คลิสต์ส่วนเสริม (Extensions) พื้นฐานที่ควรมี</h3>
+                        <div class="space-y-4">
+                            <!-- Item 1 -->
+                            <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 flex items-start gap-4 hover:border-brand-300 transition-colors">
+                                <div class="mt-1 text-brand-500"><i class="fa-solid fa-plug text-xl"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-slate-800">Live Server</h4>
+                                    <p class="text-sm text-slate-500 mt-1">กดเซฟปุ๊บ หน้าเว็บรีเฟรชอัปเดตผลลัพธ์ให้ทันทีโดยไม่ต้องกด F5 เอง (ส่วนเสริมสำหรับแสดงผล)</p>
+                                </div>
+                            </div>
+                            <!-- Item 2 -->
+                            <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 flex items-start gap-4 hover:border-brand-300 transition-colors">
+                                <div class="mt-1 text-brand-500"><i class="fa-solid fa-align-left text-xl"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-slate-800">Prettier - Code formatter</h4>
+                                    <p class="text-sm text-slate-500 mt-1">ช่วยจัดระเบียบย่อหน้า เคาะบรรทัดโค้ดให้สวยงามอ่านง่ายอัตโนมัติ (ส่วนเสริมช่วยเขียนโค้ด)</p>
+                                </div>
+                            </div>
+                            <!-- Item 3 -->
+                            <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 flex items-start gap-4 hover:border-brand-300 transition-colors">
+                                <div class="mt-1 text-brand-500"><i class="fa-solid fa-code text-xl"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-slate-800">Auto Rename Tag</h4>
+                                    <p class="text-sm text-slate-500 mt-1">เมื่อแก้ชื่อแท็กเปิด HTML ระบบจะแก้ชื่อแท็กปิดให้ตรงกันอัตโนมัติ (ส่วนเสริมช่วยเขียนโค้ด)</p>
+                                </div>
+                            </div>
+                            <!-- Item 4 -->
+                            <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 flex items-start gap-4 hover:border-brand-300 transition-colors">
+                                <div class="mt-1 text-brand-500"><i class="fa-brands fa-css3 text-xl"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-slate-800">CSS Peek</h4>
+                                    <p class="text-sm text-slate-500 mt-1">กดดูหรือแก้โค้ด CSS ได้จากหน้าไฟล์ HTML โดยตรง ไม่ต้องสลับไฟล์ไปมา (ส่วนเสริมช่วยเขียนโค้ด)</p>
+                                </div>
+                            </div>
+                            <!-- Item 5 -->
+                            <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 flex items-start gap-4 hover:border-brand-300 transition-colors">
+                                <div class="mt-1 text-brand-500"><i class="fa-solid fa-icons text-xl"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-slate-800">Material Icon Theme</h4>
+                                    <p class="text-sm text-slate-500 mt-1">เปลี่ยนไอคอนหน้าชื่อไฟล์ให้มีสีสันและดูง่ายขึ้น (ส่วนเสริมความสวยงาม)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-12 text-center border-t border-slate-800">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="flex justify-center items-center gap-3 mb-4">
+                <i class="fa-solid fa-code text-brand-500 text-2xl"></i>
+                <span class="font-bold text-xl text-white tracking-tight">CodeJourney</span>
+            </div>
+            <p class="mb-4">สร้างสรรค์ด้วยความภาคภูมิใจ เพื่อแบ่งปันความรู้สู่ก้าวแรกของนักพัฒนาทุกคน</p>
+            <p class="text-sm">&copy; 2026 The World of Computer Languages. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript สำหรับควบคุม Animation เมื่อ Scroll หน้าจอ -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const fadeElements = document.querySelectorAll('.fade-in-up');
+            fadeElements.forEach(el => {
+                // ข้าม hero section เพราะแสดงตั้งแต่โหลด
+                if(!el.closest('header')) {
+                    observer.observe(el);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
