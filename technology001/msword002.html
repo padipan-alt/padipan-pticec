@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>คู่มือการจัดทำรายงานด้วย Microsoft Word</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Prompt', 'sans-serif'],
+                        serif: ['Sarabun', 'serif'],
+                    },
+                    colors: {
+                        word: {
+                            blue: '#2b579a',
+                            light: '#e1eaf5',
+                            dark: '#1e3d6b'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #f3f4f6;
+        }
+        kbd {
+            background-color: #f8f9fa;
+            border: 1px solid #d1d5db;
+            border-bottom-width: 2px;
+            border-radius: 0.375rem;
+            padding: 0.125rem 0.375rem;
+            font-size: 0.875em;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            color: #374151;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.1);
+        }
+        .content-section {
+            scroll-margin-top: 2rem;
+        }
+    </style>
+</head>
+<body class="text-gray-800 antialiased font-sans">
+
+    <!-- Header / Hero Section -->
+    <header class="bg-word-blue text-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+            <div class="flex items-center gap-4 mb-4">
+                <i class="fa-solid fa-file-word text-4xl md:text-5xl text-blue-200"></i>
+                <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight">
+                    คู่มือการจัดทำรายงานและเอกสารวิชาการ
+                </h1>
+            </div>
+            <p class="text-lg md:text-xl text-blue-100 max-w-3xl mt-4 font-light leading-relaxed">
+                สื่อการเรียนรู้สำหรับการฝึกปฏิบัติจัดทำรายงาน เน้นการใช้ฟังก์ชันอัตโนมัติ (Styles และ Section Break) ใน Microsoft Word เพื่อให้เอกสารได้มาตรฐานและปรับแก้ได้ง่าย
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col md:flex-row gap-8">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="w-full md:w-1/4 lg:w-1/5 shrink-0">
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-5 sticky top-8">
+                <h3 class="text-lg font-semibold text-gray-900 mb-4 border-b pb-2">สารบัญเนื้อหา</h3>
+                <nav class="flex flex-col space-y-2 text-sm">
+                    <a href="#setup" class="text-gray-600 hover:text-word-blue hover:bg-word-light px-3 py-2 rounded-md transition duration-150 flex items-center gap-2">
+                        <i class="fa-solid fa-ruler-combined w-4 text-center"></i> 1. การตั้งค่าหน้ากระดาษ
+                    </a>
+                    <a href="#cover" class="text-gray-600 hover:text-word-blue hover:bg-word-light px-3 py-2 rounded-md transition duration-150 flex items-center gap-2">
+                        <i class="fa-solid fa-file-lines w-4 text-center"></i> 2. การสร้างหน้าปก
+                    </a>
+                    <a href="#preface" class="text-gray-600 hover:text-word-blue hover:bg-word-light px-3 py-2 rounded-md transition duration-150 flex items-center gap-2">
+                        <i class="fa-solid fa-comment-dots w-4 text-center"></i> 3. การสร้างคำนำ
+                    </a>
+                    <a href="#section-break" class="text-gray-600 hover:text-word-blue hover:bg-word-light px-3 py-2 rounded-md transition duration-150 flex items-center gap-2">
+                        <i class="fa-solid fa-scissors w-4 text-center"></i> 4. การแบ่งส่วน (Section Break)
+                    </a>
+                    <a href="#styles" class="text-gray-600 hover:text-word-blue hover:bg-word-light px-3 py-2 rounded-md transition duration-150 flex items-center gap-2">
+                        <i class="fa-solid fa-font w-4 text-center"></i> 5. การพิมพ์และการใช้ Styles
+                    </a>
+                    <a href="#toc" class="text-gray-600 hover:text-word-blue hover:bg-word-light px-3 py-2 rounded-md transition duration-150 flex items-center gap-2">
+                        <i class="fa-solid fa-list-ol w-4 text-center"></i> 6. สารบัญอัตโนมัติ
+                    </a>
+                    <a href="#references" class="text-gray-600 hover:text-word-blue hover:bg-word-light px-3 py-2 rounded-md transition duration-150 flex items-center gap-2">
+                        <i class="fa-solid fa-book-bookmark w-4 text-center"></i> 7. บรรณานุกรม
+                    </a>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <div class="w-full md:w-3/4 lg:w-4/5 space-y-8">
+            
+            <!-- Section 1 -->
+            <section id="setup" class="content-section bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                <div class="bg-gray-50 px-6 py-4 border-b border-gray-100 flex items-center gap-3">
+                    <div class="bg-word-blue text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">1</div>
+                    <h2 class="text-xl font-semibold text-gray-800">การตั้งค่าหน้ากระดาษและฟอนต์มาตรฐาน (Page Setup)</h2>
+                </div>
+                <div class="p-6">
+                    <p class="text-gray-600 mb-4">ก่อนเริ่มพิมพ์ข้อความใดๆ ควรตั้งค่าโครงสร้างของหน้ากระดาษให้พร้อมสำหรับงานเข้าเล่ม</p>
+                    <ol class="list-decimal pl-5 space-y-3 text-gray-700">
+                        <li>ไปที่แท็บ <strong>เค้าโครง (Layout)</strong> > <strong>ระยะขอบ (Margins)</strong> > เลือก <strong>ระยะขอบแบบกำหนดเอง (Custom Margins)</strong></li>
+                        <li>กำหนดค่ามาตรฐาน: <strong>บน (Top)</strong> 1.5 นิ้ว, <strong>ซ้าย (Left)</strong> 1.5 นิ้ว (เผื่อเย็บเล่ม), <strong>ล่าง (Bottom)</strong> 1 นิ้ว, <strong>ขวา (Right)</strong> 1 นิ้ว > กด <strong>ตกลง (OK)</strong></li>
+                        <li>กด <kbd>Ctrl</kbd> + <kbd>A</kbd> เพื่อเลือกทั้งเอกสาร > ไปที่แท็บ <strong>หน้าแรก (Home)</strong></li>
+                        <li>ตั้งค่าฟอนต์เป็น <strong>TH Sarabun PSK</strong> หรือ <strong>TH Sarabun New</strong> ขนาด <strong>16 pt</strong></li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Section 2 -->
+            <section id="cover" class="content-section bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                <div class="bg-gray-50 px-6 py-4 border-b border-gray-100 flex items-center gap-3">
+                    <div class="bg-word-blue text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">2</div>
+                    <h2 class="text-xl font-semibold text-gray-800">การสร้างหน้าปก (Cover Page)</h2>
+                </div>
+                <div class="p-6">
+                    <p class="text-gray-600 mb-4">หน้าปกที่ดีต้องมีความสมดุลและระยะห่างที่พอดี</p>
+                    
+                    <!-- Tip Box -->
+                    <div class="flex items-start bg-blue-50 border-l-4 border-blue-500 p-4 mb-5 rounded-r-md">
+                        <i class="fa-solid fa-lightbulb text-blue-500 mt-1 mr-3 text-lg"></i>
+                        <div>
+                            <strong class="text-blue-800 block">Tip:</strong>
+                            <span class="text-blue-700 text-sm">หลีกเลี่ยงการกด Enter ค้างไว้จนล้นหน้า เพื่อไม่ให้ฟอร์แมตเคลื่อนเมื่อมีการแก้ไขภายหลัง</span>
+                        </div>
+                    </div>
+
+                    <ol class="list-decimal pl-5 space-y-3 text-gray-700">
+                        <li>พิมพ์รายละเอียด 4 ส่วนหลักให้ครบถ้วน: ชื่อเรื่องรายงาน, ชื่อผู้จัดทำ (ชื่อ-นามสกุล, รหัสนักศึกษา), เสนอ (ชื่อครูผู้สอน), และรายละเอียดรายวิชา/ภาคเรียน/ปีการศึกษา</li>
+                        <li>คลุมดำข้อความทั้งหมด > เลือกจัดข้อความ <strong>กึ่งกลาง (Center)</strong> หรือกด <kbd>Ctrl</kbd> + <kbd>E</kbd></li>
+                        <li>ปรับขนาดฟอนต์: ชื่อเรื่องใช้ขนาด <strong class="text-word-blue">24 pt (ตัวหนา)</strong>, ส่วนอื่นๆ ใช้ขนาด <strong class="text-word-blue">20 pt (ตัวปกติ)</strong></li>
+                        <li>นำเคอร์เซอร์ไปวางบรรทัดสุดท้ายของหน้าปก > กด <kbd>Ctrl</kbd> + <kbd>Enter</kbd> เพื่อสั่งขึ้นหน้าใหม่ (Page Break) ทันทีโดยไม่ต้องเคาะบรรทัด</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Section 3 -->
+            <section id="preface" class="content-section bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                <div class="bg-gray-50 px-6 py-4 border-b border-gray-100 flex items-center gap-3">
+                    <div class="bg-word-blue text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">3</div>
+                    <h2 class="text-xl font-semibold text-gray-800">การสร้างคำนำ (Preface)</h2>
+                </div>
+                <div class="p-6">
+                    <ol class="list-decimal pl-5 space-y-3 text-gray-700">
+                        <li>พิมพ์คำว่า <strong>"คำนำ"</strong> จัดกึ่งกลางหน้ากระดาษ ปรับฟอนต์ขนาด <strong>22-24 pt (ตัวหนา)</strong></li>
+                        <li>ขึ้นบรรทัดใหม่ ปรับฟอนต์กลับมาที่ <strong>16 pt (ตัวปกติ)</strong> > กด <kbd>Tab</kbd> 1 ครั้ง (0.5 นิ้ว) เพื่อย่อหน้า</li>
+                        <li>พิมพ์เนื้อหาอธิบายวัตถุประสงค์ของรายงาน ประโยชน์ที่คาดว่าจะได้รับ และคำขอบคุณ</li>
+                        <li>คลุมดำเนื้อหาคำนำ > เลือกการจัดแนวแบบ <strong>กระจายแบบไทย (Thai Distributed)</strong> เพื่อให้ขอบซ้ายและขวาตรงกันสวยงาม</li>
+                        <li>บรรทัดล่างสุด ชิดขวา พิมพ์ชื่อผู้จัดทำและวันที่</li>
+                        <li>นำเคอร์เซอร์ไว้บรรทัดสุดท้าย > กด <kbd>Ctrl</kbd> + <kbd>Enter</kbd> เพื่อขึ้นหน้าใหม่สำหรับเว้นไว้ทำสารบัญ</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Section 4 -->
+            <section id="section-break" class="content-section bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                <div class="bg-gray-50 px-6 py-4 border-b border-gray-100 flex items-center gap-3">
+                    <div class="bg-red-500 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">4</div>
+                    <h2 class="text-xl font-semibold text-gray-800">การจัดการเลขหน้าด้วย Section Break</h2>
+                </div>
+                <div class="p-6">
+                    <!-- Warning Box -->
+                    <div class="flex items-start bg-amber-50 border-l-4 border-amber-500 p-4 mb-5 rounded-r-md">
+                        <i class="fa-solid fa-triangle-exclamation text-amber-500 mt-1 mr-3 text-lg"></i>
+                        <div>
+                            <strong class="text-amber-800 block">ขั้นตอนสำคัญที่สุด!</strong>
+                            <span class="text-amber-700 text-sm">เพื่อป้องกันไม่ให้เลขหน้าไปปรากฏบนหน้าปกและคำนำ ต้องทำการแบ่งส่วนเอกสาร (Section Break) ก่อนเริ่มพิมพ์เนื้อหาหลัก</span>
+                        </div>
+                    </div>
+
+                    <ol class="list-decimal pl-5 space-y-3 text-gray-700">
+                        <li>นำเคอร์เซอร์ไปคลิกที่บรรทัดสุดท้ายของหน้าสารบัญ (หน้าที่เว้นว่างไว้)</li>
+                        <li>ไปที่แท็บ <strong>เค้าโครง (Layout)</strong> > <strong>ตัวแบ่ง (Breaks)</strong> > เลือก <strong>หน้าถัดไป (Next Page)</strong> <em class="text-gray-500">(ตอนนี้เอกสารจะถูกแบ่งเป็น 2 ส่วน)</em></li>
+                        <li>ดับเบิ้ลคลิกที่บริเวณ <strong>หัวกระดาษ (Header)</strong> ของหน้าที่เพิ่งสร้างใหม่</li>
+                        <li>บนเมนูที่ปรากฏขึ้น ให้คลิกปิดปุ่ม <strong class="text-red-600">ลิงก์ไปก่อนหน้า (Link to Previous)</strong> (ไม่ให้แถบสีเทาคลุมอยู่) เพื่อตัดขาดความเชื่อมโยงจากหน้าปก</li>
+                        <li>ไปที่แท็บ <strong>แทรก (Insert)</strong> > <strong>หมายเลขหน้า (Page Number)</strong> > เลือกตำแหน่ง (เช่น ด้านบนขวา)</li>
+                        <li>ไปที่ <strong>หมายเลขหน้า</strong> อีกครั้ง > เลือก <strong>จัดรูปแบบหมายเลขหน้า (Format Page Numbers)</strong> > ติ๊กเลือก <strong>เริ่มที่ (Start at): 1</strong> > กด <strong>ตกลง</strong></li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Section 5 -->
+            <section id="styles" class="content-section bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                <div class="bg-gray-50 px-6 py-4 border-b border-gray-100 flex items-center gap-3">
+                    <div class="bg-word-blue text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">5</div>
+                    <h2 class="text-xl font-semibold text-gray-800">การพิมพ์เนื้อหาและการกำหนด Styles</h2>
+                </div>
+                <div class="p-6">
+                    <p class="text-gray-600 mb-4">การทำสารบัญอัตโนมัติจะทำงานไม่ได้ หากไม่กำหนด "สไตล์" ให้กับหัวข้อต่างๆ ในเนื้อหา</p>
+                    <ol class="list-decimal pl-5 space-y-3 text-gray-700">
+                        <li>พิมพ์เนื้อหารายงานตามปกติ โดยใช้การจัดหน้าแบบ <strong>กระจายแบบไทย (Thai Distributed)</strong></li>
+                        <li><strong>การกำหนดหัวข้อหลัก (เช่น บทที่ 1):</strong> คลุมดำที่ข้อความ > ไปที่แท็บ <strong>หน้าแรก (Home)</strong> > ในหมวดสไตล์ เลือก <strong class="text-word-blue">หัวเรื่อง 1 (Heading 1)</strong> <em class="text-gray-500 text-sm">(หากฟอนต์เปลี่ยน ให้ปรับกลับเป็น TH Sarabun ตัวหนา 20 pt)</em></li>
+                        <li><strong>การกำหนดหัวข้อย่อย (เช่น 1.1 ประวัติความเป็นมา):</strong> คลุมดำที่ข้อความ > เลือกสไตล์ <strong class="text-word-blue">หัวเรื่อง 2 (Heading 2)</strong></li>
+                        <li>ทำการกำหนด Heading 1 และ Heading 2 ให้ครบทุกหัวข้อในเนื้อหารายงาน</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Section 6 -->
+            <section id="toc" class="content-section bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                <div class="bg-gray-50 px-6 py-4 border-b border-gray-100 flex items-center gap-3">
+                    <div class="bg-word-blue text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">6</div>
+                    <h2 class="text-xl font-semibold text-gray-800">การสร้างสารบัญอัตโนมัติ (Automatic Table of Contents)</h2>
+                </div>
+                <div class="p-6">
+                    <p class="text-gray-600 mb-4">เมื่อกำหนด Styles ในข้อ 5 เสร็จสิ้น การสร้างสารบัญจะใช้เวลาเพียง 5 วินาที!</p>
+                    <ol class="list-decimal pl-5 space-y-3 text-gray-700 mb-5">
+                        <li>เลื่อนกลับไปที่หน้าว่างสำหรับสารบัญ (หน้าที่เว้นไว้ในข้อ 3)</li>
+                        <li>ไปที่แท็บ <strong>การอ้างอิง (References)</strong> > <strong>สารบัญ (Table of Contents)</strong></li>
+                        <li>เลือก <strong>สารบัญอัตโนมัติ 1 (Automatic Table 1)</strong></li>
+                        <li>สารบัญจะถูกสร้างขึ้นพร้อมเลขหน้าที่ตรงกับเนื้อหาจริงทันที</li>
+                    </ol>
+                    
+                    <!-- Tip Box -->
+                    <div class="flex items-start bg-green-50 border-l-4 border-green-500 p-4 rounded-r-md">
+                        <i class="fa-solid fa-arrows-rotate text-green-500 mt-1 mr-3 text-lg"></i>
+                        <div>
+                            <strong class="text-green-800 block">เทคนิคการอัปเดต:</strong>
+                            <span class="text-green-700 text-sm">หากมีการเพิ่ม/ลดเนื้อหาภายหลัง ให้กลับมาคลิกที่ตารางสารบัญ > เลือก <strong>อัปเดตตาราง (Update Table)</strong> > เลือก <strong>อัปเดตทั้งตาราง (Update entire table)</strong> เลขหน้าและหัวข้อจะถูกปรับปรุงให้ล่าสุดเสมอ</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 7 -->
+            <section id="references" class="content-section bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden mb-12">
+                <div class="bg-gray-50 px-6 py-4 border-b border-gray-100 flex items-center gap-3">
+                    <div class="bg-word-blue text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">7</div>
+                    <h2 class="text-xl font-semibold text-gray-800">การสร้างบรรณานุกรม (References)</h2>
+                </div>
+                <div class="p-6">
+                    <ol class="list-decimal pl-5 space-y-3 text-gray-700">
+                        <li>ไปที่หน้าสุดท้ายของเอกสาร > พิมพ์หัวข้อ <strong>"บรรณานุกรม"</strong> กึ่งกลางหน้า <em class="text-gray-500 text-sm">(ตั้งเป็น Heading 1 เพื่อให้อัปเดตเข้าสารบัญด้วย)</em></li>
+                        <li>พิมพ์รายการอ้างอิงตามรูปแบบที่กำหนด <em class="text-gray-500 text-sm">(เช่น APA Style: ชื่อผู้แต่ง. (ปีที่พิมพ์). ชื่อหนังสือ. สถานที่พิมพ์: สำนักพิมพ์.)</em></li>
+                        <li>หากรายการอ้างอิงยาวเกิน 1 บรรทัด ต้องทำให้บรรทัดที่ 2 เยื้องเข้าไป</li>
+                        <li>คลุมดำรายการอ้างอิงทั้งหมด > คลิกขวาเลือก <strong>ย่อหน้า (Paragraph)</strong></li>
+                        <li>ในหมวดการเยื้อง (Indentation) ช่อง <strong>แบบพิเศษ (Special)</strong> ให้เลือก <strong>ลอย (Hanging)</strong> > กด <strong>ตกลง</strong></li>
+                    </ol>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="bg-white border-t border-gray-200 mt-8 py-8 text-center text-gray-500 text-sm">
+        <p>จัดทำเป็นสื่อการเรียนรู้เชิงปฏิบัติการ สร้างสรรค์เอกสารให้ได้มาตรฐาน</p>
+    </footer>
+
+</body>
+</html>
