@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>คู่มือการสร้างวิดีโอเล่าเรื่องด้วย Google AI | Gemini & Google Vids</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Prompt & Sarabun -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind Custom Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        google: {
+                            blue: '#1a73e8',
+                            blueDark: '#1557b0',
+                            blueLight: '#e8f0fe',
+                            sky: '#38bdf8',
+                            red: '#ea4335',
+                            yellow: '#fbbc04',
+                            green: '#34a853',
+                            dark: '#202124',
+                            gray: '#5f6368',
+                            lightGray: '#f8f9fa'
+                        }
+                    },
+                    fontFamily: {
+                        prompt: ['Prompt', 'sans-serif'],
+                        sarabun: ['Sarabun', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Prompt', 'Sarabun', sans-serif;
+            background-color: #f8f9fa;
+            color: #202124;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4285f4;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #1a73e8;
+        }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+        }
+        .active-tab {
+            border-bottom: 3px solid #1a73e8;
+            color: #1a73e8;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-google-blueLight selection:text-google-blue">
+
+    <!-- Reading Progress Bar -->
+    <div class="fixed top-0 left-0 w-full h-1 bg-gray-200 z-50">
+        <div id="scrollProgressBar" class="h-full bg-gradient-to-r from-google-blue via-google-sky to-google-green w-0 transition-all duration-150"></div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 ease-in-out bg-google-dark text-white px-5 py-3 rounded-xl shadow-2xl flex items-center space-x-3 pointer-events-none">
+        <i id="toastIcon" class="fas fa-check-circle text-google-green text-xl"></i>
+        <span id="toastMessage" class="text-sm font-medium">ข้อความแจ้งเตือน</span>
+    </div>
+
+    <!-- Sticky Navbar -->
+    <nav class="sticky top-0 z-40 glass-nav border-b border-gray-200 shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <!-- Brand Logo -->
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-google-blue to-google-sky text-white flex items-center justify-center font-bold text-xl shadow-md">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </div>
+                    <div>
+                        <span class="font-bold text-lg sm:text-xl tracking-tight text-gray-900 block leading-tight">Google AI Video Guide</span>
+                        <span class="text-xs text-google-blue font-medium hidden sm:block">คู่มือการสร้างวิดีโอเล่าเรื่อง 2-3 นาที</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation Links -->
+                <div class="hidden md:flex space-x-1 lg:space-x-4">
+                    <a href="#hero" class="px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:text-google-blue hover:bg-google-blueLight transition-colors">หน้าแรก</a>
+                    <a href="#generator" class="px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:text-google-blue hover:bg-google-blueLight transition-colors">Prompt Generator</a>
+                    <a href="#steps" class="px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:text-google-blue hover:bg-google-blueLight transition-colors">5 ขั้นตอนการสร้าง</a>
+                    <a href="#checklist" class="px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:text-google-blue hover:bg-google-blueLight transition-colors">เช็กลิสต์ส่งงาน</a>
+                    <a href="#teacher-corner" class="px-3 py-2 rounded-lg text-sm font-medium text-google-blue bg-google-blueLight hover:bg-blue-100 transition-colors border border-blue-200">
+                        <i class="fas fa-chalkboard-teacher mr-1"></i> มุมสำหรับครู
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobileMenuBtn" class="p-2 rounded-lg text-gray-600 hover:text-google-blue hover:bg-gray-100 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobileMenu" class="hidden md:hidden border-t border-gray-200 bg-white px-4 pt-2 pb-4 space-y-2 shadow-lg">
+            <a href="#hero" class="mobile-link block px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:bg-gray-100">หน้าแรก</a>
+            <a href="#generator" class="mobile-link block px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:bg-gray-100">Prompt Generator</a>
+            <a href="#steps" class="mobile-link block px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:bg-gray-100">5 ขั้นตอนการสร้าง</a>
+            <a href="#checklist" class="mobile-link block px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:bg-gray-100">เช็กลิสต์ส่งงาน</a>
+            <a href="#teacher-corner" class="mobile-link block px-3 py-2 rounded-lg text-base font-medium text-google-blue bg-google-blueLight">มุมสำหรับครู (แผนการสอน)</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative overflow-hidden pt-12 pb-16 md:pt-20 md:pb-24 bg-gradient-to-b from-blue-50/60 via-white to-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto">
+                <div class="inline-flex items-center space-x-2 bg-google-blueLight border border-blue-200 px-4 py-1.5 rounded-full text-google-blue text-xs sm:text-sm font-semibold mb-6 shadow-sm">
+                    <span class="flex h-2 w-2 rounded-full bg-google-blue animate-pulse"></span>
+                    <span>นวัตกรรมการเรียนรู้ยุคใหม่ด้วย AI</span>
+                </div>
+                <h1 class="text-3xl sm:text-5xl font-extrabold text-gray-900 tracking-tight leading-tight mb-6">
+                    สร้างวิดีโอเล่าเรื่อง <span class="text-transparent bg-clip-text bg-gradient-to-r from-google-blue via-google-sky to-google-green">2-3 นาที</span> <br class="hidden sm:block">ด้วยพลัง Google AI
+                </h1>
+                <p class="text-base sm:text-lg text-gray-600 mb-8 leading-relaxed">
+                    เปลี่ยนไอเดียให้เป็นเรื่องราวสุดประทับใจผ่านการทำงานร่วมกันของ <strong class="text-gray-800">Gemini</strong> ในการเขียนบท และ <strong class="text-gray-800">Google Vids</strong> ในการตัดต่อ เหมาะสำหรับนักเรียนและครูผู้สอนในการสร้างสื่อดิจิทัล
+                </p>
+                
+                <div class="flex flex-col sm:flex-row justify-center gap-4 mb-12">
+                    <a href="#generator" class="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-google-blue text-white font-semibold text-base shadow-lg shadow-blue-500/25 hover:bg-google-blueDark hover:shadow-xl transition-all duration-200">
+                        <i class="fas fa-magic mr-2"></i> เริ่มสร้าง Prompt เขียนบท
+                    </a>
+                    <a href="#steps" class="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-white text-gray-700 border border-gray-300 font-semibold text-base hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 shadow-sm">
+                        <i class="fas fa-play-circle text-google-blue mr-2"></i> ดูขั้นตอนการทำวิดีโอ
+                    </a>
+                </div>
+
+                <!-- Feature Highlights Badges -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                    <div class="p-4 rounded-xl bg-white border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-10 h-10 mx-auto mb-2 rounded-lg bg-blue-100 text-google-blue flex items-center justify-center text-lg">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3 class="font-bold text-sm text-gray-800">Gemini AI</h3>
+                        <p class="text-xs text-gray-500">ช่วยระดมความคิด & เขียนบท</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-white border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-10 h-10 mx-auto mb-2 rounded-lg bg-red-100 text-google-red flex items-center justify-center text-lg">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <h3 class="font-bold text-sm text-gray-800">Google Vids</h3>
+                        <p class="text-xs text-gray-500">ขึ้นโครงร่างวิดีโออัตโนมัติ</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-white border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-10 h-10 mx-auto mb-2 rounded-lg bg-yellow-100 text-google-yellow flex items-center justify-center text-lg">
+                            <i class="fas fa-layer-group"></i>
+                        </div>
+                        <h3 class="font-bold text-sm text-gray-800">Storyboard</h3>
+                        <p class="text-xs text-gray-500">วางแผน 5 ฉากอย่างเป็นระบบ</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-white border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-10 h-10 mx-auto mb-2 rounded-lg bg-green-100 text-google-green flex items-center justify-center text-lg">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h3 class="font-bold text-sm text-gray-800">Checklist</h3>
+                        <p class="text-xs text-gray-500">ตรวจเช็กความพร้อมก่อนส่ง</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Tool: Prompt Generator (Step 1 Helper) -->
+    <section id="generator" class="py-12 bg-white border-y border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gradient-to-br from-google-blueLight via-white to-sky-50 rounded-3xl p-6 sm:p-10 border border-blue-100 shadow-xl">
+                <div class="flex flex-col lg:flex-row gap-8 items-start">
+                    
+                    <!-- Form Controls -->
+                    <div class="w-full lg:w-1/2 space-y-5">
+                        <div>
+                            <span class="bg-google-blue text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">เครื่องมือพิเศษ</span>
+                            <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mt-2">Gemini Prompt Generator</h2>
+                            <p class="text-sm text-gray-600 mt-1">เลือกระบุรายละเอียดด้านล่าง เพื่อสร้างคำสั่ง (Prompt) นำไปวางใน Google Gemini</p>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">1. เลือกหัวข้อเรื่อง (Topic):</label>
+                            <select id="topicSelect" class="w-full bg-white border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:ring-2 focus:ring-google-blue focus:border-google-blue outline-none transition-all">
+                                <option value="การอนุรักษ์สิ่งแวดล้อมและการแยกขยะในโรงเรียน">🌿 การอนุรักษ์สิ่งแวดล้อมและการแยกขยะในโรงเรียน</option>
+                                <option value="การป้องกันการกลั่นแกล้งบนโลกออนไลน์ (Cyberbullying)">🛡️ การป้องกันการกลั่นแกล้งบนโลกออนไลน์ (Cyberbullying)</option>
+                                <option value="นวัตกรรมเทคโนโลยีปัญญาประดิษฐ์ในชีวิตประจำวัน">🤖 นวัตกรรมเทคโนโลยี AI ในชีวิตประจำวัน</option>
+                                <option value="การส่งเสริมโภชนาการและสุขภาพที่ดีของวัยเรียน">🍎 การส่งเสริมโภชนาการและสุขภาพที่ดีของวัยเรียน</option>
+                                <option value="ประวัติศาสตร์และภูมิปัญญาท้องถิ่นน่ารู้">🏛️ ประวัติศาสตร์และภูมิปัญญาท้องถิ่นน่ารู้</option>
+                            </select>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-1">2. ระดับชั้นนักเรียน:</label>
+                                <select id="gradeSelect" class="w-full bg-white border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:ring-2 focus:ring-google-blue focus:border-google-blue outline-none transition-all">
+                                    <option value="ประถมศึกษา (ป.4 - ป.6)">ประถมศึกษา (ป.4 - ป.6)</option>
+                                    <option value="มัธยมศึกษาตอนต้น (ม.1 - ม.3)" selected>มัธยมศึกษาตอนต้น (ม.1 - ม.3)</option>
+                                    <option value="มัธยมศึกษาตอนปลาย (ม.4 - ม.6)">มัธยมศึกษาตอนปลาย (ม.4 - ม.6)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-1">3. โทน/อารมณ์ของเรื่อง:</label>
+                                <select id="toneSelect" class="w-full bg-white border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:ring-2 focus:ring-google-blue focus:border-google-blue outline-none transition-all">
+                                    <option value="สนุกสนาน สดใส เข้าใจง่าย">สดใส สนุกสนาน เข้าใจง่าย</option>
+                                    <option value="จริงจัง ซาบซึ้ง สร้างแรงบันดาลใจ">ซาบซึ้ง สร้างแรงบันดาลใจ</option>
+                                    <option value="ตื่นเต้น ผจญภัย น่าติดตาม">ตื่นเต้น ผจญภัย น่าติดตาม</option>
+                                    <option value="สารคดี ให้ความรู้ สดใส">สารคดีเชิงวิชาการน่ารู้</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">4. ความยาววิดีโอเป้าหมาย:</label>
+                            <div class="flex space-x-4">
+                                <label class="flex items-center space-x-2 bg-white px-4 py-2 rounded-xl border border-gray-200 cursor-pointer text-sm font-medium hover:border-google-blue">
+                                    <input type="radio" name="duration" value="2 นาที (ประมาณ 300 คำ)" checked class="text-google-blue focus:ring-google-blue">
+                                    <span>2 นาที (~300 คำ)</span>
+                                </label>
+                                <label class="flex items-center space-x-2 bg-white px-4 py-2 rounded-xl border border-gray-200 cursor-pointer text-sm font-medium hover:border-google-blue">
+                                    <input type="radio" name="duration" value="3 นาที (ประมาณ 450 คำ)" class="text-google-blue focus:ring-google-blue">
+                                    <span>3 นาที (~450 คำ)</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Output Prompt Box -->
+                    <div class="w-full lg:w-1/2 flex flex-col h-full">
+                        <div class="bg-gray-900 rounded-2xl p-5 text-gray-100 flex-1 flex flex-col justify-between shadow-2xl relative border border-gray-800">
+                            <div>
+                                <div class="flex justify-between items-center pb-3 border-b border-gray-800 mb-3">
+                                    <span class="text-xs font-mono text-google-sky flex items-center">
+                                        <i class="fas fa-terminal mr-2"></i> Gemini Prompt Output
+                                    </span>
+                                    <span class="text-xs text-gray-400 bg-gray-800 px-2 py-1 rounded">พร้อมคัดลอก</span>
+                                </div>
+                                <div id="promptOutput" class="font-mono text-xs sm:text-sm leading-relaxed whitespace-pre-line text-gray-300 max-h-72 overflow-y-auto pr-2">
+                                    <!-- Dynamic Prompt text will be generated here -->
+                                </div>
+                            </div>
+                            <div class="pt-4 mt-4 border-t border-gray-800 flex justify-between items-center">
+                                <span class="text-xs text-gray-400">นำไปวางใน gemini.google.com</span>
+                                <button id="copyPromptBtn" class="bg-google-blue hover:bg-google-blueDark text-white font-semibold px-4 py-2 rounded-lg text-sm flex items-center transition-all shadow-md">
+                                    <i class="far fa-copy mr-2"></i> คัดลอก Prompt
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive 5-Step Learning Guide Section -->
+    <section id="steps" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-3xl font-extrabold text-gray-900">5 ขั้นตอนการสร้างวิดีโอด้วย Google AI</h2>
+                <p class="text-gray-600 mt-2">คลิกเลือกหัวข้อขั้นตอนด้านล่าง เพื่อศึกษารายละเอียดและวิธีการปฏิบัติ</p>
+            </div>
+
+            <!-- Step Tabs Bar -->
+            <div class="flex overflow-x-auto no-scrollbar space-x-2 pb-4 mb-8 border-b border-gray-200 justify-start md:justify-center">
+                <button onclick="switchStep(1)" id="tab-step-1" class="step-tab flex-shrink-0 px-5 py-3 rounded-xl font-medium text-sm flex items-center space-x-2 bg-white shadow-sm border border-gray-200 text-gray-700 hover:text-google-blue active-tab">
+                    <span class="w-6 h-6 rounded-full bg-google-blue text-white text-xs flex items-center justify-center font-bold">1</span>
+                    <span>เขียนบท (Gemini)</span>
+                </button>
+                <button onclick="switchStep(2)" id="tab-step-2" class="step-tab flex-shrink-0 px-5 py-3 rounded-xl font-medium text-sm flex items-center space-x-2 bg-white shadow-sm border border-gray-200 text-gray-700 hover:text-google-blue">
+                    <span class="w-6 h-6 rounded-full bg-gray-200 text-gray-700 text-xs flex items-center justify-center font-bold">2</span>
+                    <span>ทำ Storyboard</span>
+                </button>
+                <button onclick="switchStep(3)" id="tab-step-3" class="step-tab flex-shrink-0 px-5 py-3 rounded-xl font-medium text-sm flex items-center space-x-2 bg-white shadow-sm border border-gray-200 text-gray-700 hover:text-google-blue">
+                    <span class="w-6 h-6 rounded-full bg-gray-200 text-gray-700 text-xs flex items-center justify-center font-bold">3</span>
+                    <span>ขึ้นรูป (Google Vids)</span>
+                </button>
+                <button onclick="switchStep(4)" id="tab-step-4" class="step-tab flex-shrink-0 px-5 py-3 rounded-xl font-medium text-sm flex items-center space-x-2 bg-white shadow-sm border border-gray-200 text-gray-700 hover:text-google-blue">
+                    <span class="w-6 h-6 rounded-full bg-gray-200 text-gray-700 text-xs flex items-center justify-center font-bold">4</span>
+                    <span>แต่งสื่อ & เสียงพากย์</span>
+                </button>
+                <button onclick="switchStep(5)" id="tab-step-5" class="step-tab flex-shrink-0 px-5 py-3 rounded-xl font-medium text-sm flex items-center space-x-2 bg-white shadow-sm border border-gray-200 text-gray-700 hover:text-google-blue">
+                    <span class="w-6 h-6 rounded-full bg-gray-200 text-gray-700 text-xs flex items-center justify-center font-bold">5</span>
+                    <span>ตรวจทาน & ส่งงาน</span>
+                </button>
+            </div>
+
+            <!-- Tab Content Containers -->
+            <div id="step-content-container" class="min-h-[450px]">
+                
+                <!-- Step 1 Content -->
+                <div id="content-step-1" class="step-content space-y-6">
+                    <div class="bg-white rounded-2xl p-6 sm:p-8 border border-gray-200 shadow-sm">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="w-10 h-10 rounded-xl bg-blue-100 text-google-blue flex items-center justify-center text-xl font-bold">1</div>
+                            <h3 class="text-2xl font-bold text-gray-900">ขั้นที่ 1: คิดพล็อตเรื่องและเขียนบทด้วย Gemini</h3>
+                        </div>
+                        <p class="text-gray-600 leading-relaxed mb-6">
+                            บทวิดีโอเปรียบเสมือนหัวใจของเรื่องราว โดยเฉพาะวิดีโอสั้น 2–3 นาที ต้องมีโครงเรื่องกระชับ ชัดเจน มีความยาวบทพากย์รวมประมาณ <strong>300 - 450 คำ</strong>
+                        </p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                            <div class="p-4 rounded-xl bg-blue-50 border border-blue-100">
+                                <h4 class="font-bold text-google-blue mb-1"><i class="fas fa-bullseye mr-2"></i>1. กำหนดเป้าหมาย</h4>
+                                <p class="text-xs text-gray-600">ระบุให้ชัดเจนว่าต้องการสื่อสารอะไร ใครคือกลุ่มผู้ฟังหลัก</p>
+                            </div>
+                            <div class="p-4 rounded-xl bg-yellow-50 border border-yellow-100">
+                                <h4 class="font-bold text-yellow-700 mb-1"><i class="fas fa-list-ol mr-2"></i>2. แบ่งเป็น 5 ฉาก</h4>
+                                <p class="text-xs text-gray-600">แบ่งเป็น เปิดเรื่อง, ปัญหา, ทางแก้, ผลลัพธ์ และสรุปข้อคิด</p>
+                            </div>
+                            <div class="p-4 rounded-xl bg-green-50 border border-green-100">
+                                <h4 class="font-bold text-google-green mb-1"><i class="fas fa-stopwatch mr-2"></i>3. ควบคุมเวลา</h4>
+                                <p class="text-xs text-gray-600">พูดด้วยความเร็วปกติ อัตราประมาณ 130-150 คำต่อนาที</p>
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-xl bg-gray-50 border border-gray-200">
+                            <h4 class="font-bold text-gray-800 text-sm mb-2"><i class="fas fa-lightbulb text-google-yellow mr-2"></i>ข้อแนะนำสำหรับนักเรียนในการใช้ Gemini:</h4>
+                            <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
+                                <li>ใช้เครื่องมือ Prompt Generator ด้านบนเพื่อร่างคำสั่งแรก</li>
+                                <li>หากบทพากย์ยาวเกินไป ให้พิมพ์บอก Gemini ว่า <em>"ช่วยตัดบทพากย์ให้เหลือไม่เกิน 350 คำ"</em></li>
+                                <li>ขอคำอธิบายภาพสั้นๆ ในแต่ละฉากเพื่อนำไปทำ Storyboard ในขั้นตอนถัดไป</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2 Content (Interactive Storyboard) -->
+                <div id="content-step-2" class="step-content hidden space-y-6">
+                    <div class="bg-white rounded-2xl p-6 sm:p-8 border border-gray-200 shadow-sm">
+                        <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-4 mb-6">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 rounded-xl bg-yellow-100 text-google-yellow flex items-center justify-center text-xl font-bold">2</div>
+                                <div>
+                                    <h3 class="text-2xl font-bold text-gray-900">ขั้นที่ 2: วางแผนฉากและจัดทำ Storyboard</h3>
+                                    <p class="text-xs text-gray-500">นำบทจาก Gemini มาวางแผนภาพและเสียงอย่างเป็นระบบ</p>
+                                </div>
+                            </div>
+                            <!-- View Switcher Buttons -->
+                            <div class="inline-flex p-1 bg-gray-100 rounded-xl border border-gray-200 self-start sm:self-auto">
+                                <button id="viewTableBtn" onclick="switchStoryboardView('table')" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-white text-google-blue shadow-sm transition-all">
+                                    <i class="fas fa-table mr-1"></i> มุมมองตาราง
+                                </button>
+                                <button id="viewCardBtn" onclick="switchStoryboardView('card')" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-gray-600 hover:text-gray-900 transition-all">
+                                    <i class="fas fa-th-large mr-1"></i> มุมมองการ์ด
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Storyboard Container -->
+                        <div id="storyboardContainer">
+                            <!-- Table View (Default) -->
+                            <div id="storyboardTableView" class="overflow-x-auto rounded-xl border border-gray-200">
+                                <table class="w-full text-left border-collapse">
+                                    <thead>
+                                        <tr class="bg-gray-100 text-gray-700 text-xs font-bold uppercase tracking-wider border-b border-gray-200">
+                                            <th class="py-3 px-4 w-16 text-center">ฉากที่</th>
+                                            <th class="py-3 px-4 w-28">ช่วงเวลา</th>
+                                            <th class="py-3 px-4">บทบรรยาย / เสียงพากย์ (Voiceover)</th>
+                                            <th class="py-3 px-4">รายละเอียดภาพ / สื่อประกอบบนจอ</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-gray-200 text-sm text-gray-700" id="storyboardTableBody">
+                                        <!-- JS will inject table rows -->
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- Card View (Hidden by default) -->
+                            <div id="storyboardCardView" class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                <!-- JS will inject cards -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3 Content -->
+                <div id="content-step-3" class="step-content hidden space-y-6">
+                    <div class="bg-white rounded-2xl p-6 sm:p-8 border border-gray-200 shadow-sm">
+                        <div class="flex items-center space-x-3 mb-6">
+                            <div class="w-10 h-10 rounded-xl bg-red-100 text-google-red flex items-center justify-center text-xl font-bold">3</div>
+                            <h3 class="text-2xl font-bold text-gray-900">ขั้นที่ 3: ขึ้นโครงร่างวิดีโออัตโนมัติด้วย Google Vids</h3>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                            <div class="space-y-4">
+                                <p class="text-gray-600 leading-relaxed">
+                                    <strong>Google Vids</strong> เป็นเครื่องมือสร้างวิดีโอ AI ใน Google Workspace ที่ช่วยเปลี่ยน Storyboard และบทของคุณให้เป็นโครงสร้างสไลด์วิดีโอพร้อมตกแต่งให้อัตโนมัติ
+                                </p>
+                                
+                                <div class="space-y-3">
+                                    <div class="flex items-start space-x-3 p-3 rounded-xl bg-gray-50">
+                                        <div class="w-7 h-7 rounded-full bg-google-red text-white flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">1</div>
+                                        <div class="text-sm">
+                                            <strong class="text-gray-800">เปิด Google Vids:</strong> เลือกสร้างไฟล์วิดีโอใหม่ และกดปุ่ม <span class="bg-red-50 text-google-red border border-red-200 px-2 py-0.5 rounded text-xs font-bold"><i class="fas fa-magic mr-1"></i>Help me create</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start space-x-3 p-3 rounded-xl bg-gray-50">
+                                        <div class="w-7 h-7 rounded-full bg-google-red text-white flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">2</div>
+                                        <div class="text-sm">
+                                            <strong class="text-gray-800">วางแนวคิดและเรื่องราว:</strong> พิมพ์แนวคิดหลักหรือคัดลอกบท Storyboard สั้นๆ ใส่ลงในช่องข้อความ
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start space-x-3 p-3 rounded-xl bg-gray-50">
+                                        <div class="w-7 h-7 rounded-full bg-google-red text-white flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">3</div>
+                                        <div class="text-sm">
+                                            <strong class="text-gray-800">ตรวจทาน Outline:</strong> AI จะสร้างลำดับฉาก (Scenes) ให้กดปรับเพิ่ม/ลด หรือเลือกธีมสีที่ชอบแล้วกด <strong>Generate</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-gradient-to-tr from-gray-900 to-gray-800 p-6 rounded-2xl text-white shadow-lg border border-gray-700">
+                                <div class="flex items-center justify-between pb-3 border-b border-gray-700 mb-4">
+                                    <span class="text-xs text-google-sky font-semibold"><i class="fas fa-desktop mr-2"></i>Google Vids Interface Simulation</span>
+                                    <span class="text-xs bg-red-500/20 text-red-300 px-2 py-0.5 rounded border border-red-500/30">AI Powered</span>
+                                </div>
+                                <div class="space-y-3 font-mono text-xs">
+                                    <div class="p-3 bg-gray-800/80 rounded-xl border border-gray-700">
+                                        <p class="text-gray-400 mb-1">// Prompt Input</p>
+                                        <p class="text-gray-200">"สร้างวิดีโอความยาว 3 นาที เรื่อง การอนุรักษ์สิ่งแวดล้อมในโรงเรียน สำหรับนักเรียน โทนสีสดใส"</p>
+                                    </div>
+                                    <div class="p-3 bg-gray-800/80 rounded-xl border border-gray-700 flex items-center justify-between">
+                                        <span class="text-green-400"><i class="fas fa-check-circle mr-2"></i>Generated 5 Scenes Outline</span>
+                                        <span class="text-xs bg-google-blue px-2 py-1 rounded text-white">Ready</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4 Content -->
+                <div id="content-step-4" class="step-content hidden space-y-6">
+                    <div class="bg-white rounded-2xl p-6 sm:p-8 border border-gray-200 shadow-sm">
+                        <div class="flex items-center space-x-3 mb-6">
+                            <div class="w-10 h-10 rounded-xl bg-green-100 text-google-green flex items-center justify-center text-xl font-bold">4</div>
+                            <h3 class="text-2xl font-bold text-gray-900">ขั้นที่ 4: ใส่สื่อ ภาพ เสียงพากย์ และเพลงประกอบ</h3>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <!-- Voiceover -->
+                            <div class="p-5 rounded-2xl border border-gray-200 bg-gray-50/50 hover:bg-white hover:shadow-md transition-all">
+                                <div class="w-12 h-12 rounded-xl bg-blue-100 text-google-blue flex items-center justify-center text-xl mb-4">
+                                    <i class="fas fa-microphone-alt"></i>
+                                </div>
+                                <h4 class="font-bold text-lg text-gray-800 mb-2">1. เสียงพากย์ (Voiceover)</h4>
+                                <ul class="text-xs text-gray-600 space-y-2 leading-relaxed">
+                                    <li>• <strong>AI Voice (Read Aloud):</strong> เลือกใช้เสียงอ่าน AI ภาษาไทยใน Google Vids โดยตรง</li>
+                                    <li>• <strong>อัดเสียงจริง:</strong> ให้นักเรียนกดปุ่ม Record อ่านตามบทใน Storyboard เพื่อความสมจริงและเป็นธรรมชาติ</li>
+                                </ul>
+                            </div>
+
+                            <!-- AI Images -->
+                            <div class="p-5 rounded-2xl border border-gray-200 bg-gray-50/50 hover:bg-white hover:shadow-md transition-all">
+                                <div class="w-12 h-12 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center text-xl mb-4">
+                                    <i class="fas fa-image"></i>
+                                </div>
+                                <h4 class="font-bold text-lg text-gray-800 mb-2">2. ภาพประกอบ (Visuals)</h4>
+                                <ul class="text-xs text-gray-600 space-y-2 leading-relaxed">
+                                    <li>• <strong>AI Image Generation:</strong> พิมพ์คำอธิบายภาษาไทย/อังกฤษ เพื่อสร้างภาพการ์ตูนหรือภาพประกอบเฉพาะฉาก</li>
+                                    <li>• <strong>ภาพถ่ายจริง:</strong> อัปโหลดรูปภาพที่นักเรียนถ่ายเองจากกิจกรรมในโรงเรียน</li>
+                                </ul>
+                            </div>
+
+                            <!-- Background Music -->
+                            <div class="p-5 rounded-2xl border border-gray-200 bg-gray-50/50 hover:bg-white hover:shadow-md transition-all">
+                                <div class="w-12 h-12 rounded-xl bg-yellow-100 text-google-yellow flex items-center justify-center text-xl mb-4">
+                                    <i class="fas fa-music"></i>
+                                </div>
+                                <h4 class="font-bold text-lg text-gray-800 mb-2">3. เพลงประกอบ (Audio)</h4>
+                                <ul class="text-xs text-gray-600 space-y-2 leading-relaxed">
+                                    <li>• เลือกเพลงปลอดลิขสิทธิ์จาก <strong>Google Audio Library</strong> ให้เข้ากับอารมณ์เรื่อง</li>
+                                    <li>• <strong>ปรับระดับเสียง (Mix Volume):</strong> ลดเสียงเพลงลงเหลือ ~15-20% เพื่อไม่ให้กลบเสียงพากย์หลัก</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 5 Content -->
+                <div id="content-step-5" class="step-content hidden space-y-6">
+                    <div class="bg-white rounded-2xl p-6 sm:p-8 border border-gray-200 shadow-sm">
+                        <div class="flex items-center space-x-3 mb-6">
+                            <div class="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center text-xl font-bold">5</div>
+                            <h3 class="text-2xl font-bold text-gray-900">ขั้นที่ 5: ตรวจทานความถูกต้องและการนำเสนอ (Review & Export)</h3>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="p-6 rounded-2xl bg-indigo-50/50 border border-indigo-100">
+                                <h4 class="font-bold text-indigo-900 text-lg mb-3"><i class="fas fa-search-plus mr-2"></i>การตรวจเช็กขั้นสุดท้าย</h4>
+                                <ol class="list-decimal list-inside text-sm text-gray-700 space-y-2 leading-relaxed">
+                                    <li><strong>กด Preview เล่นตั้งแต่ต้นจนจบ:</strong> เช็กว่าจังหวะการเปลี่ยนฉากลื่นไหลหรือไม่</li>
+                                    <li><strong>ตรวจสอบเวลา:</strong> ต้องอยู่ในช่วง 2–3 นาที (ไม่สั้นหรือยาวเกินไป)</li>
+                                    <li><strong>เช็กความชัดเจนของเสียง:</strong> เสียงพากย์ดังฟังชัด ไม่มีเสียงรบกวน</li>
+                                    <li><strong>ตรวจสอบ Fact-Check:</strong> ข้อมูลวิชาการหรือเนื้อหาต้องถูกต้อง</li>
+                                </ol>
+                            </div>
+
+                            <div class="p-6 rounded-2xl bg-google-blueLight border border-blue-200 flex flex-col justify-between">
+                                <div>
+                                    <h4 class="font-bold text-google-blue text-lg mb-2"><i class="fas fa-share-square mr-2"></i>การส่งงานและนำเสนอ</h4>
+                                    <p class="text-xs text-gray-600 leading-relaxed mb-4">
+                                        เมื่อวิดีโอสมบูรณ์แล้ว นักเรียนสามารถกดส่งงานได้ 2 รูปแบบตามที่คุณครูกำหนด:
+                                    </p>
+                                    <div class="space-y-2 text-xs font-medium">
+                                        <div class="p-2.5 bg-white rounded-xl border border-blue-100 flex items-center text-gray-700">
+                                            <i class="fas fa-file-video text-google-red mr-2 text-base"></i> Export เป็นไฟล์วิดีโอ MP4 เพื่อเปิดนำเสนอ
+                                        </div>
+                                        <div class="p-2.5 bg-white rounded-xl border border-blue-100 flex items-center text-gray-700">
+                                            <i class="fas fa-link text-google-blue mr-2 text-base"></i> แชร์ลิงก์ Google Vids ตั้งค่าสิทธิ์ "ผู้มีสิทธิ์ดู"
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Pre-flight Checklist Section -->
+    <section id="checklist" class="py-16 bg-white border-t border-gray-200">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8">
+                <span class="bg-google-green text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">สำหรับนักเรียน</span>
+                <h2 class="text-3xl font-extrabold text-gray-900 mt-2">Interactive Pre-flight Checklist</h2>
+                <p class="text-gray-600 text-sm mt-1">ติ๊กเช็กความพร้อม 6 ข้อนี้ก่อนกด Export หรือส่งงานคุณครู</p>
+            </div>
+
+            <!-- Progress Meter -->
+            <div class="bg-gray-100 p-4 rounded-2xl mb-6 flex items-center justify-between">
+                <span class="text-sm font-bold text-gray-700">ความพร้อมของวิดีโอ:</span>
+                <div class="flex items-center space-x-3 w-1/2">
+                    <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+                        <div id="checkProgressBar" class="bg-google-green h-full w-0 transition-all duration-300"></div>
+                    </div>
+                    <span id="checkProgressText" class="text-xs font-bold text-google-green w-12 text-right">0%</span>
+                </div>
+            </div>
+
+            <!-- Checklist Items -->
+            <div class="space-y-3" id="checklistContainer">
+                <!-- Checklist items injected dynamically via JS -->
+            </div>
+
+            <!-- Success Alert Box (Hidden until 100%) -->
+            <div id="checklistSuccessAlert" class="hidden mt-6 p-4 rounded-2xl bg-green-50 border border-green-200 text-center animate-bounce">
+                <i class="fas fa-award text-google-green text-3xl mb-2"></i>
+                <h3 class="font-bold text-lg text-green-900">ยอดเยี่ยมมาก! ชิ้นงานของคุณพร้อมส่งแล้ว 🚀</h3>
+                <p class="text-xs text-green-700">ผ่านการตรวจสอบครบทุกข้ออย่างสมบูรณ์ คุณสามารถกด Export เป็น MP4 หรือส่งลิงก์งานให้ครูได้เลย</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teacher's Corner (Lesson Plan & Rubrics) -->
+    <section id="teacher-corner" class="py-16 bg-gray-900 text-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <div class="inline-flex items-center space-x-2 bg-google-blue/20 text-google-sky border border-google-blue/30 px-3 py-1 rounded-full text-xs font-semibold mb-3">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <span>สำหรับครูผู้สอน (Teacher's Guide)</span>
+                </div>
+                <h2 class="text-3xl font-extrabold text-white">แผนการจัดกิจกรรม & เกณฑ์การประเมิน</h2>
+                <p class="text-gray-400 text-sm mt-2">คู่มือการบริหารเวลา 2 คาบเรียน (100 นาที) พร้อมเกณฑ์ Rubrics 100 คะแนนเต็ม</p>
+            </div>
+
+            <!-- Lesson Plan Timeline (2 Periods) -->
+            <div class="mb-14">
+                <h3 class="text-xl font-bold text-google-sky mb-6 flex items-center">
+                    <i class="fas fa-clock mr-2"></i> กรอบเวลาการจัดกิจกรรม (2 คาบเรียน / 100 นาที)
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <!-- Period 1 -->
+                    <div class="bg-gray-800/90 rounded-2xl p-6 border border-gray-700 shadow-xl relative">
+                        <div class="absolute top-4 right-4 bg-google-blue text-white text-xs font-bold px-3 py-1 rounded-full">คาบที่ 1 (50 นาที)</div>
+                        <h4 class="text-lg font-bold text-white mb-2">การเขียนบท & ออกแบบ Storyboard</h4>
+                        <p class="text-xs text-gray-400 mb-4">เน้นการคิดวิเคราะห์ กระบวนการคิดเชิงสร้างสรรค์ และการใช้ AI</p>
+                        <ul class="space-y-3 text-xs text-gray-300">
+                            <li class="flex items-start">
+                                <span class="bg-gray-700 text-google-sky font-mono px-2 py-0.5 rounded mr-2 font-bold">10 นาที</span>
+                                <span>ครูอธิบายโจทย์เป้าหมายการเล่าเรื่อง และสาธิตการใช้ Gemini Prompting</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="bg-gray-700 text-google-sky font-mono px-2 py-0.5 rounded mr-2 font-bold">20 นาที</span>
+                                <span>นักเรียนใช้ Gemini ยกร่างบท และปรับแก้คำให้ได้ความยาว 300-400 คำ</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="bg-gray-700 text-google-sky font-mono px-2 py-0.5 rounded mr-2 font-bold">20 นาที</span>
+                                <span>นักเรียนจัดทำตาราง Storyboard 5 ฉากบน Google Docs / Slides</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Period 2 -->
+                    <div class="bg-gray-800/90 rounded-2xl p-6 border border-gray-700 shadow-xl relative">
+                        <div class="absolute top-4 right-4 bg-google-green text-white text-xs font-bold px-3 py-1 rounded-full">คาบที่ 2 (50 นาที)</div>
+                        <h4 class="text-lg font-bold text-white mb-2">ขึ้นรูปวิดีโอ ตัดต่อ & นำเสนอ</h4>
+                        <p class="text-xs text-gray-400 mb-4">เน้นทักษะปฏิบัติดิจิทัล การรวมสื่อ และการตรวจสอบความถูกต้อง</p>
+                        <ul class="space-y-3 text-xs text-gray-300">
+                            <li class="flex items-start">
+                                <span class="bg-gray-700 text-google-green font-mono px-2 py-0.5 rounded mr-2 font-bold">10 นาที</span>
+                                <span>ครูสาธิตการใช้ Google Vids (Help me create & Audio mixing)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="bg-gray-700 text-google-green font-mono px-2 py-0.5 rounded mr-2 font-bold">25 นาที</span>
+                                <span>นักเรียนสร้างวิดีโอ ใส่เสียงพากย์ ภาพ และเลือกเพลงประกอบใน Google Vids</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="bg-gray-700 text-google-green font-mono px-2 py-0.5 rounded mr-2 font-bold">15 นาที</span>
+                                <span>ตรวจเช็กความเรียบร้อยด้วย Pre-flight Checklist และ Export นำเสนอ</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Rubrics Score Cards (100 Points) -->
+            <div>
+                <h3 class="text-xl font-bold text-google-sky mb-6 flex items-center">
+                    <i class="fas fa-star mr-2"></i> เกณฑ์การประเมินผลงาน (Rubrics - 100 คะแนนเต็ม)
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    
+                    <div class="bg-gray-800 p-5 rounded-2xl border border-gray-700">
+                        <div class="text-3xl font-extrabold text-google-blue mb-1">30 <span class="text-xs font-normal text-gray-400">คะแนน</span></div>
+                        <h4 class="font-bold text-sm text-white mb-2">1. เนื้อหาและบทพากย์</h4>
+                        <p class="text-xs text-gray-400 leading-relaxed">ลำดับเรื่องราวชัดเจน 5 ฉาก มีความกระชับ ตรงตามกรอบเวลา 2-3 นาที สื่อสารได้ใจความ</p>
+                    </div>
+
+                    <div class="bg-gray-800 p-5 rounded-2xl border border-gray-700">
+                        <div class="text-3xl font-extrabold text-google-yellow mb-1">30 <span class="text-xs font-normal text-gray-400">คะแนน</span></div>
+                        <h4 class="font-bold text-sm text-white mb-2">2. การประยุกต์ใช้ AI</h4>
+                        <p class="text-xs text-gray-400 leading-relaxed">ทักษะการเขียน Prompt สั่งงาน Gemini และการใช้ฟีเจอร์ AI ใน Google Vids ได้อย่างสร้างสรรค์</p>
+                    </div>
+
+                    <div class="bg-gray-800 p-5 rounded-2xl border border-gray-700">
+                        <div class="text-3xl font-extrabold text-google-red mb-1">20 <span class="text-xs font-normal text-gray-400">คะแนน</span></div>
+                        <h4 class="font-bold text-sm text-white mb-2">3. เทคนิคและคุณภาพสื่อ</h4>
+                        <p class="text-xs text-gray-400 leading-relaxed">ภาพประกอบสอดคล้อง เสียงพากย์ชัดเจน ไม่ถูกเพลงบรรยากาศกลบ จังหวะฉากราบรื่น</p>
+                    </div>
+
+                    <div class="bg-gray-800 p-5 rounded-2xl border border-gray-700">
+                        <div class="text-3xl font-extrabold text-google-green mb-1">20 <span class="text-xs font-normal text-gray-400">คะแนน</span></div>
+                        <h4 class="font-bold text-sm text-white mb-2">4. ตรงเวลา & จริยธรรม AI</h4>
+                        <p class="text-xs text-gray-400 leading-relaxed">ส่งงานตรงตามกำหนดเวลา มีการตรวจสอบความถูกต้องของข้อมูล (Fact-check) และไม่ละเมิดลิขสิทธิ์</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- AI Ethics Callout -->
+            <div class="mt-10 p-5 rounded-2xl bg-gray-800/60 border border-gray-700 flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-full bg-yellow-500/20 text-google-yellow flex items-center justify-center text-xl flex-shrink-0">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sm text-white">AI Ethics & Digital Safety Notice</h4>
+                        <p class="text-xs text-gray-400">คุณครูควรกำชับให้นักเรียนตรวจสอบ Fact-check เนื้อหาที่ AI สร้างเสมอ และไม่ใช้ AI สร้างสื่อที่ละเมิดบุคคลอื่น</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-950 text-gray-400 text-xs py-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-3">
+            <div class="flex justify-center items-center space-x-2 text-sm font-bold text-gray-200">
+                <i class="fas fa-graduation-cap text-google-blue"></i>
+                <span>สื่อคู่มือการจัดการเรียนรู้ Google AI สำหรับครูและนักเรียน</span>
+            </div>
+            <p>ออกแบบและจัดทำเพื่อสนับสนุนการเรียนรู้เทคโนโลยีดิจิทัลยุคใหม่ในสถานศึกษา</p>
+            <p class="text-gray-600">© 2026 Google AI Education Guide. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Data Structure for 5-Scene Storyboard
+        const storyboardData = [
+            {
+                scene: 1,
+                time: "0:00 - 0:30",
+                title: "เปิดเรื่อง & ปัญหา",
+                script: "กาลครั้งหนึ่งในโรงเรียนของเรา เคยมีขยะพลาสติกกระจัดกระจายเต็มไปหมด ส่งผลให้บรรยากาศไม่น่าเรียน...",
+                visual: "ภาพสนามโรงเรียนที่มีขยะกองอยู่ บรรยากาศหมองมัว แสดงความตระหนักถึงปัญหา"
+            },
+            {
+                scene: 2,
+                time: "0:30 - 1:00",
+                title: "เริ่มต้นลงมือทำ",
+                script: "ต้นและกลุ่มเพื่อนๆ จึงตัดสินใจร่วมมือกัน เริ่มต้นโครงการคัดแยกขยะในห้องเรียนอย่างจริงจัง",
+                visual: "ภาพกลุ่มนักเรียนยิ้มแย้ม ช่วยกันเก็บขยะใส่ถังแยกประเภท (สีเขียว เหลือง แดง น้ำเงิน)"
+            },
+            {
+                scene: 3,
+                time: "1:00 - 1:45",
+                title: "นวัตกรรมและการแก้ปัญหา",
+                script: "ขยะพลาสติกที่แยกได้ถูกนำมารีไซเคิล ประดิษฐ์เป็นกระถางต้นไม้และอุปกรณ์การเรียนสุดน่ารัก",
+                visual: "ภาพกระถางต้นไม้ทำจากขวดพลาสติกหลากสีสันวางเรียงกันสวยงาม"
+            },
+            {
+                scene: 4,
+                time: "1:45 - 2:30",
+                title: "ผลลัพธ์ที่เกิดขึ้น",
+                script: "เพียงไม่นาน โรงเรียนของเราก็กลับมาร่มรื่น น่าอยู่ และเต็มไปด้วยสวนดอกไม้สวยงามด้วยมือของพวกเรา",
+                visual: "ภาพสวนดอกไม้สดใสในโรงเรียน ต้นไม้เขียวขจี บรรยากาศร่มรื่นมีชีวิตชีวา"
+            },
+            {
+                scene: 5,
+                time: "2:30 - 3:00",
+                title: "สรุปข้อคิด & Call to Action",
+                script: "การรักษาสิ่งแวดล้อมไม่ใช่เรื่องไกลตัว ทุกคนช่วยกันได้ เริ่มต้นที่ตัวเราตั้งแต่วันนี้!",
+                visual: "ข้อความสรุปข้อคิดใหญ่บนจอ พร้อมภาพกลุ่มนักเรียนยิ้มแย้มและโลโก้โครงการ"
+            }
+        ];
+
+        // Pre-flight Checklist Items Data
+        const checklistData = [
+            { id: 1, text: "ความยาววิดีโอรวมอยู่ในช่วง 2–3 นาที (จำนวนคำประมาณ 300-450 คำ)" },
+            { id: 2, text: "มีเสียงพากย์ (Voiceover) ดังฟังชัดเจน ไร้เสียงรบกวน" },
+            { id: 3, text: "ระดับเสียงเพลงประกอบ (Music Volume) ไม่กลบเสียงพากย์หลัก (~15-20%)" },
+            { id: 4, text: "ภาพประกอบสอดคล้องกับเนื้อหาบทบรรยายครบทั้ง 5 ฉาก" },
+            { id: 5, text: "ผ่านการตรวจสอบความถูกต้องของข้อมูลวิชาการ (Fact-Check) แล้ว" },
+            { id: 6, text: "มีข้อความสรุปข้อคิดหรือเป้าหมายหลักในฉากท้ายเรื่อง" }
+        ];
+
+        // Toast Notification System
+        function showToast(message, iconClass = 'fas fa-check-circle text-google-green') {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toastMessage');
+            const toastIcon = document.getElementById('toastIcon');
+
+            toastMsg.textContent = message;
+            toastIcon.className = `${iconClass} text-xl`;
+
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // Gemini Prompt Generator Logic
+        function updateGeneratedPrompt() {
+            const topic = document.getElementById('topicSelect').value;
+            const grade = document.getElementById('gradeSelect').value;
+            const tone = document.getElementById('toneSelect').value;
+            const duration = document.querySelector('input[name="duration"]:checked').value;
+
+            const promptText = `ช่วยคิดโครงเรื่องสั้นสำหรับสร้างวิดีโอเล่าเรื่องด้วย AI ความยาว ${duration} สำหรับนักเรียนระดับชั้น${grade}
+
+หัวข้อเรื่อง: "${topic}"
+โทนเรื่อง: ${tone}
+
+กรุณาจัดทำผลลัพธ์ในรูปแบบตาราง 5 ฉากประกอบด้วย:
+1. ฉากที่ (1-5)
+2. ช่วงเวลา (วินาที)
+3. บทพากย์บรรยายภาษาไทย (จำนวนคำรวมทั้งเรื่องประมาณ 300-450 คำ)
+4. คำอธิบายรายละเอียดภาพประกอบในฉากเพื่อนำไปสร้างภาพ AI
+
+พร้อมสรุปข้อคิดสั้นๆ ท้ายเรื่อง 1 ประโยค`;
+
+            document.getElementById('promptOutput').textContent = promptText;
+        }
+
+        // Copy Prompt Function
+        function copyPromptToClipboard() {
+            const promptText = document.getElementById('promptOutput').textContent;
+            
+            // Clipboard Fallback Strategy
+            const textarea = document.createElement('textarea');
+            textarea.value = promptText;
+            document.body.appendChild(textarea);
+            textarea.select();
+            
+            try {
+                document.execCommand('copy');
+                showToast("คัดลอก Prompt เรียบร้อยแล้ว! นำไปวางใน Gemini ได้เลย");
+            } catch (err) {
+                showToast("ไม่สามารถคัดลอกได้ กรุณาครอบดำคัดลอกด้วยตนเอง", "fas fa-exclamation-triangle text-google-red");
+            }
+            
+            document.body.removeChild(textarea);
+        }
+
+        // Render Storyboard (Table vs Card Views)
+        function renderStoryboard() {
+            const tbody = document.getElementById('storyboardTableBody');
+            const cardContainer = document.getElementById('storyboardCardView');
+
+            tbody.innerHTML = '';
+            cardContainer.innerHTML = '';
+
+            storyboardData.forEach(item => {
+                // Render Table Row
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-gray-50/80 transition-colors";
+                tr.innerHTML = `
+                    <td class="py-3 px-4 text-center font-bold text-google-blue">${item.scene}</td>
+                    <td class="py-3 px-4 text-xs font-mono font-semibold text-gray-500">${item.time}</td>
+                    <td class="py-3 px-4">
+                        <strong class="text-gray-900 block text-xs mb-1">${item.title}</strong>
+                        <p class="text-xs text-gray-600 leading-relaxed font-sarabun">"${item.script}"</p>
+                    </td>
+                    <td class="py-3 px-4 text-xs text-gray-600 font-sarabun">
+                        <i class="fas fa-video text-gray-400 mr-1"></i> ${item.visual}
+                    </td>
+                `;
+                tbody.appendChild(tr);
+
+                // Render Card
+                const card = document.createElement('div');
+                card.className = "p-4 rounded-xl border border-gray-200 bg-gray-50 hover:bg-white hover:shadow-md transition-all";
+                card.innerHTML = `
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="w-6 h-6 rounded-full bg-google-blue text-white text-xs flex items-center justify-center font-bold">${item.scene}</span>
+                        <span class="text-xs font-mono text-gray-500 bg-white px-2 py-0.5 rounded border border-gray-200">${item.time}</span>
+                    </div>
+                    <h4 class="font-bold text-sm text-gray-900 mb-1">${item.title}</h4>
+                    <p class="text-xs text-gray-600 mb-3 leading-relaxed font-sarabun">"${item.script}"</p>
+                    <div class="text-xs text-gray-500 bg-white p-2 rounded-lg border border-gray-100 font-sarabun">
+                        <strong class="text-gray-700 block mb-0.5"><i class="fas fa-image mr-1"></i>ภาพในฉาก:</strong>
+                        ${item.visual}
+                    </div>
+                `;
+                cardContainer.appendChild(card);
+            });
+        }
+
+        // Switch Storyboard View (Table vs Card)
+        function switchStoryboardView(viewType) {
+            const tableView = document.getElementById('storyboardTableView');
+            const cardView = document.getElementById('storyboardCardView');
+            const tableBtn = document.getElementById('viewTableBtn');
+            const cardBtn = document.getElementById('viewCardBtn');
+
+            if (viewType === 'table') {
+                tableView.classList.remove('hidden');
+                cardView.classList.add('hidden');
+                tableBtn.className = "px-3 py-1.5 rounded-lg text-xs font-semibold bg-white text-google-blue shadow-sm transition-all";
+                cardBtn.className = "px-3 py-1.5 rounded-lg text-xs font-semibold text-gray-600 hover:text-gray-900 transition-all";
+            } else {
+                tableView.classList.add('hidden');
+                cardView.classList.remove('hidden');
+                cardBtn.className = "px-3 py-1.5 rounded-lg text-xs font-semibold bg-white text-google-blue shadow-sm transition-all";
+                tableBtn.className = "px-3 py-1.5 rounded-lg text-xs font-semibold text-gray-600 hover:text-gray-900 transition-all";
+            }
+        }
+
+        // Switch Step Tabs
+        function switchStep(stepNumber) {
+            // Update Tab styles
+            document.querySelectorAll('.step-tab').forEach((tab, idx) => {
+                const badge = tab.querySelector('span:first-child');
+                if (idx + 1 === stepNumber) {
+                    tab.classList.add('active-tab');
+                    badge.className = "w-6 h-6 rounded-full bg-google-blue text-white text-xs flex items-center justify-center font-bold";
+                } else {
+                    tab.classList.remove('active-tab');
+                    badge.className = "w-6 h-6 rounded-full bg-gray-200 text-gray-700 text-xs flex items-center justify-center font-bold";
+                }
+            });
+
+            // Update Content visibility
+            document.querySelectorAll('.step-content').forEach((content, idx) => {
+                if (idx + 1 === stepNumber) {
+                    content.classList.remove('hidden');
+                } else {
+                    content.classList.add('hidden');
+                }
+            });
+        }
+
+        // Render Pre-flight Checklist Logic
+        function renderChecklist() {
+            const container = document.getElementById('checklistContainer');
+            container.innerHTML = '';
+
+            checklistData.forEach(item => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = "p-4 rounded-xl border border-gray-200 bg-gray-50 flex items-center space-x-3 hover:bg-white transition-all cursor-pointer";
+                itemDiv.onclick = (e) => {
+                    if(e.target.tagName !== 'INPUT') {
+                        const checkbox = itemDiv.querySelector('input[type="checkbox"]');
+                        checkbox.checked = !checkbox.checked;
+                        updateChecklistProgress();
+                    }
+                };
+
+                itemDiv.innerHTML = `
+                    <input type="checkbox" id="check-${item.id}" onchange="updateChecklistProgress()" class="w-5 h-5 text-google-green focus:ring-google-green rounded border-gray-300 cursor-pointer">
+                    <label for="check-${item.id}" class="text-sm font-medium text-gray-800 cursor-pointer flex-1 select-none font-sarabun">${item.text}</label>
+                `;
+                container.appendChild(itemDiv);
+            });
+        }
+
+        // Update Checklist Progress Calculation
+        function updateChecklistProgress() {
+            const checkboxes = document.querySelectorAll('#checklistContainer input[type="checkbox"]');
+            const checkedCount = Array.from(checkboxes).filter(cb => cb.checked).length;
+            const total = checkboxes.length;
+            const percentage = Math.round((checkedCount / total) * 100);
+
+            const progressBar = document.getElementById('checkProgressBar');
+            const progressText = document.getElementById('checkProgressText');
+            const alertBox = document.getElementById('checklistSuccessAlert');
+
+            progressBar.style.width = `${percentage}%`;
+            progressText.textContent = `${percentage}%`;
+
+            if (percentage === 100) {
+                alertBox.classList.remove('hidden');
+            } else {
+                alertBox.classList.add('hidden');
+            }
+        }
+
+        // Scroll Progress Bar Update
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('scrollProgressBar').style.width = scrolled + '%';
+        });
+
+        // Mobile Menu Toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close Mobile Menu when clicking a link
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobileMenu').classList.add('hidden');
+            });
+        });
+
+        // Event Listeners Initialization
+        window.onload = function() {
+            // Prompt Generator Listeners
+            document.getElementById('topicSelect').addEventListener('change', updateGeneratedPrompt);
+            document.getElementById('gradeSelect').addEventListener('change', updateGeneratedPrompt);
+            document.getElementById('toneSelect').addEventListener('change', updateGeneratedPrompt);
+            document.querySelectorAll('input[name="duration"]').forEach(radio => {
+                radio.addEventListener('change', updateGeneratedPrompt);
+            });
+
+            document.getElementById('copyPromptBtn').addEventListener('click', copyPromptToClipboard);
+
+            // Initial Functions
+            updateGeneratedPrompt();
+            renderStoryboard();
+            renderChecklist();
+        };
+    </script>
+</body>
+</html>
