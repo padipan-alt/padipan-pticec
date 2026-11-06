@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รู้จักกับ MIT App Inventor - สื่อการสอนเบื้องต้น</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: #f8fafc;
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #10b981, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        /* Tab transition */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased">
+
+    <!-- Hero Section -->
+    <header class="relative overflow-hidden bg-gradient-to-br from-emerald-500 to-teal-700 text-white">
+        <!-- Decorative blobs -->
+        <div class="absolute top-0 left-0 w-64 h-64 bg-white opacity-10 rounded-full mix-blend-multiply filter blur-3xl transform -translate-x-1/2 -translate-y-1/2"></div>
+        <div class="absolute bottom-0 right-0 w-80 h-80 bg-emerald-300 opacity-20 rounded-full mix-blend-multiply filter blur-3xl transform translate-x-1/4 translate-y-1/4"></div>
+        
+        <div class="container mx-auto px-6 py-20 relative z-10 text-center">
+            <div class="inline-block p-4 bg-white/20 rounded-2xl backdrop-blur-sm mb-6 shadow-lg shadow-teal-900/20">
+                <i class="fa-solid fa-mobile-screen-button text-5xl"></i>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">MIT App Inventor</h1>
+            <p class="text-xl md:text-2xl font-light mb-8 max-w-2xl mx-auto">สร้างแอปพลิเคชันบนมือถือง่ายๆ ด้วยตัวเอง <br class="hidden md:block">ไม่จำเป็นต้องพิมพ์โค้ด แค่ลากแล้ววาง!</p>
+            <a href="#what-is" class="inline-block bg-white text-teal-700 font-semibold py-3 px-8 rounded-full shadow-lg hover:shadow-xl hover:bg-slate-50 transition duration-300 transform hover:-translate-y-1">
+                เริ่มต้นเรียนรู้
+                <i class="fa-solid fa-arrow-down ml-2"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-12 md:px-8">
+
+        <!-- What is App Inventor -->
+        <section id="what-is" class="mb-20 scroll-mt-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4 text-slate-800">App Inventor <span class="gradient-text">คืออะไร?</span></h2>
+                <div class="w-24 h-1 bg-emerald-500 mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div class="bg-white p-8 rounded-3xl shadow-xl border border-slate-100 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-50 rounded-bl-full -z-10"></div>
+                    <p class="text-lg text-slate-600 leading-relaxed mb-6">
+                        <strong class="text-emerald-600">MIT App Inventor</strong> คือ เครื่องมือบนเว็บที่พัฒนาโดยสถาบัน MIT (Massachusetts Institute of Technology) ร่วมกับ Google ช่วยให้ทุกคนสามารถสร้างแอปพลิเคชันสำหรับสมาร์ทโฟนและแท็บเล็ต (รองรับทั้ง Android และ iOS) ได้อย่างรวดเร็ว
+                    </p>
+                    <p class="text-lg text-slate-600 leading-relaxed">
+                        โดยใช้แนวคิด <strong>Visual Programming</strong> หรือการเขียนโปรแกรมด้วยภาพ ผู้ใช้ไม่ต้องจำคำสั่งภาษาคอมพิวเตอร์ที่ซับซ้อน เพียงแค่ <em>"ต่อบล็อกคำสั่ง"</em> เข้าด้วยกันคล้ายกับการต่อจิ๊กซอว์หรือเลโก้
+                    </p>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-blue-50 p-6 rounded-2xl text-center shadow-sm hover:shadow-md transition">
+                        <i class="fa-solid fa-cubes text-4xl text-blue-500 mb-4"></i>
+                        <h3 class="font-bold text-slate-800 mb-2">Block-based</h3>
+                        <p class="text-sm text-slate-600">เขียนโค้ดด้วยการต่อบล็อก เข้าใจง่าย ลดข้อผิดพลาด</p>
+                    </div>
+                    <div class="bg-emerald-50 p-6 rounded-2xl text-center shadow-sm hover:shadow-md transition">
+                        <i class="fa-solid fa-cloud text-4xl text-emerald-500 mb-4"></i>
+                        <h3 class="font-bold text-slate-800 mb-2">Web-based</h3>
+                        <p class="text-sm text-slate-600">ทำงานผ่านเว็บบราวเซอร์ ไม่ต้องติดตั้งโปรแกรมลงเครื่อง</p>
+                    </div>
+                    <div class="bg-amber-50 p-6 rounded-2xl text-center shadow-sm hover:shadow-md transition">
+                        <i class="fa-solid fa-rocket text-4xl text-amber-500 mb-4"></i>
+                        <h3 class="font-bold text-slate-800 mb-2">Real-time Test</h3>
+                        <p class="text-sm text-slate-600">ทดสอบแอปบนมือถือได้ทันทีขณะกำลังสร้าง</p>
+                    </div>
+                    <div class="bg-purple-50 p-6 rounded-2xl text-center shadow-sm hover:shadow-md transition">
+                        <i class="fa-brands fa-android text-4xl text-purple-500 mb-4"></i>
+                        <h3 class="font-bold text-slate-800 mb-2">Cross-Platform</h3>
+                        <p class="text-sm text-slate-600">รองรับการทำงานทั้งระบบปฏิบัติการ Android และ iOS</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Components (Designer vs Blocks) -->
+        <section class="mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4 text-slate-800">2 ส่วนประกอบหลักที่ต้องรู้จัก</h2>
+                <div class="w-24 h-1 bg-blue-500 mx-auto rounded-full"></div>
+                <p class="text-slate-600 mt-4">การทำงานใน App Inventor จะแบ่งหน้าจอออกเป็น 2 ส่วนหลัก</p>
+            </div>
+
+            <!-- Custom Tabs -->
+            <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-200">
+                <div class="flex border-b border-slate-200">
+                    <button class="flex-1 py-4 text-lg font-semibold text-center focus:outline-none transition-colors duration-200 bg-blue-50 text-blue-700 border-b-2 border-blue-600" id="btn-designer" onclick="switchTab('designer')">
+                        <i class="fa-solid fa-pen-ruler mr-2"></i> 1. Designer (หน้าออกแบบ)
+                    </button>
+                    <button class="flex-1 py-4 text-lg font-semibold text-center focus:outline-none transition-colors duration-200 text-slate-500 hover:bg-slate-50 border-b-2 border-transparent" id="btn-blocks" onclick="switchTab('blocks')">
+                        <i class="fa-solid fa-puzzle-piece mr-2"></i> 2. Blocks (หน้าเขียนคำสั่ง)
+                    </button>
+                </div>
+
+                <!-- Designer Tab -->
+                <div id="tab-designer" class="tab-content active p-8">
+                    <div class="flex flex-col md:flex-row gap-8 items-center">
+                        <div class="flex-1">
+                            <h3 class="text-2xl font-bold text-slate-800 mb-4">Designer View</h3>
+                            <p class="text-slate-600 mb-4">
+                                เป็นหน้าจอสำหรับ <strong>"ออกแบบหน้าตาของแอปพลิเคชัน" (User Interface)</strong> 
+                                คุณสามารถลากส่วนประกอบต่างๆ (Components) จากแถบเครื่องมือมาวางลงบนหน้าจอมือถือจำลองได้เลย
+                            </p>
+                            <ul class="space-y-2 text-slate-600 list-disc list-inside">
+                                <li><strong>Palette:</strong> แหล่งรวมเครื่องมือ เช่น ปุ่ม (Button), ข้อความ (Label), รูปภาพ (Image), เสียง, เซ็นเซอร์</li>
+                                <li><strong>Viewer:</strong> หน้าจอมือถือจำลองสำหรับจัดวางเครื่องมือ</li>
+                                <li><strong>Components:</strong> แสดงรายการเครื่องมือที่เรานำมาใส่ไว้ในแอป</li>
+                                <li><strong>Properties:</strong> ใช้ปรับแต่งคุณสมบัติเครื่องมือ เช่น สี ขนาดตัวอักษร สีพื้นหลัง</li>
+                            </ul>
+                        </div>
+                        <div class="w-full md:w-1/3 bg-slate-100 rounded-3xl p-4 shadow-inner border-4 border-slate-300 relative">
+                            <!-- Mockup Mobile UI -->
+                            <div class="w-full aspect-[9/19] bg-white rounded-2xl overflow-hidden shadow relative">
+                                <div class="bg-emerald-600 h-10 w-full flex items-center px-4 text-white font-bold text-sm">Screen1</div>
+                                <div class="p-4 flex flex-col gap-4 items-center mt-4">
+                                    <div class="w-24 h-24 bg-slate-200 rounded-full flex items-center justify-center text-slate-400"><i class="fa-regular fa-image text-3xl"></i></div>
+                                    <div class="w-3/4 h-8 bg-blue-500 rounded text-white flex items-center justify-center text-sm font-bold shadow">คลิกที่นี่</div>
+                                    <div class="w-full h-4 bg-slate-100 rounded"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blocks Tab -->
+                <div id="tab-blocks" class="tab-content p-8">
+                    <div class="flex flex-col md:flex-row gap-8 items-center">
+                        <div class="flex-1">
+                            <h3 class="text-2xl font-bold text-slate-800 mb-4">Blocks View</h3>
+                            <p class="text-slate-600 mb-4">
+                                เป็นหน้าจอสำหรับ <strong>"เขียนโปรแกรมเพื่อสั่งงาน" (Logic)</strong> ให้กับแอปพลิเคชันทำงานตามที่เราต้องการ โดยใช้วิธีการลากบล็อกคำสั่งมาต่อกัน
+                            </p>
+                            <ul class="space-y-2 text-slate-600 list-disc list-inside">
+                                <li><strong>Built-in Blocks:</strong> คำสั่งพื้นฐานของระบบ เช่น การคำนวณ (Math), เงื่อนไข (Control/Logic), ข้อความ (Text)</li>
+                                <li><strong>Component Blocks:</strong> คำสั่งเฉพาะตัวของเครื่องมือที่เราเลือกมาวางในหน้า Designer (เช่น คำสั่งเมื่อปุ่มถูกคลิก)</li>
+                                <li><strong>Workspace:</strong> พื้นที่ว่างสำหรับลากบล็อกมาต่อกันเพื่อสร้างเงื่อนไขการทำงาน</li>
+                            </ul>
+                        </div>
+                        <div class="w-full md:w-1/2 bg-slate-50 rounded-2xl p-6 shadow-inner border border-slate-200">
+                            <!-- Mockup Block Code -->
+                            <div class="space-y-2">
+                                <div class="bg-amber-400 p-2 rounded-t-lg rounded-br-lg inline-block text-amber-900 font-medium text-sm shadow-sm relative z-10 w-full max-w-xs">
+                                    when <span class="bg-amber-300 px-1 rounded">Button1</span> .Click do
+                                </div>
+                                <div class="ml-4 pl-4 border-l-4 border-amber-400 -mt-3 pt-4">
+                                    <div class="bg-emerald-500 p-2 rounded text-white font-medium text-sm shadow-sm inline-block whitespace-nowrap">
+                                        set <span class="bg-emerald-600 px-1 rounded">Label1</span> .Text to 
+                                        <span class="bg-rose-400 px-2 py-1 rounded ml-1 text-white shadow-inner">"สวัสดี App Inventor!"</span>
+                                    </div>
+                                </div>
+                                <div class="w-3 h-3 bg-amber-400 rounded-b ml-4"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Steps to Use -->
+        <section class="mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4 text-slate-800">การใช้งานเบื้องต้น (5 ขั้นตอนง่ายๆ)</h2>
+                <div class="w-24 h-1 bg-amber-500 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-4 relative">
+                <!-- Line connecting steps (desktop only) -->
+                <div class="hidden md:block absolute top-1/2 left-0 w-full h-1 bg-slate-200 -z-10 transform -translate-y-1/2"></div>
+                
+                <!-- Step 1 -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-100 text-center relative hover:-translate-y-2 transition-transform duration-300">
+                    <div class="w-12 h-12 bg-slate-800 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4 border-4 border-white shadow">1</div>
+                    <h4 class="font-bold text-slate-800 mb-2">เข้าสู่ระบบ</h4>
+                    <p class="text-sm text-slate-500">ไปที่ <a href="https://appinventor.mit.edu" target="_blank" class="text-blue-500 hover:underline">appinventor.mit.edu</a> แล้วคลิก "Create Apps!" เข้าสู่ระบบด้วยบัญชี Google (Gmail)</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-100 text-center relative hover:-translate-y-2 transition-transform duration-300">
+                    <div class="w-12 h-12 bg-emerald-500 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4 border-4 border-white shadow">2</div>
+                    <h4 class="font-bold text-slate-800 mb-2">สร้างโปรเจกต์</h4>
+                    <p class="text-sm text-slate-500">คลิกปุ่ม Start new project ตั้งชื่อแอปพลิเคชันของคุณ (ใช้ภาษาอังกฤษ ห้ามเว้นวรรค)</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-100 text-center relative hover:-translate-y-2 transition-transform duration-300">
+                    <div class="w-12 h-12 bg-blue-500 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4 border-4 border-white shadow">3</div>
+                    <h4 class="font-bold text-slate-800 mb-2">ออกแบบหน้าจอ</h4>
+                    <p class="text-sm text-slate-500">ในหน้า Designer ลากชิ้นส่วนต่างๆ (ปุ่ม, ข้อความ) มาจัดวางในหน้าจอจำลอง</p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-100 text-center relative hover:-translate-y-2 transition-transform duration-300">
+                    <div class="w-12 h-12 bg-amber-500 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4 border-4 border-white shadow">4</div>
+                    <h4 class="font-bold text-slate-800 mb-2">ต่อบล็อกคำสั่ง</h4>
+                    <p class="text-sm text-slate-500">สลับไปหน้า Blocks เพื่อลากบล็อกคำสั่งมาต่อกัน สั่งให้แอปทำงานตามลอจิกที่คิดไว้</p>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-100 text-center relative hover:-translate-y-2 transition-transform duration-300">
+                    <div class="w-12 h-12 bg-rose-500 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4 border-4 border-white shadow">5</div>
+                    <h4 class="font-bold text-slate-800 mb-2">ทดสอบแอป</h4>
+                    <p class="text-sm text-slate-500">ใช้เมนู Connect > AI Companion สแกน QR Code เพื่อทดสอบแอปบนมือถือของคุณ</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA / Try it -->
+        <section class="bg-slate-800 text-white rounded-3xl p-8 md:p-12 text-center shadow-2xl relative overflow-hidden">
+            <!-- Background pattern -->
+            <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 32px 32px;"></div>
+            
+            <div class="relative z-10">
+                <h2 class="text-3xl font-bold mb-4">พร้อมที่จะสร้างแอปแรกของคุณหรือยัง?</h2>
+                <p class="text-lg text-slate-300 mb-8 max-w-2xl mx-auto">เริ่มต้นใช้งาน MIT App Inventor ได้ฟรีวันนี้ ไม่ต้องติดตั้งโปรแกรม เพียงแค่มีเว็บบราวเซอร์และอินเทอร์เน็ต</p>
+                <a href="https://appinventor.mit.edu/" target="_blank" class="inline-block bg-gradient-to-r from-emerald-400 to-teal-500 text-white font-bold text-lg py-4 px-10 rounded-full shadow-lg hover:shadow-teal-500/50 transition-all hover:scale-105">
+                    ไปที่เว็บไซต์ MIT App Inventor <i class="fa-solid fa-external-link-alt ml-2 text-sm"></i>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-8 text-center mt-12">
+        <div class="container mx-auto px-4">
+            <p class="mb-2">สื่อการสอนเบื้องต้น - รู้จักกับ MIT App Inventor</p>
+            <p class="text-sm">สร้างสรรค์ด้วย HTML, CSS (Tailwind) และ JavaScript</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for interactivity -->
+    <script>
+        function switchTab(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Reset all buttons styling
+            document.getElementById('btn-designer').className = "flex-1 py-4 text-lg font-semibold text-center focus:outline-none transition-colors duration-200 text-slate-500 hover:bg-slate-50 border-b-2 border-transparent";
+            document.getElementById('btn-blocks').className = "flex-1 py-4 text-lg font-semibold text-center focus:outline-none transition-colors duration-200 text-slate-500 hover:bg-slate-50 border-b-2 border-transparent";
+
+            // Show selected tab and active button styling
+            if(tabName === 'designer') {
+                document.getElementById('tab-designer').classList.add('active');
+                document.getElementById('btn-designer').className = "flex-1 py-4 text-lg font-semibold text-center focus:outline-none transition-colors duration-200 bg-blue-50 text-blue-700 border-b-2 border-blue-600";
+            } else {
+                document.getElementById('tab-blocks').classList.add('active');
+                document.getElementById('btn-blocks').className = "flex-1 py-4 text-lg font-semibold text-center focus:outline-none transition-colors duration-200 bg-amber-50 text-amber-700 border-b-2 border-amber-500";
+            }
+        }
+    </script>
+</body>
+</html>
