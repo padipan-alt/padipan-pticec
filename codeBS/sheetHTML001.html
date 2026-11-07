@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เรียนรู้กับครูเจอาร์</title>
+    <!-- โหลด Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- โหลดฟอนต์ Prompt จาก Google Fonts เพื่อให้ภาษาไทยดูสวยงาม -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Prompt', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            900: '#0c4a6e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #f8fafc;
+        }
+    </style>
+</head>
+<body class="font-sans text-slate-800 antialiased flex flex-col min-h-screen">
+
+    <!-- Navbar -->
+    <nav class="bg-white shadow-sm border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center gap-3">
+                    <!-- ไอคอนหนังสือ -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                    </svg>
+                    <span class="font-bold text-xl text-brand-900 tracking-wide">ห้องเรียนครูเจอาร์</span>
+                </div>
+                <div class="hidden sm:flex space-x-8">
+                    <a href="#" class="text-brand-600 font-medium hover:text-brand-900 transition-colors">หน้าแรก</a>
+                    <a href="#lessons" class="text-slate-500 font-medium hover:text-brand-900 transition-colors">บทเรียน</a>
+                    <a href="#" class="text-slate-500 font-medium hover:text-brand-900 transition-colors">ติดต่อครู</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section / แนะนำตัวครู -->
+    <main class="flex-grow">
+        <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+            <div class="bg-white rounded-3xl shadow-xl overflow-hidden flex flex-col md:flex-row items-center">
+                <!-- รูปครูเจอาร์ -->
+                <div class="w-full md:w-1/2 p-8 flex justify-center items-center bg-brand-50">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-brand-500 rounded-full blur opacity-20 transform scale-105"></div>
+                        <img src="https://i.postimg.cc/ydm2hYtr/Chat-GPT-Image-Nov-1-2026-07-38-14-AM.png" alt="ครูเจอาร์" class="relative z-10 w-64 h-64 md:w-80 md:h-80 object-cover rounded-full shadow-2xl border-4 border-white transition-transform hover:scale-105 duration-300">
+                    </div>
+                </div>
+                
+                <!-- ข้อความต้อนรับ -->
+                <div class="w-full md:w-1/2 p-8 md:p-12 text-center md:text-left">
+                    <div class="inline-block px-4 py-1.5 rounded-full bg-brand-100 text-brand-600 font-semibold text-sm mb-4">
+                        ผู้สอนของคุณ
+                    </div>
+                    <h1 class="text-3xl md:text-5xl font-bold text-slate-900 mb-4">สวัสดีครับนักเรียน!</h1>
+                    <p class="text-lg text-slate-600 mb-6 leading-relaxed">
+                        ยินดีต้อนรับสู่ห้องเรียนออนไลน์ของ <strong>ครูเจอาร์</strong> นะครับ วันนี้เราจะมาเรียนรู้เรื่องพื้นฐานของการสร้างเว็บไซต์ด้วย <strong>HTML</strong> กัน เตรียมตัวให้พร้อมแล้วไปสนุกกับการเขียนโค้ดกันเลย!
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                        <a href="#lessons" class="px-8 py-3 bg-brand-600 text-white rounded-full font-medium hover:bg-brand-500 hover:shadow-lg transition-all duration-200 transform hover:-translate-y-1 text-center">
+                            เริ่มเรียนกันเลย
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- บทเรียน Section (สื่อการสอน) -->
+        <section id="lessons" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 mb-12">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">เนื้อหาบทเรียนวันนี้</h2>
+                <div class="h-1 w-20 bg-brand-500 mx-auto rounded-full mb-4"></div>
+                <p class="text-slate-600 max-w-2xl mx-auto">
+                    เอกสารสรุปคำสั่ง HTML (Cheat Sheet) ที่จำเป็นสำหรับผู้เริ่มต้น 
+                    นักเรียนสามารถดูรูปภาพด้านล่างเพื่อใช้เป็นคู่มืออ้างอิงในการเขียนโค้ดได้เลยครับ
+                </p>
+            </div>
+
+            <!-- Grid แสดงภาพสื่อการสอน -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                
+                <!-- สื่อที่ 1 -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300 border border-slate-100">
+                    <h3 class="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
+                        <span class="bg-brand-100 text-brand-600 w-8 h-8 rounded-full flex items-center justify-center text-sm">1</span>
+                        โครงสร้างหลัก & แท็กพื้นฐาน
+                    </h3>
+                    <div class="rounded-xl overflow-hidden border border-slate-200 bg-slate-50 cursor-zoom-in" onclick="openModal('379415.jpg')">
+                        <img src="https://i.postimg.cc/Y96TNqZd/379416.jpg" alt="HTML Cheat Sheet แผ่นที่ 1" class="w-full h-auto object-contain hover:opacity-95 transition-opacity">
+                    </div>
+                    <p class="text-sm text-slate-500 mt-4 text-center">คลิกที่ภาพเพื่อดูขนาดใหญ่</p>
+                </div>
+
+                <!-- สื่อที่ 2 -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300 border border-slate-100">
+                    <h3 class="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
+                        <span class="bg-brand-100 text-brand-600 w-8 h-8 rounded-full flex items-center justify-center text-sm">2</span>
+                        รายการ ตาราง และฟอร์ม
+                    </h3>
+                    <div class="rounded-xl overflow-hidden border border-slate-200 bg-slate-50 cursor-zoom-in" onclick="openModal('379416.jpg')">
+                        <img src="https://i.postimg.cc/mDYK32Jd/379415.jpg" alt="HTML Cheat Sheet แผ่นที่ 2" class="w-full h-auto object-contain hover:opacity-95 transition-opacity">
+                    </div>
+                    <p class="text-sm text-slate-500 mt-4 text-center">คลิกที่ภาพเพื่อดูขนาดใหญ่</p>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-8 text-center mt-auto">
+        <div class="max-w-6xl mx-auto px-4">
+            <p>&copy; 2026 เรียนรู้กับครูเจอาร์ (Teacher JR Classroom). All rights reserved.</p>
+            <p class="mt-2 text-sm text-slate-500">สร้างด้วยความตั้งใจเพื่อให้นักเรียนทุกคนสนุกกับการเขียนโค้ด 💻</p>
+        </div>
+    </footer>
+
+    <!-- Image Modal (สำหรับคลิกขยายภาพ) -->
+    <div id="imageModal" class="fixed inset-0 z-[100] bg-black/90 hidden flex-col items-center justify-center opacity-0 transition-opacity duration-300">
+        <button onclick="closeModal()" class="absolute top-6 right-6 text-white hover:text-slate-300 bg-white/10 rounded-full p-2 backdrop-blur-sm transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+        <img id="modalImage" src="" alt="Expanded View" class="max-w-[95%] max-h-[90vh] object-contain rounded-lg shadow-2xl">
+    </div>
+
+    <!-- JavaScript สำหรับ Modal -->
+    <script>
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+
+        function openModal(imageSrc) {
+            modalImg.src = imageSrc;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            // ให้มี animation ค่อยๆ แสดง
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modal.classList.add('opacity-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            modal.classList.remove('opacity-100');
+            modal.classList.add('opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                modalImg.src = "";
+            }, 300);
+        }
+
+        // ปิด Modal เมื่อคลิกที่พื้นหลังสีดำ
+        modal.addEventListener('click', function(e) {
+            if(e.target === modal) {
+                closeModal();
+            }
+        });
+        
+        // ปิด Modal เมื่อกดปุ่ม ESC
+        document.addEventListener('keydown', function(e) {
+            if(e.key === "Escape" && !modal.classList.contains('hidden')) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
