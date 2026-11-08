@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ครูเจอาร์ ปฎิภาณ พานทอง - พื้นที่แห่งการเรียนรู้</title>
+    
+    <!-- นำเข้า Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- นำเข้าฟอนต์ Prompt จาก Google Fonts เพื่อให้อ่านง่ายและดูเป็นมิตร -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- นำเข้า Phosphor Icons สำหรับไอคอนน่ารักๆ -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- ตั้งค่าฟอนต์เริ่มต้นและกำหนดโทนสีพิเศษ -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Prompt', 'sans-serif'],
+                    },
+                    colors: {
+                        jr: {
+                            blue: '#4DB8FF',
+                            pink: '#FF9EBB',
+                            yellow: '#FFD166',
+                            green: '#06D6A0',
+                            dark: '#2B2D42'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* เพิ่มลูกเล่น Animation เบาๆ ให้น่าสนใจ */
+        body {
+            background: linear-gradient(135deg, #f0f8ff 0%, #fff0f5 100%);
+            background-attachment: fixed;
+        }
+        .float-anim {
+            animation: floating 3s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+<body class="text-jr-dark antialiased">
+
+    <!-- Navigation Bar -->
+    <nav class="sticky top-0 z-50 glass-card shadow-sm py-4">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center gap-2 cursor-pointer">
+                <div class="bg-jr-blue text-white p-2 rounded-full">
+                    <i class="ph-bold ph-graduation-cap text-2xl"></i>
+                </div>
+                <span class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-jr-blue to-jr-pink">
+                    Kru JR.
+                </span>
+            </div>
+            <div class="hidden md:flex gap-8 font-medium text-gray-600">
+                <a href="#home" class="hover:text-jr-blue transition-colors">หน้าแรก</a>
+                <a href="#courses" class="hover:text-jr-pink transition-colors">ห้องเรียน</a>
+                <a href="#history" class="hover:text-purple-500 transition-colors">ตำนาน Office</a>
+                <a href="#word-deepdive" class="hover:text-jr-blue transition-colors">เจาะลึก Word</a>
+                <a href="#lesson" class="hover:text-jr-green transition-colors">บทเรียนน่ารู้</a>
+                <a href="#contact" class="hover:text-jr-yellow transition-colors">ติดต่อ</a>
+            </div>
+            <button class="md:hidden text-gray-600 text-3xl">
+                <i class="ph ph-list"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="container mx-auto px-6 py-20 md:py-32 flex flex-col-reverse md:flex-row items-center gap-12">
+        <div class="w-full md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left">
+            <span class="inline-block py-1 px-3 rounded-full bg-jr-yellow/20 text-yellow-600 font-medium mb-4 text-sm">
+                👋 ยินดีต้อนรับเข้าสู่ห้องเรียนที่สนุกที่สุด!
+            </span>
+            <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-6">
+                สวัสดีครับ!<br>
+                ผม <span class="text-jr-blue">ครูเจอาร์</span><br>
+                <span class="text-jr-pink">ปฎิภาณ พานทอง</span>
+            </h1>
+            <p class="text-lg text-gray-600 mb-8 max-w-lg leading-relaxed">
+                เรียนรู้แบบมีความสุข เข้าใจง่าย ไม่น่าเบื่อ พร้อมเปิดโลกทัศน์ใหม่ๆ ไปด้วยกันกับบทเรียนที่คัดสรรมาเพื่อคุณโดยเฉพาะ 🌟
+            </p>
+            <div class="flex gap-4">
+                <a href="#lesson" class="bg-gradient-to-r from-jr-blue to-blue-400 hover:shadow-lg hover:shadow-blue-200 text-white font-medium py-3 px-8 rounded-full transition-all transform hover:-translate-y-1 inline-block">
+                    เริ่มเรียนกันเลย
+                </a>
+            </div>
+        </div>
+        <div class="w-full md:w-1/2 flex justify-center relative">
+            <!-- Decorative blobs -->
+            <div class="absolute top-0 -left-10 w-48 h-48 bg-jr-yellow/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+            <div class="absolute top-0 -right-10 w-48 h-48 bg-jr-pink/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+            <div class="absolute -bottom-10 left-20 w-48 h-48 bg-jr-blue/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+            
+            <!-- Profile Image Placeholder (Using placehold.co for demo) -->
+            <div class="relative z-10 float-anim">
+                <img src="https://placehold.co/400x500/4DB8FF/ffffff?text=Kru+JR\nProfile+Pic" alt="ครูเจอาร์ ปฎิภาณ" class="rounded-3xl shadow-2xl border-4 border-white object-cover w-72 md:w-96 h-auto">
+                
+                <!-- Floating badgets -->
+                <div class="absolute -bottom-6 -right-6 bg-white p-4 rounded-2xl shadow-xl flex items-center gap-3">
+                    <div class="bg-jr-green/20 p-2 rounded-full text-jr-green">
+                        <i class="ph-fill ph-check-circle text-2xl"></i>
+                    </div>
+                    <div>
+                        <p class="font-bold text-sm">สอนสนุก</p>
+                        <p class="text-xs text-gray-500">เข้าใจง่าย 100%</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Features / Courses Section -->
+    <section id="courses" class="py-20 bg-white/60">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">ไฮไลท์ห้องเรียนครูเจอาร์ 📚</h2>
+                <p class="text-gray-600">เรื่องยากๆ เราจะทำให้เป็นเรื่องง่ายและสนุกไปด้วยกัน</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-white p-8 rounded-3xl shadow-lg hover:shadow-xl transition-all border-t-4 border-jr-blue group">
+                    <div class="bg-blue-50 w-16 h-16 rounded-2xl flex items-center justify-center text-jr-blue mb-6 group-hover:scale-110 transition-transform">
+                        <i class="ph-duotone ph-book-open text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">สรุปบทเรียนเข้าใจง่าย</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        เนื้อหาถูกย่อยมาอย่างดี เน้นจุดสำคัญ มีภาพประกอบสีสันสดใส ช่วยให้จำแม่นและนำไปใช้ได้จริง
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white p-8 rounded-3xl shadow-lg hover:shadow-xl transition-all border-t-4 border-jr-pink group">
+                    <div class="bg-pink-50 w-16 h-16 rounded-2xl flex items-center justify-center text-jr-pink mb-6 group-hover:scale-110 transition-transform">
+                        <i class="ph-duotone ph-video-camera text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">คลิปสอนย้อนหลัง</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        พลาดคลาสไหนก็ไม่ต้องกลัว สามารถดูทบทวนซ้ำได้ตลอดเวลา ภาพคมชัด เสียงใสแจ๋ว
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white p-8 rounded-3xl shadow-lg hover:shadow-xl transition-all border-t-4 border-jr-yellow group">
+                    <div class="bg-yellow-50 w-16 h-16 rounded-2xl flex items-center justify-center text-yellow-500 mb-6 group-hover:scale-110 transition-transform">
+                        <i class="ph-duotone ph-game-controller text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">กิจกรรมสนุกๆ</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        เปลี่ยนการเรียนธรรมดาให้เป็นเกมการศึกษา มีควิซทายใจ และของรางวัลน่ารักๆ สำหรับคนเก่ง
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- History of Office Section -->
+    <section id="history" class="py-20">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="text-center mb-16">
+                <span class="inline-block py-1 px-4 rounded-full bg-purple-100 text-purple-600 font-semibold mb-4 text-sm shadow-sm">
+                    ⏳ ย้อนรอยอดีต
+                </span>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">วิวัฒนาการการพิมพ์ และกำเนิด Office 💾</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    กว่าจะมาเป็นโปรแกรมสุดล้ำให้เราใช้พิมพ์รายงานหรือทำสไลด์สวยๆ ในวันนี้ <br>รู้ไหมครับว่าคนสมัยก่อนเขาทำงานกันอย่างไร? มาเจาะลึกไทม์ไลน์แต่ละยุคกันเลย!
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 relative">
+                <!-- Line connection (desktop only) -->
+                <div class="hidden md:block absolute top-1/2 left-1/2 w-1 h-full bg-gradient-to-b from-gray-200 via-gray-300 to-gray-200 -translate-x-1/2 -translate-y-1/2 -z-10 rounded-full"></div>
+
+                <!-- Era 1 -->
+                <div class="bg-white p-8 rounded-3xl shadow-lg border-2 border-gray-100 relative group hover:-translate-y-2 transition-transform duration-300">
+                    <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 text-3xl mb-6 border-4 border-white shadow-md group-hover:bg-gray-200 transition-colors">
+                        <i class="ph-fill ph-keyboard"></i>
+                    </div>
+                    <span class="text-sm font-bold text-gray-400 mb-2 block tracking-wider">ยุคที่ 1: อนาล็อก (ยุคก่อนคอมพิวเตอร์)</span>
+                    <h3 class="text-2xl font-bold mb-4 text-jr-dark">ยุคเครื่องพิมพ์ดีด (Typewriter)</h3>
+                    <p class="text-gray-600 leading-relaxed mb-4">
+                        เริ่มต้นจากการใช้เครื่องพิมพ์ดีดที่ต้องใช้แรงนิ้วกดทีละตัวอักษรให้ก้านพิมพ์กระแทกผ่านผ้าหมึกลงบนกระดาษ การทำงานในยุคนี้ต้องอาศัย "ความแม่นยำสูงมาก" เพราะหากพิมพ์ผิดเพียงตัวเดียว อาจต้องใช้น้ำยาลบคำผิด (Liquid Paper) รอให้แห้งแล้วพิมพ์ทับ หรือเลวร้ายสุดคือต้องดึงกระดาษทิ้งแล้ว "พิมพ์ใหม่ทั้งหน้า"
+                    </p>
+                    <div class="bg-gray-50 rounded-xl p-4 border-l-4 border-gray-400">
+                        <p class="text-sm text-gray-700"><strong>💡 รู้หรือไม่?</strong> การจัดเรียงแป้นพิมพ์แบบ "QWERTY" ที่เราใช้กันอยู่ทุกวันนี้ ถูกออกแบบมาตั้งแต่ยุคพิมพ์ดีด เพื่อดึงความเร็วในการพิมพ์ให้ "ช้าลง" เล็กน้อย ป้องกันปัญหาก้านพิมพ์ดีดพันกันเมื่อพิมพ์เร็วเกินไป! และหากต้องการเอกสารหลายชุด ต้องใช้ "กระดาษคาร์บอน" สอดไว้ตรงกลาง</p>
+                    </div>
+                </div>
+
+                <!-- Era 2 -->
+                <div class="bg-white p-8 rounded-3xl shadow-lg border-2 border-jr-pink/20 relative group hover:-translate-y-2 transition-transform duration-300 mt-0 md:mt-16">
+                    <div class="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center text-jr-pink text-3xl mb-6 border-4 border-white shadow-md group-hover:bg-pink-200 transition-colors">
+                        <i class="ph-fill ph-floppy-disk"></i>
+                    </div>
+                    <span class="text-sm font-bold text-jr-pink mb-2 block tracking-wider">ยุคที่ 2: ดิจิทัลยุคแรก (1970s - 1980s)</span>
+                    <h3 class="text-2xl font-bold mb-4 text-jr-dark">โปรแกรมประมวลผลคำ (Word Processor)</h3>
+                    <p class="text-gray-600 leading-relaxed mb-4">
+                        เมื่อคอมพิวเตอร์ส่วนบุคคลเริ่มเข้ามา โปรแกรมอย่าง WordStar หรือ WordPerfect ก็ถือกำเนิดขึ้น นี่คือจุดเปลี่ยนโลก! เพราะเราสามารถ "พิมพ์ ลบ และแก้ไข" บนหน้าจอให้เสร็จก่อน แล้วค่อยสั่งปรินต์ลงกระดาษได้ ในยุคแรกหน้าจอจะเป็นสีดำ มีตัวหนังสือสีเขียวหรือขาว (MS-DOS) ยังไม่มีเมาส์ให้ใช้ ต้องจำคีย์ลัดบนคีย์บอร์ดทั้งหมด
+                    </p>
+                    <div class="bg-pink-50 rounded-xl p-4 border-l-4 border-jr-pink">
+                        <p class="text-sm text-gray-700"><strong>💾 เกร็ดความรู้:</strong> ในยุคนี้ข้อมูลถูกบันทึกลงบน "แผ่นดิสก์เก็ต (Floppy Disk)" ขนาด 5.25 นิ้วแผ่นใหญ่ๆ ที่จุข้อมูลได้ไม่ถึง 1 MB ด้วยซ้ำ (รูปไอคอน Save ที่เราใช้กดกันทุกวันนี้ ก็มาจากหน้าตาของแผ่นดิสก์ในยุคนี้นั่นเอง)</p>
+                    </div>
+                </div>
+
+                <!-- Era 3 -->
+                <div class="bg-white p-8 rounded-3xl shadow-lg border-2 border-jr-blue/20 relative group hover:-translate-y-2 transition-transform duration-300">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center text-jr-blue text-3xl mb-6 border-4 border-white shadow-md group-hover:bg-blue-200 transition-colors">
+                        <i class="ph-fill ph-windows-logo"></i>
+                    </div>
+                    <span class="text-sm font-bold text-jr-blue mb-2 block tracking-wider">ยุคที่ 3: ปี 1989 - 2010s</span>
+                    <h3 class="text-2xl font-bold mb-4 text-jr-dark">กำเนิด Microsoft Office</h3>
+                    <p class="text-gray-600 leading-relaxed mb-4">
+                        Microsoft นำโปรแกรมยอดฮิตอย่าง Word, Excel และ PowerPoint มารวมกันขายเป็น "ชุดโปรแกรมสำนักงาน (Office Suite)" เข้าสู่ยุคของระบบปฏิบัติการ Windows ที่มีหน้าจอสีสันสวยงาม ใช้เมาส์คลิกได้ และใช้หลักการ <strong>WYSIWYG</strong> (What You See Is What You Get - เห็นบนจอแบบไหน ปรินต์ออกมาแบบนั้น)
+                    </p>
+                    <div class="bg-blue-50 rounded-xl p-4 border-l-4 border-jr-blue">
+                        <p class="text-sm text-gray-700"><strong>📎 ตำนานเพื่อนซี้:</strong> หลายคนคงจำ "Clippy" ผู้ช่วยรูปคลิปหนีบกระดาษหน้าตากวนๆ ที่มักจะโผล่มาถามว่า <em>"ดูเหมือนคุณกำลังเขียนจดหมายอยู่ ให้ผมช่วยไหม?"</em> ได้ ถือเป็นต้นแบบของระบบตัวช่วยในโปรแกรมยุคเก่าก่อนที่จะถูกถอดออกไป</p>
+                    </div>
+                </div>
+
+                <!-- Era 4 -->
+                <div class="bg-white p-8 rounded-3xl shadow-lg border-2 border-jr-green/20 relative group hover:-translate-y-2 transition-transform duration-300 mt-0 md:mt-16">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center text-jr-green text-3xl mb-6 border-4 border-white shadow-md group-hover:bg-green-200 transition-colors">
+                        <i class="ph-fill ph-cloud-check"></i>
+                    </div>
+                    <span class="text-sm font-bold text-jr-green mb-2 block tracking-wider">ยุคที่ 4: ปัจจุบันและอนาคต</span>
+                    <h3 class="text-2xl font-bold mb-4 text-jr-dark">Microsoft 365 & พลังแห่ง AI</h3>
+                    <p class="text-gray-600 leading-relaxed mb-4">
+                        เข้าสู่ยุคไร้พรมแดน โปรแกรมถูกย้ายขึ้นไปอยู่บนคลาวด์ (Cloud) เปลี่ยนชื่อเป็น Microsoft 365 คุณสามารถเปิดไฟล์ Word บนมือถือ แท็บเล็ต หรือคอมพิวเตอร์เครื่องไหนก็ได้ ไฟล์ออโต้เซฟตลอดเวลา และความเจ๋งที่สุดคือ <strong>Real-time Co-authoring</strong> ที่ทำให้เราพิมพ์งานพร้อมกับเพื่อนในหน้าเดียวกันได้ทันที
+                    </p>
+                    <div class="bg-green-50 rounded-xl p-4 border-l-4 border-jr-green">
+                        <p class="text-sm text-gray-700"><strong>🤖 อนาคตคือ AI:</strong> ปัจจุบัน Office ได้ผสานระบบ <strong>Copilot (AI)</strong> เข้าไป เพียงแค่พิมพ์สั่งว่า <em>"ช่วยเขียนร่างโครงการนำเสนอให้หน่อย"</em> AI ก็จะพิมพ์เนื้อหา จัดหน้า และทำสไลด์ให้เราภายในไม่กี่วินาที โลกการทำงานเปลี่ยนไปตลอดกาล!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Word Deep Dive Section -->
+    <section id="word-deepdive" class="py-20 bg-gradient-to-b from-white to-blue-50/50 border-t-2 border-dashed border-gray-200">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="text-center mb-16">
+                <span class="inline-block py-1 px-4 rounded-full bg-blue-100 text-jr-blue font-semibold mb-4 text-sm shadow-sm">
+                    🔍 เจาะลึกโปรแกรม
+                </span>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-jr-dark">เจาะลึกความเจ๋งของ Microsoft Word 📝</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto leading-relaxed text-lg">
+                    Word ไม่ได้เป็นแค่ "กระดาษเปล่า" สำหรับพิมพ์งาน แต่เป็นแพลตฟอร์มทรงพลังที่ซ่อนฟีเจอร์ระดับโปรไว้มากมาย นี่คือ 4 มิติการทำงานที่จะเปลี่ยนให้คุณเป็นเซียน Word!
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Dimension 1: Formatting -->
+                <div class="bg-white rounded-3xl p-8 shadow-md border-l-8 border-jr-blue hover:shadow-xl transition-all duration-300">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-14 h-14 bg-blue-50 text-jr-blue rounded-2xl flex items-center justify-center text-3xl">
+                            <i class="ph-duotone ph-paint-brush-broad"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800">1. สถาปัตยกรรมการจัดรูปแบบ</h3>
+                    </div>
+                    <p class="text-gray-600 leading-relaxed">
+                        มากกว่าแค่การทำตัวหนาหรือตัวเอียง! Word มี <strong>Styles (สไตล์)</strong> ช่วยคุมโทนฟอนต์ทั้งร้อยหน้าให้ตรงกัน ปรับแก้ทีเดียวเปลี่ยนทั้งไฟล์ และมี <strong>Section Breaks</strong> ที่อนุญาตให้คุณตั้งหน้ากระดาษแนวตั้งและแนวนอนอยู่ร่วมกันในไฟล์เดียวได้แบบไร้รอยต่อ
+                    </p>
+                </div>
+
+                <!-- Dimension 2: Automation -->
+                <div class="bg-white rounded-3xl p-8 shadow-md border-l-8 border-jr-green hover:shadow-xl transition-all duration-300">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-14 h-14 bg-green-50 text-jr-green rounded-2xl flex items-center justify-center text-3xl">
+                            <i class="ph-duotone ph-magic-wand"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800">2. ระบบอัตโนมัติ (Automation)</h3>
+                    </div>
+                    <p class="text-gray-600 leading-relaxed">
+                        ให้โปรแกรมทำงานแทนคุณ! สุดยอดฟีเจอร์ทุ่นแรงอย่าง <strong>Mail Merge (จดหมายเวียน)</strong> ดึงชื่อจาก Excel มาสร้างใบประกาศนียบัตร 1,000 ใบใน 3 วินาที หรือการสร้าง <strong>สารบัญอัตโนมัติ</strong> และบรรณานุกรม ที่อัปเดตเลขหน้าให้เองเมื่อเนื้อหาเปลี่ยน
+                    </p>
+                </div>
+
+                <!-- Dimension 3: Collaboration -->
+                <div class="bg-white rounded-3xl p-8 shadow-md border-l-8 border-purple-400 hover:shadow-xl transition-all duration-300">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-14 h-14 bg-purple-50 text-purple-500 rounded-2xl flex items-center justify-center text-3xl">
+                            <i class="ph-duotone ph-users-three"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800">3. การทำงานร่วมกันบนคลาวด์</h3>
+                    </div>
+                    <p class="text-gray-600 leading-relaxed">
+                        บอกลาไฟล์ <em>'งานล่าสุด_final_สุดจริงๆ.docx'</em> ไปได้เลย! ด้วย <strong>Real-time Co-authoring</strong> คุณสามารถพิมพ์งานหน้าเดียวกันพร้อมกับเพื่อนได้ทันที และมีระบบ <strong>Track Changes</strong> สำหรับบรรณาธิการ ช่วยขีดฆ่าและไฮไลต์สิ่งที่ถูกแก้ไม่ให้พลาดสายตา
+                    </p>
+                </div>
+
+                <!-- Dimension 4: AI -->
+                <div class="bg-white rounded-3xl p-8 shadow-md border-l-8 border-jr-pink hover:shadow-xl transition-all duration-300">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-14 h-14 bg-pink-50 text-jr-pink rounded-2xl flex items-center justify-center text-3xl">
+                            <i class="ph-duotone ph-robot"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800">4. ผู้ช่วยอัจฉริยะ AI (Smart Features)</h3>
+                    </div>
+                    <p class="text-gray-600 leading-relaxed">
+                        ล้ำหน้าไปอีกขั้นด้วย <strong>Microsoft Editor</strong> ที่ช่วยแนะนำไวยากรณ์เหมือนมีครูสอนภาษามาตรวจให้, ระบบ <strong>Dictation</strong> พิมพ์งานด้วยเสียงพูด และล่าสุดกับ <strong>Copilot AI</strong> ที่สามารถสั่งให้ร่างเอกสารหรือสรุปรายงานยาวๆ ให้สั้นลงได้ในพริบตา!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Lesson Section: Word TOC -->
+    <section id="lesson" class="py-20 bg-white/40">
+                <div class="flex flex-col md:flex-row gap-6 bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-50 hover:shadow-md transition-shadow">
+                    <div class="flex-shrink-0">
+                        <div class="w-16 h-16 bg-jr-green text-white text-2xl font-bold rounded-2xl flex items-center justify-center shadow-lg shadow-green-200">4</div>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">สร้างสารบัญอัตโนมัติ</h3>
+                        <p class="text-sm text-jr-green font-semibold mb-3"><i class="ph-bold ph-list-numbers"></i> แท็บ References (การอ้างอิง)</p>
+                        <p class="text-gray-600 mb-4">ไปที่แท็บ References (การอ้างอิง) ดูที่มุมซ้ายสุด คลิก <span class="font-semibold">Table of Contents (สารบัญ)</span> จากนั้นเลือกรูปแบบ <span class="font-semibold">Automatic Table 1</span> หรือ <span class="font-semibold">Automatic Table 2</span></p>
+                        <div class="bg-gray-50 rounded-xl p-4 flex gap-3 items-start border border-gray-100">
+                            <i class="ph-fill ph-sparkle text-jr-yellow text-xl mt-0.5"></i>
+                            <p class="text-sm text-gray-600"><strong>จุดสังเกต:</strong> ตารางสารบัญจะปรากฏขึ้นทันที โดยดึงข้อความที่คุณตั้งเป็น Heading 1 และ 2 มาเรียงลำดับพร้อมระบุเลขหน้าอย่างถูกต้อง</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="flex flex-col md:flex-row gap-6 bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-50 hover:shadow-md transition-shadow">
+                    <div class="flex-shrink-0">
+                        <div class="w-16 h-16 bg-purple-500 text-white text-2xl font-bold rounded-2xl flex items-center justify-center shadow-lg shadow-purple-200">5</div>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">การอัปเดตสารบัญ</h3>
+                        <p class="text-sm text-purple-500 font-semibold mb-3"><i class="ph-bold ph-arrows-clockwise"></i> เมื่อมีการแก้ไขเนื้อหา</p>
+                        <p class="text-gray-600 mb-4">หากคุณพิมพ์เนื้อหาเพิ่มจนเลขหน้าเคลื่อน หรือแก้ไขคำในหัวข้อ ให้คลิกซ้าย 1 ครั้งบริเวณตารางสารบัญ จะมีปุ่ม <span class="font-semibold">Update Table (อัปเดตสารบัญ)</span> ปรากฏขึ้นด้านบน</p>
+                        <ul class="list-disc list-inside text-gray-600 space-y-2 mb-4 ml-2">
+                            <li>เลือก <span class="font-semibold text-gray-800">Update page numbers only</span> หากแก้ไขแค่เนื้อหาแล้วหน้าขยับ</li>
+                            <li>เลือก <span class="font-semibold text-gray-800">Update entire table</span> หากมีการเปลี่ยนชื่อหัวข้อหรือเพิ่มหัวข้อใหม่</li>
+                        </ul>
+                        <div class="bg-gray-50 rounded-xl p-4 flex gap-3 items-start border border-gray-100">
+                            <i class="ph-fill ph-check-circle text-jr-green text-xl mt-0.5"></i>
+                            <p class="text-sm text-gray-600"><strong>ผลลัพธ์:</strong> เลขหน้าและข้อความในสารบัญจะเปลี่ยนไปตรงกับเนื้อหาล่าสุดในเอกสารทันที!</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact / CTA Section -->
+    <section id="contact" class="py-24">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <div class="bg-gradient-to-br from-jr-blue to-indigo-500 rounded-3xl p-10 md:p-16 text-center text-white shadow-2xl relative overflow-hidden">
+                <!-- BG Elements -->
+                <i class="ph-fill ph-star text-white/10 text-9xl absolute -top-10 -right-10 transform rotate-12"></i>
+                <i class="ph-fill ph-heart text-white/10 text-8xl absolute -bottom-10 -left-10 transform -rotate-12"></i>
+                
+                <div class="relative z-10">
+                    <h2 class="text-3xl md:text-5xl font-bold mb-6">พร้อมที่จะสนุกกับการเรียนหรือยัง?</h2>
+                    <p class="text-blue-100 text-lg mb-10 max-w-2xl mx-auto">
+                        มาเป็นส่วนหนึ่งในห้องเรียนที่เต็มไปด้วยรอยยิ้มและเสียงหัวเราะ ติดตามข่าวสารและบทเรียนใหม่ๆ ได้ทุกช่องทางเลยครับ!
+                    </p>
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <a href="#" class="bg-white text-jr-blue font-bold py-3 px-6 rounded-full hover:bg-gray-100 transition-colors flex items-center gap-2 shadow-lg">
+                            <i class="ph-fill ph-facebook-logo text-2xl"></i> Facebook Fanpage
+                        </a>
+                        <a href="#" class="bg-red-500 text-white font-bold py-3 px-6 rounded-full hover:bg-red-600 transition-colors flex items-center gap-2 shadow-lg">
+                            <i class="ph-fill ph-youtube-logo text-2xl"></i> YouTube Channel
+                        </a>
+                        <a href="#" class="bg-[#00B900] text-white font-bold py-3 px-6 rounded-full hover:bg-green-600 transition-colors flex items-center gap-2 shadow-lg">
+                            <i class="ph-fill ph-chat-circle-dots text-2xl"></i> Line Official
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white/80 backdrop-blur-md border-t border-gray-100 py-10 mt-10">
+        <div class="container mx-auto px-6 text-center text-gray-500 text-sm">
+            <p class="font-medium text-gray-700 text-lg mb-2">ครูเจอาร์ ปฎิภาณ พานทอง</p>
+            <p>© 2024 พื้นที่แห่งการเรียนรู้สไตล์ครูเจอาร์. All rights reserved.</p>
+            <div class="flex justify-center gap-2 mt-4 text-pink-400">
+                <i class="ph-fill ph-heart"></i>
+                <i class="ph-fill ph-sparkle"></i>
+                <i class="ph-fill ph-heart"></i>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
