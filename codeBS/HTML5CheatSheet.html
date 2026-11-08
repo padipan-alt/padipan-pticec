@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เรียนรู้ sheet HTML กับครูเจอาร์</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: #f3f4f6;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        .category-header {
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .tag-btn {
+            transition: all 0.2s;
+        }
+        .tag-btn:hover {
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="bg-blue-700 text-white shadow-md p-4 flex justify-between items-center z-10">
+        <div class="flex items-center gap-3">
+            <div class="bg-orange-500 text-white font-bold text-2xl w-10 h-10 flex items-center justify-center rounded-md shadow-inner border-2 border-white">
+                5
+            </div>
+            <h1 class="text-2xl md:text-3xl font-bold tracking-wide">เรียนรู้ sheet HTML กับครูเจอาร์</h1>
+        </div>
+        <div class="hidden md:flex bg-blue-800 px-4 py-2 rounded-lg text-sm">
+            <span class="font-mono text-blue-200">&lt;/&gt; Live Code Editor</span>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col md:flex-row overflow-hidden">
+        
+        <!-- Left Panel: Cheat Sheet -->
+        <aside class="w-full md:w-80 bg-white shadow-lg overflow-y-auto z-10 flex flex-col border-r border-gray-200">
+            <div class="p-4 bg-gray-50 border-b border-gray-200 sticky top-0 z-20">
+                <h2 class="text-lg font-bold text-gray-800 flex items-center gap-2">
+                    <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                    HTML5 Cheat Sheet
+                </h2>
+                <p class="text-xs text-gray-500 mt-1">คลิกที่แท็กเพื่อเพิ่มลงใน Editor</p>
+            </div>
+
+            <div class="p-2 space-y-2 pb-10" id="cheatSheetContainer">
+                <!-- Structure -->
+                <div class="border rounded-md border-blue-200 overflow-hidden">
+                    <div class="category-header bg-blue-100 p-2 font-semibold text-blue-800" onclick="toggleSection('sec-structure')">Document Structure</div>
+                    <div id="sec-structure" class="p-2 grid grid-cols-1 gap-1 text-sm bg-blue-50">
+                        <button onclick="insertCode('<!DOCTYPE html>\n<html lang=\'en\'>\n<head>\n  <meta charset=\'UTF-8\'>\n  <title>My Page</title>\n</head>\n<body>\n  \n</body>\n</html>')" class="tag-btn text-left p-1 bg-white border border-blue-200 rounded hover:bg-blue-100">Template พื้นฐาน</button>
+                        <button onclick="insertCode('<head>\n  \n</head>')" class="tag-btn text-left p-1 bg-white border border-blue-200 rounded hover:bg-blue-100">&lt;head&gt; - Meta Info</button>
+                        <button onclick="insertCode('<body>\n  \n</body>')" class="tag-btn text-left p-1 bg-white border border-blue-200 rounded hover:bg-blue-100">&lt;body&gt; - Content</button>
+                    </div>
+                </div>
+
+                <!-- Common Tags -->
+                <div class="border rounded-md border-green-200 overflow-hidden">
+                    <div class="category-header bg-green-100 p-2 font-semibold text-green-800" onclick="toggleSection('sec-common')">Common Tags</div>
+                    <div id="sec-common" class="p-2 grid grid-cols-2 gap-1 text-sm bg-green-50">
+                        <button onclick="insertCode('<h1>Heading 1</h1>')" class="tag-btn text-left p-1 bg-white border border-green-200 rounded hover:bg-green-100">&lt;h1&gt; ถึง &lt;h6&gt;</button>
+                        <button onclick="insertCode('<p>Paragraph text</p>')" class="tag-btn text-left p-1 bg-white border border-green-200 rounded hover:bg-green-100">&lt;p&gt; Paragraph</button>
+                        <button onclick="insertCode('<a href=\'#\'>Link text</a>')" class="tag-btn text-left p-1 bg-white border border-green-200 rounded hover:bg-green-100">&lt;a&gt; Link</button>
+                        <button onclick="insertCode('<img src=\'image.jpg\' alt=\'Description\'>')" class="tag-btn text-left p-1 bg-white border border-green-200 rounded hover:bg-green-100">&lt;img&gt; Image</button>
+                        <button onclick="insertCode('<div>\n  \n</div>')" class="tag-btn text-left p-1 bg-white border border-green-200 rounded hover:bg-green-100">&lt;div&gt; Division</button>
+                        <button onclick="insertCode('<span>Inline text</span>')" class="tag-btn text-left p-1 bg-white border border-green-200 rounded hover:bg-green-100">&lt;span&gt; Inline</button>
+                        <button onclick="insertCode('<br>')" class="tag-btn text-left p-1 bg-white border border-green-200 rounded hover:bg-green-100">&lt;br&gt; Break</button>
+                    </div>
+                </div>
+
+                <!-- Text Formatting -->
+                <div class="border rounded-md border-purple-200 overflow-hidden">
+                    <div class="category-header bg-purple-100 p-2 font-semibold text-purple-800" onclick="toggleSection('sec-text')">Text Formatting</div>
+                    <div id="sec-text" class="p-2 grid grid-cols-2 gap-1 text-sm bg-purple-50 hidden">
+                        <button onclick="insertCode('<b>Bold</b>')" class="tag-btn text-left p-1 bg-white border border-purple-200 rounded hover:bg-purple-100">&lt;b&gt; Bold</button>
+                        <button onclick="insertCode('<strong>Important</strong>')" class="tag-btn text-left p-1 bg-white border border-purple-200 rounded hover:bg-purple-100">&lt;strong&gt;</button>
+                        <button onclick="insertCode('<i>Italic</i>')" class="tag-btn text-left p-1 bg-white border border-purple-200 rounded hover:bg-purple-100">&lt;i&gt; Italic</button>
+                        <button onclick="insertCode('<em>Emphasized</em>')" class="tag-btn text-left p-1 bg-white border border-purple-200 rounded hover:bg-purple-100">&lt;em&gt;</button>
+                        <button onclick="insertCode('<u>Underline</u>')" class="tag-btn text-left p-1 bg-white border border-purple-200 rounded hover:bg-purple-100">&lt;u&gt; Underlined</button>
+                        <button onclick="insertCode('<mark>Highlighted</mark>')" class="tag-btn text-left p-1 bg-white border border-purple-200 rounded hover:bg-purple-100">&lt;mark&gt;</button>
+                    </div>
+                </div>
+
+                <!-- Lists & Tables -->
+                <div class="border rounded-md border-orange-200 overflow-hidden">
+                    <div class="category-header bg-orange-100 p-2 font-semibold text-orange-800" onclick="toggleSection('sec-lists')">Lists & Tables</div>
+                    <div id="sec-lists" class="p-2 grid grid-cols-1 gap-1 text-sm bg-orange-50 hidden">
+                        <button onclick="insertCode('<ul>\n  <li>Item 1</li>\n  <li>Item 2</li>\n</ul>')" class="tag-btn text-left p-1 bg-white border border-orange-200 rounded hover:bg-orange-100">Unordered List &lt;ul&gt;</button>
+                        <button onclick="insertCode('<ol>\n  <li>Item 1</li>\n  <li>Item 2</li>\n</ol>')" class="tag-btn text-left p-1 bg-white border border-orange-200 rounded hover:bg-orange-100">Ordered List &lt;ol&gt;</button>
+                        <button onclick="insertCode('<table border=\'1\'>\n  <tr>\n    <th>Name</th>\n    <th>Age</th>\n  </tr>\n  <tr>\n    <td>Alice</td>\n    <td>25</td>\n  </tr>\n</table>')" class="tag-btn text-left p-1 bg-white border border-orange-200 rounded hover:bg-orange-100">Table &lt;table&gt;</button>
+                    </div>
+                </div>
+
+                <!-- Forms -->
+                <div class="border rounded-md border-emerald-200 overflow-hidden">
+                    <div class="category-header bg-emerald-100 p-2 font-semibold text-emerald-800" onclick="toggleSection('sec-forms')">Forms</div>
+                    <div id="sec-forms" class="p-2 grid grid-cols-2 gap-1 text-sm bg-emerald-50 hidden">
+                        <button onclick="insertCode('<form>\n  \n</form>')" class="tag-btn text-left p-1 bg-white border border-emerald-200 rounded hover:bg-emerald-100">&lt;form&gt;</button>
+                        <button onclick="insertCode('<input type=\'text\' placeholder=\'Your Name\'>')" class="tag-btn text-left p-1 bg-white border border-emerald-200 rounded hover:bg-emerald-100">&lt;input&gt;</button>
+                        <button onclick="insertCode('<textarea rows=\'4\' cols=\'50\'></textarea>')" class="tag-btn text-left p-1 bg-white border border-emerald-200 rounded hover:bg-emerald-100">&lt;textarea&gt;</button>
+                        <button onclick="insertCode('<button type=\'submit\'>Submit</button>')" class="tag-btn text-left p-1 bg-white border border-emerald-200 rounded hover:bg-emerald-100">&lt;button&gt;</button>
+                        <button onclick="insertCode('<select>\n  <option value=\'1\'>Option 1</option>\n  <option value=\'2\'>Option 2</option>\n</select>')" class="tag-btn text-left p-1 bg-white border border-emerald-200 rounded hover:bg-emerald-100 col-span-2">&lt;select&gt; & &lt;option&gt;</button>
+                    </div>
+                </div>
+
+                 <!-- Media & Semantic -->
+                 <div class="border rounded-md border-indigo-200 overflow-hidden">
+                    <div class="category-header bg-indigo-100 p-2 font-semibold text-indigo-800" onclick="toggleSection('sec-media')">Media & Semantic Tags</div>
+                    <div id="sec-media" class="p-2 grid grid-cols-2 gap-1 text-sm bg-indigo-50 hidden">
+                        <button onclick="insertCode('<audio controls>\n  <source src=\'audio.mp3\' type=\'audio/mpeg\'>\n</audio>')" class="tag-btn text-left p-1 bg-white border border-indigo-200 rounded hover:bg-indigo-100">&lt;audio&gt;</button>
+                        <button onclick="insertCode('<video width=\'320\' height=\'240\' controls>\n  <source src=\'movie.mp4\' type=\'video/mp4\'>\n</video>')" class="tag-btn text-left p-1 bg-white border border-indigo-200 rounded hover:bg-indigo-100">&lt;video&gt;</button>
+                        <button onclick="insertCode('<iframe src=\'https://example.com\' width=\'100%\' height=\'300\'></iframe>')" class="tag-btn text-left p-1 bg-white border border-indigo-200 rounded hover:bg-indigo-100 col-span-2">&lt;iframe&gt;</button>
+                        
+                        <div class="col-span-2 mt-2 font-semibold text-indigo-800 text-xs">Semantic Tags</div>
+                        <button onclick="insertCode('<header>\n  \n</header>')" class="tag-btn text-left p-1 bg-white border border-indigo-200 rounded hover:bg-indigo-100">&lt;header&gt;</button>
+                        <button onclick="insertCode('<nav>\n  \n</nav>')" class="tag-btn text-left p-1 bg-white border border-indigo-200 rounded hover:bg-indigo-100">&lt;nav&gt;</button>
+                        <button onclick="insertCode('<main>\n  \n</main>')" class="tag-btn text-left p-1 bg-white border border-indigo-200 rounded hover:bg-indigo-100">&lt;main&gt;</button>
+                        <button onclick="insertCode('<footer>\n  \n</footer>')" class="tag-btn text-left p-1 bg-white border border-indigo-200 rounded hover:bg-indigo-100">&lt;footer&gt;</button>
+                    </div>
+                </div>
+
+            </div>
+            
+            <!-- Bottom fixed banner -->
+            <div class="mt-auto bg-blue-900 text-white text-xs p-3 text-center flex flex-col gap-1">
+                <span>✔️ Use semantic tags</span>
+                <span>✔️ Keep code organized</span>
+                <span>✔️ Validate your HTML</span>
+            </div>
+        </aside>
+
+        <!-- Editor and Preview Area -->
+        <main class="flex-1 flex flex-col md:flex-row bg-gray-100 min-w-0">
+            
+            <!-- Code Editor -->
+            <div class="flex-1 flex flex-col border-r border-gray-300 md:w-1/2">
+                <div class="bg-gray-800 text-gray-200 text-sm py-2 px-4 flex justify-between items-center shadow">
+                    <span class="font-mono flex items-center gap-2">
+                        <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                        index.html (เขียนโค้ดที่นี่)
+                    </span>
+                    <button onclick="resetCode()" class="text-xs bg-gray-600 hover:bg-gray-500 px-2 py-1 rounded text-white transition">Reset</button>
+                </div>
+                <textarea id="codeEditor" class="flex-1 w-full bg-gray-900 text-gray-100 font-mono p-4 resize-none focus:outline-none focus:ring-inset focus:ring-2 focus:ring-blue-500 text-sm sm:text-base leading-relaxed" spellcheck="false"></textarea>
+            </div>
+
+            <!-- Live Preview -->
+            <div class="flex-1 flex flex-col bg-white md:w-1/2">
+                <div class="bg-gray-200 text-gray-700 text-sm py-2 px-4 shadow border-b border-gray-300 flex justify-between items-center">
+                    <span class="font-semibold flex items-center gap-2">
+                        <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                        แสดงผลลัพธ์ (Preview)
+                    </span>
+                </div>
+                <div class="flex-1 relative w-full h-full bg-white">
+                    <iframe id="livePreview" class="absolute inset-0 w-full h-full border-none p-2" sandbox="allow-scripts allow-modals"></iframe>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        const editor = document.getElementById('codeEditor');
+        const preview = document.getElementById('livePreview');
+        
+        const defaultCode = `<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>หน้าเว็บของฉัน</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    .highlight { background: yellow; }
+  </style>
+</head>
+<body>
+
+  <h1>สวัสดีโลก HTML! 👋</h1>
+  <p>ยินดีต้อนรับสู่การเรียนรู้ HTML กับ<b>ครูเจอาร์</b></p>
+  
+  <div style="border: 1px solid #ccc; padding: 10px; margin-top: 20px; border-radius: 8px;">
+    <h2>ทดลองทำสิ่งเหล่านี้ดูสิ:</h2>
+    <ul>
+      <li>ลองแก้ไขข้อความในฝั่งซ้ายมือ</li>
+      <li>คลิกที่ปุ่มแท็กในเมนูซ้ายมือเพื่อเพิ่มโค้ด</li>
+      <li>สังเกตผลลัพธ์ที่เปลี่ยนไปทางขวามือแบบทันที</li>
+    </ul>
+  </div>
+
+</body>
+</html>`;
+
+        // Initialize editor
+        editor.value = defaultCode;
+
+        // Function to update preview
+        function updatePreview() {
+            preview.srcdoc = editor.value;
+        }
+
+        // Listen for typing in editor
+        editor.addEventListener('input', updatePreview);
+        
+        // Initial render
+        updatePreview();
+
+        // Function to insert code snippet at cursor position
+        function insertCode(snippet) {
+            const startPos = editor.selectionStart;
+            const endPos = editor.selectionEnd;
+            const textBefore = editor.value.substring(0, startPos);
+            const textAfter = editor.value.substring(endPos, editor.value.length);
+            
+            editor.value = textBefore + snippet + textAfter;
+            
+            // Move cursor to end of inserted snippet
+            editor.focus();
+            editor.selectionStart = editor.selectionEnd = startPos + snippet.length;
+            
+            updatePreview();
+        }
+
+        function resetCode() {
+            editor.value = defaultCode;
+            updatePreview();
+        }
+
+        // Toggle Accordion sections
+        function toggleSection(id) {
+            const el = document.getElementById(id);
+            if (el.classList.contains('hidden')) {
+                el.classList.remove('hidden');
+            } else {
+                el.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
